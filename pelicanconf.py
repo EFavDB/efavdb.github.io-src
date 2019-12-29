@@ -62,7 +62,7 @@ RELATIVE_URLS = True
 
 # Plugins
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['render_math', 'summary']
+PLUGINS = ['render_math', 'summary', 'neighbors']
 
 # Theme specific setting
 DISPLAY_CATEGORIES_ON_MENU = False
