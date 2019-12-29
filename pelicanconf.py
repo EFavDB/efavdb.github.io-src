@@ -34,9 +34,13 @@ AUTHOR_FEED_RSS = None
 TAGS_URL = 'tags.html'
 ARCHIVES_URL = 'archive.html'
 PAGE_PATHS = ['pages']
+STATIC_PATHS = ['images', 'wp-content']
+PAGE_EXCLUDES = ['wp-content']
+ARTICLE_EXCLUDES = ['wp-content']
 # have output paths mirror source content's filesystem path hierarchy
-PATH_METADATA = '(?P<path_no_ext>.*)\..*'
-ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
+# n.b. does not play well with wp-content static path references
+#PATH_METADATA = '(?P<path_no_ext>.*)\..*'
+#ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
 
 # Blogroll
 LINKS = (('Home', '/index.html'),
@@ -60,8 +64,15 @@ PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['render_math', 'summary']
 
 # Theme specific setting
-#DISPLAY_PAGES_ON_MENU = True
-
+DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_PAGES_ON_MENU = False  # turn this off so we can specify ordering
+MENUITEMS = [('Home', '/'),
+             ('About', '/pages/about.html'),
+             ('Archive', '/archives.html'),
+             ('Tags', '/tags.html'),
+             ('linselect - feature selection','/pages/linselect.html'),
+]
+HOME_COVER = 'images/home_cover_santa_barbara.jpg'
 
 # theme specific settings
 # AUTHORS_BIO = {
