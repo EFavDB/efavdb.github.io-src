@@ -11,7 +11,7 @@ AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
 SITEURL = 'http://frangipane.github.io'
 #SITEURL = 'localhost'
-THEME = f'{CURRENT_DIR_PATH}/attila-theme'
+THEME = f'{CURRENT_DIR_PATH}/theme'
 PATH = 'content'
 
 # General settings
