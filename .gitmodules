@@ -1,0 +1,9 @@
+[submodule "pelican-plugins"]
+	path = pelican-plugins
+	url = https://github.com/getpelican/pelican-plugins.git
+[submodule "output"]
+	path = output
+	url = https://github.com/frangipane/frangipane.github.io.git
+[submodule "attila-theme"]
+	path = attila-theme
+	url = https://github.com/arulrajnet/attila
