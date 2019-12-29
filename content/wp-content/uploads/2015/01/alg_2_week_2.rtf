@@ -1,0 +1,153 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs24 \cf0 Alg 2, week 2.  More on the greedy algorithm\
+\
+Video 1:  Kruskal\'92s MST algorithm.\
+
+\b0 \
+Last week we learned about Prim\'92s algorithm for finding the MST of a graph.  This week, we will learn about Kruskal\'92s algorithm for solving the same problem.  This will require an understanding of the \\textit\{union-find data structure\}.  Another interesting point is that Kruskal\'92s solution has some cool connections to clustering algorithms, which we\'92ll also discuss.\
+\
+\
+MST REVIEW:\
+Input:  undirected graph, where each edge has a cost\
+Output:  min-cost spanning tree (no cycles, connected).\
+Assumptions:  $G$ is connected.  Distinct edge costs.\
+Cut property:  if $e$ is the cheapest edge crossing cut $(A,B)$, then $e$ belongs to the MST. \
+\
+\
+Basic idea of Kruskal:  Always add the lowest cost edge in the graph that does not create any cycles.  \
+\
+Pseudocode:\
+\\begin\{verbatim\}\
+-sort edges in order of increasing cost.  Then rename edges 1, 2, \'85 , m so that c_1< c_2 < \'85 < c_m.  Then,\
+-  Set T = \{\}\
+- For i in range(m):\
+	if T union i has no cycles:\
+		add i to T\
+-return T\
+\\end\{verbatim\}\
+\
+\
+\
+
+\b Video 2:  Correctness of Kruskal\'92s MST algorithm.\
+\
+
+\b0 Theorem:  Kruskal\'92s algorithm is correct.\
+\
+Proof:  Let $T^* = $ output of Kruskal\'92s algorithm on input graph $G$.  \
+1)  By construction, $T^*$ has no cycles.\
+2)  $T^*$ is connected.  Proof:\
+First, recall that by empty cut lemma, only need to show that $T^*$ crosses every cut.  Consider then some cut $(A, B)$.  Since $G$ connected, at least one of its edges crosses $(A, B)$ because the algorithm will include the first edge crossing $(A, B)$ that it considers.  \
+3)  Every edge of $T^*$ justified by the cut property.  proof:  Consider iteration where edge $(u,v)$ added to correct set $T$.  Since $T \\bigcup \{(u,v)\}$ has no cycle, $T$ has no $u-v$ path.  Therefore, there is an empty cut $(A, B)$ separating $u$ and $v$ (stick distinct connected components on opposite sides of the cut).  As above, it follows that no edges crossing $(A, B)$ were previously considered by Kruskal\'92s algorithm.  Therefore, $(u,v)$ is the first (and hence cheapest) edge crossing $(A,B)$.  This means that $(u,v)$ is justified by the cut property.\
+\
+\
+
+\b Video 3:  Implementation of Kruscal, part 1.\
+\
+
+\b0 Running time of straightforward pseudocode.  \
+-Sort step will run in $O(m \\log n)$.  Here, we use $n$ in the logarithm, since $\\log m \\sim log n$ since, $m \\leq n^2$.  \
+- There are $O(m)$ iterations.  Each requires that we check whether new edge creates a cycle.  This can be done in $O(n)$ time using DFS or BFS.  These both run linear in the graph size.  This is bounded by $n$, since there are at most $n-1$ edges in our tree.  This leads to  $O(m \\log n ) + O(mn) = O(mn)$ time total.  \
+-To improve, we will speed up the check for cycles.  In fact, with the \\textit\{union-find\}$ data structure, we can get the cycle check down to $O(1)$ runtime.\
+\
+\
+\\textit\{The union-find data structure\}.  These maintain a partition of a set of objects.  They support the operations\
+\\begin\{itemize\}\
+\\item \\begin\{verbatim\}Find(x)\\end\{verbatim\}, which return the name of the group that $x$ belongs to.\
+\
+\\item \\begin\{verbatim\}UNION(c_i,c_j)\\end\{verbatim\}: Fuse groups $c_i$ and $c_j$ into a single one.\
+\\end\{itemize\}\
+\
+Why are these structures useful for Kruskal?  We will set the objects = vertices  and groups = connected components with respect to currently chosen edges $T$.  Every time that a new edge is added to $T$, we have to invoke the union algorithm, which fuses two connected components into one.  To maintain invariant that added edges do not create circuits, we simply make sure that the two ends of any added edge do not belong to the same group.\
+\
+\
+
+\b Video 4:  Details on a basic Union-Find data structure.\
+
+\b0 \
+Idea #1:  Maintain one linked structure per connected component of $(V,T)$.  Each component has an arbitrary leader vertex.\
+\
+Invariant:  Each vertex points to the leader of its component.  Thus, each element of a component inherits the name of the leader vertex of its group.\
+\
+Key point:  Given edge $(u,v)$, can check if $u$ and $v$ already in same component in $O(1)$ time, if and only if the leader pointers of $u$ and $v$ match.  This leads to $O(1)$ cycle checks.\
+\
+Question:  How to maintain the invariant when union is applied?  Superficially, it looks like this could take $O(n)$ time.  For example, if the graph is split into two, and then fused, then you\'92ll have to still relabel the leaders for the smaller of the two.  \
+\
+We can check the run-time by considering how many times any particular vertex will have its leader pointer updated. We will require that we only update a vertex\'92s leader when it belongs to the smaller of the two groups being merged.  In this case, it can only get relabeled $O(\\log n)$ time:  Each time the vertex\'92s group gets merged, it will at least double in size, so it can only do this $O(\\log n)$ times.\
+Thus, the total relabeling work done can never take more than $O(n \\log n)$ work.  This holds, even if you might happen to do linear work in any particular single relabeling event.  \
+\
+So, we have $O(m \\log n)$ for the sorting, $O(m)$ time for the cycle checks, and $O(n log n)$ for the relabeling.  The total is dominated by the sorting.\
+\
+\
+\
+
+\b Video 5:  Research frontier of MST\
+\
+
+\b0 Prim and Kruskal both solve this problem well, and in $O(m \\log n)$ time.  Can we do better?  Turns out we can, with effort!  It turns out that if you are happy with randomized algorithms, you can solve this in $O(m)$ time.  We do not know if there is $O(m)$ deterministic running time algorithm.  We do know that there is one that runs in $O(m \\alpha(n))$ time, where $\\alpha$ is the \\textit\{inverse Ackerman function\}, a function that grows even slower than $\\log n$ of time.  In fact, it grows slower than the $\\log^*n$ function, which is the number of times you can apply $\\log$ to $n$ before the result falls below $1$.  \
+\
+Pettie and Ramachandran have found an optimal algorithm.  However, nobody has been able to evaluate the asymptotic run time of this algorithm.  \
+\
+Other open questions exist.  For example, are there simple random algorithms that are $O(m)$ time for MST?  \
+\
+Eisner 97 provides a good overview of modern theory of MST.\
+\
+\
+
+\b Video 6:  Clustering, part 1\
+
+\b0 \
+Informal problem:  Given n ``points\'94 [web pages, images, etc], we wish to cluster then into ``coherent groups.\'94  \
+\
+Assumptions:  As input, given a (dis)similarity measure \'97 a distance $d(p,q)$ between each pair of points $p$ and $q$.  We require this to be symmetric in its arguments.  Examples:  Euclidean distance, genome similarity, etc.\
+\
+Goal:  Cluster objects that are nearby into groups.\
+\
+\\textit\{Max-spacing $k$-clusterings.\}\
+\
+Assume:  We know $k$, the number of clusters desired.  [in practice can experiment with this value].\
+Call points $p$ and $q$ separated if they\'92re assigned to different clusters. \
+\
+Definition:  The spacing of a $k$-clustering is given by \
+\
+\\begin\{eqnarray\}\
+S = \\min_\{\\text\{separated\} p, q\} d(p,q),\
+\\end\{eqnarray\}\
+the closest separation of any pair belonging to separate clusters.\
+\
+Problem statement:  Find the $k$-clustering solution that maximizes the spacing.\
+\
+\\textit\{A greedy algorithm\}:   We\'92ll start with allowing there to be more than $k$ clustering, and will whittle them down.  We start by having every point belonging to its own cluster.  Then, to make the spacing go up, we find the two that are closest together.  We join these together.  We then continue.\
+\
+Pseudocode:\
+\
+\\begin\{verbatim\}\
+-initially, each point in a separate cluster.\
+- repeat until only k clusters:\
+	let p, q = closest pair of separated points\
+	merge the clusters containing p and q into a single cluster\
+\\end\{verbatim\}\
+\
+Note:  This is just like Kruskal\'92s MST algorithm, but stopped early. The analogy is as follows:  points go to vertices, and distances go to edge costs.  Our approach here has a name:  single-link clustering.  \
+\
+\
+
+\b Video 7:  Correctness of clustering algorithm.\
+\
+
+\b0 Theorem:  Single-link clustering finds the max-space $k$-clustering.  \
+\
+Proof:   Let $C_1, \\ldots , C_k$ be our greedy clustering with spacing $S$.  Let $\\hat\{C\}_1, \\ldots, \\hat\{C\}_k$ be some other arbitrary clustering.  We need to show that the spacing of this is less than $S$.  \
+\
+Case 1:  If the two clustering are the same, up to renaming of clusterings, then the two have the same spacing.  \
+\
+Case 2:  Otherwise, can find a point pair $p, q$ such that a) they appear in the same cluster in $C$, but  b) are in different clusters in $\\hat\{C\}$.  \
+\
+Property of greedy algorithm:  If two points $x,y$ are ``directly merged\'94 at some point, then $d(x,y) \\leq S$.  This is because the greedy algorithm is constantly increasing the distance of points being merged.\
+\
+Easy case:  If $p,q$ directly merged at some point (basically, adjacent vertices in the analogous MST), $S \\geq d(p,q)$, as required.    Suppose then the tricky case.  Suppose that $p$ and $q$ were indirectly merged in the greedy algorithm (So, not adjacent in the analogous MST).  Let $p, a_1 ,\\ldots, a_l, q$ be the path of direct greedy mergers connecting $p$ and $q$ (the $a_i$\'92s are like vertices in the path from the two in the MST).  Key point:  Since $p \\in \\hat\{C\}_i$ and $q \\not \\in \\hat\{C\}_i$, there must exist a pair $a_j$ and $a_\{j+1\} $ with $a_\{j\} \\in \\hat\{C\}_i$ and $a_\{j+1\} \\not \\in \\hat\{C\}_i$.  These two belong to different clusters in $\\hat\{C\}$ as well.  As above, $d(a_j, a_\{j+1\}$ \\leq S$, again implying that the spacing of $\\hat\{C\} \\leq S$.  }
