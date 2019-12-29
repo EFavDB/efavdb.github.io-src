@@ -9,7 +9,8 @@ CURRENT_DIR_PATH = Path(__file__).resolve().parent
 # Site settings
 AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
-SITEURL = 'localhost'
+SITEURL = 'http://frangipane.github.io'
+#SITEURL = 'localhost'
 THEME = f'{CURRENT_DIR_PATH}/attila-theme'
 PATH = 'content'
 
