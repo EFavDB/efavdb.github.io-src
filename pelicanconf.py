@@ -9,6 +9,7 @@ CURRENT_DIR_PATH = Path(__file__).resolve().parent
 # Site settings
 AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
+SITESUBTITLE = "Everybody's Favorite Data Blog"
 SITEURL = 'http://frangipane.github.io'
 #SITEURL = 'localhost'
 THEME = f'{CURRENT_DIR_PATH}/theme'
@@ -18,7 +19,7 @@ PATH = 'content'
 TIMEZONE = 'America/Los_Angeles'
 DEFAULT_LANG = 'en'
 DEFAULT_PAGINATION = 10
-SUMMARY_MAX_LENGTH = 80
+SUMMARY_MAX_LENGTH = 50
 #SUMMARY_BEGIN_MARKER = '<!--summary-->'
 #SUMMARY_END_MARKER = '<!--more-->'
 
@@ -45,7 +46,7 @@ ARTICLE_EXCLUDES = ['wp-content']
 
 # Blogroll
 LINKS = (('Home', '/index.html'),
-         ('About', '/about.html'),
+         ('About & Consulting', '/about.html'),
          ('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),
          ('Jinja2', 'http://jinja.pocoo.org/'),
@@ -62,13 +63,17 @@ RELATIVE_URLS = True
 
 # Plugins
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['render_math', 'summary']
+PLUGINS = ['sitemap',
+           'summary',
+           'render_math',
+           'neighbors',
+]
 
 # Theme specific setting
 DISPLAY_CATEGORIES_ON_MENU = False
 DISPLAY_PAGES_ON_MENU = False  # turn this off so we can specify ordering
 MENUITEMS = [('Home', '/'),
-             ('About', '/pages/about.html'),
+             ('About & Consulting', '/pages/about.html'),
              ('Archive', '/archives.html'),
              ('Tags', '/tags.html'),
              ('linselect - feature selection','/pages/linselect.html'),
@@ -76,6 +81,7 @@ MENUITEMS = [('Home', '/'),
 HOME_COVER = 'images/home_cover_santa_barbara.jpg'
 
 # theme specific settings
+SHOW_CREDITS = False
 # AUTHORS_BIO = {
 #   "jslandy": {
 #     "name": "Jonathan Landy",
@@ -86,6 +92,28 @@ HOME_COVER = 'images/home_cover_santa_barbara.jpg'
 #     "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
 #   }
 # }
+
+## plugin settings
+# render_math
+MATH_JAX = {
+    'process_summary': True
+}
+
+# sitemap plugin
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': .99,
+        'pages': .75,
+        'indexes': .5
+    },
+    'changefreqs': {
+        'articles': 'daily',
+        'pages': 'daily',
+        'indexes': 'daily'
+    },
+}
+
 
 
 # publish
