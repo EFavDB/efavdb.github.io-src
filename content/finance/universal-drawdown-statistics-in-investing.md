@@ -5,7 +5,6 @@ Category: Finance
 Slug: universal-drawdown-statistics-in-investing
 Status: published
 Attachments: wp-content/uploads/2019/12/binary_sol.png, wp-content/uploads/2019/12/dd.png, wp-content/uploads/2019/12/results.png, wp-content/uploads/2019/12/dd_normal.png
-Tags: finance
 
 We consider the equilibrium drawdown distribution for a biased random walk -- in the context of a repeated investment game, the drawdown at a given time is how much has been lost relative to the maximum capital held up to that time. We show that in the tail, this is exponential. Further, when mean drift is small, this has an exponent that is universal in form, depending only on the mean and standard deviation of the step distribution. We give simulation examples in python consistent with the results.
 
@@ -16,7 +15,7 @@ Follow us on twitter for new submission alerts!
 Introduction and main results
 -----------------------------
 
-In this post, we consider a topic of high interest to investors and gamblers alike -- the statistics of drawdown. This is the amount of money the investor has lost relative to their maximum held capital to date. [![dd]({static}/wp-content/uploads/2019/12/dd.png)]({static}/wp-content/uploads/2019/12/dd.png) For example, if an investor once held $100, but now holds only $90, his drawdown is currently $10. We will provide some results that characterize how unlikely it is for the investor to have a large drawdown of \$$k$, given knowledge of the statistics of his bets.
+In this post, we consider a topic of high interest to investors and gamblers alike -- the statistics of drawdown. This is the amount of money the investor has lost relative to their maximum held capital to date. [![dd]({static}/wp-content/uploads/2019/12/dd.png)]({static}/wp-content/uploads/2019/12/dd.png) For example, if an investor once held $100, but now holds only $90, his drawdown is currently $10. We will provide some results that characterize how unlikely it is for the investor to have a large drawdown of $$k$, given knowledge of the statistics of his bets.
 
 We will take as our model system a biased random walk. The probability that at step $t$ the investment goes from $k^{\prime}$ to $k$ will be taken to be independent of time and given by  
 \begin{eqnarray}\tag{1} \label{step_distribution}  
@@ -43,25 +42,25 @@ Numerical examples in python
 
 Here, we will consider two different kinds of random walk -- one where the steps are always the same size, but there is bias in the forward direction, and the other where the steps are taken from a Gaussian or normal distribution. The code below carries out a simulated investing scenario over one million steps.
 
-```python
+```
 
 import numpy as np
 
 def binary(mu):  
-    """  
-    Return either mu - 1 or mu + 1 with equal probability.  
-    Note unit std.  
-    """  
-    return np.random.choice([-1, 1]) + mu
+"""  
+Return either mu - 1 or mu + 1 with equal probability.  
+Note unit std.  
+"""  
+return np.random.choice([-1, 1]) + mu
 
 def normal_random_step(mu):  
-    """  
-    Return a random unit normal with unit std.  
-    """  
-    return np.random.randn() + mu
+"""  
+Return a random unit normal with unit std.  
+"""  
+return np.random.randn() + mu
 
 # CONSTANTS  
-TIME_STEPS = 10 \*\* 6  
+TIME_STEPS = 10 ** 6  
 MU = 0.1
 
 # BINARY WALK  
@@ -69,9 +68,9 @@ position = 0
 max_position_to_date = 0  
 drawdowns_binary = []  
 for time in range(TIME_STEPS):  
-    position += STEP_FUNC(MU)  
-    max_position_to_date = max(max_position_to_date, position)  
-    drawdowns_binary.append(max_position_to_date - position)
+position += STEP_FUNC(MU)  
+max_position_to_date = max(max_position_to_date, position)  
+drawdowns_binary.append(max_position_to_date - position)
 
 # GAUSSIAN / NORMAL WALK  
 STEP_FUNC = normal_random_step  
@@ -79,35 +78,25 @@ position = 0
 max_position_to_date = 0  
 drawdowns_normal = []  
 for time in range(TIME_STEPS):  
-    position += STEP_FUNC(MU)  
-    max_position_to_date = max(max_position_to_date, position)  
-    drawdowns_normal.append(max_position_to_date - position)
+position += STEP_FUNC(MU)  
+max_position_to_date = max(max_position_to_date, position)  
+drawdowns_normal.append(max_position_to_date - position)
 
-```
+```  
 [![dd_normal]({static}/wp-content/uploads/2019/12/dd_normal.png)]({static}/wp-content/uploads/2019/12/dd_normal.png)
 
-You can see in the code that we have a loop over steps. At each step,
-we append to a list of observed drawdown values. A plot of the
-histogram of these values for the Normal case at $\mu = 0.1$ is
-shown at right.
+You can see in the code that we have a loop over steps. At each step, we append to a list of observed drawdown values. A plot of the histogram of these values for the Normal case at $\mu = 0.1$ is shown at right.
 
-To check whether our theoretical forms are accurate, it is useful to
-plot the cumulative distribution functions vs the theoretical forms --
-the latter will again be exponential with the same $\alpha$ values
-as the probability distribution functions. It turns out that the
-exponent $\alpha$ that solves (\ref{dd_decay_eqn}) is always
-given by the universal form for a Gaussian. However, for the binary
-walker, we need to solve for this numerically in general. The
-following code snippet does this.
+To check whether our theoretical forms are accurate, it is useful to plot the cumulative distribution functions vs the theoretical forms -- the latter will again be exponential with the same $\alpha$ values as the probability distribution functions. It turns out that the exponent $\alpha$ that solves (\ref{dd_decay_eqn}) is always given by the universal form for a Gaussian. However, for the binary walker, we need to solve for this numerically in general. The following code snippet does this.
 
-```python
+```  
 from scipy.optimize import fsolve
 
-# Solving numerically for binary case.
-binary_alpha_func = lambda x: 1 - np.exp(x \* MU) \* np.cosh(x)
-alpha_initial_guess = -4
-alpha_solution = fsolve(binary_alpha_func, alpha_initial_guess)
-```
+# Solving numerically for binary case.  
+binary_alpha_func = lambda x: 1 - np.exp(x * MU) * np.cosh(x)  
+alpha_initial_guess = -4  
+alpha_solution = fsolve(binary_alpha_func, alpha_initial_guess)  
+```  
 A plot of the function above and the solution when $\mu = 0.85$ is shown below. Note that there is always an unphysical solution at $\alpha =0$ -- this should be ignored.
 
 [![binary_sol]({static}/wp-content/uploads/2019/12/binary_sol.png)]({static}/wp-content/uploads/2019/12/binary_sol.png)
@@ -142,7 +131,7 @@ Simplifying this gives (\ref{exponential}).
 
 Now, to get the universal form, we make use of the cumulant expansion, writing  
 \begin{eqnarray} \nonumber  
-1 &=& \int_{-\infty}^{\infty} \exp\left( \alpha j \right) \tau(-j) dj \ 
+1 &=& \int_{-\infty}^{\infty} \exp\left( \alpha j \right) \tau(-j) dj \  
 &\equiv & \exp \left ( - \mu \alpha + \sigma^2 \frac{\alpha^2}{2} + \ldots \right) \tag{A5}  
 \end{eqnarray}  
 Provided the expansion converges quickly, we obtain  
@@ -150,10 +139,10 @@ Provided the expansion converges quickly, we obtain
 - \mu \alpha + \sigma^2 \frac{\alpha^2}{2} + \ldots = 0 \tag{A6}  
 \end{eqnarray}  
 giving  
-\begin{eqnarray} \label{cppi_alpha_asymptotic} \tag{A7}
+\begin{eqnarray} \label{cppi_alpha_asymptotic} \tag{A7}  
 \alpha \sim 2 \frac{\mu}{\sigma^2}  
 \end{eqnarray}  
-With this solution, the $k$-th term in the cumulant expansion goes like
+With this solution, the $k$-th term in the cumulant expansion goes like  
 \begin{eqnarray} \tag{A8}  
 \frac{2^k}{k!} \left( \frac{\mu}{\sigma^2} \right)^k O(\overline{x^k}) \sim \frac{2^k}{k!} \left( \frac{\mu}{\sigma} \right)^k  
 \end{eqnarray}  

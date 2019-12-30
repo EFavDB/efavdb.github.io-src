@@ -1,0 +1,18 @@
+Title: NBA learner: 2013-14 warmup
+Date: 2014-10-30 22:07
+Author: dmcintosh
+Category: NBA prediction project
+Tags: methods, NBA
+Slug: nba-learner-2013-14-warmup
+Status: published
+Attachments: wp-content/uploads/2014/10/NBAlearnV0Results.png
+
+We’ve spent the last couple of evenings training some preliminary algorithms on the NBA 2013-14, regular season data, which we grabbed from [basketball-reference.com](http://www.basketball-reference.com/).  Each of the 30 NBA teams play 82 times a season, summing to 1230 games total — a sizable number that we can comfortably attempt to model.  Here, we cover our first pass at the prediction problem, what we’ve learned so far, and challenges we’re looking forward to tackling soon.
+
+[![NBAlearnV0Results]({static}/wp-content/uploads/2014/10/NBAlearnV0Results.png)]({static}/wp-content/uploads/2014/10/NBAlearnV0Results.png)
+
+The first algorithm:  As mentioned in the prior post, we decided to initially train only on historical win-loss data triples of the form (home team, away team, y), where the Boolean y equals one if the home team won, zero otherwise.  For prediction, we use logistic classification:  We attempt to identify which teams team $\alpha$ would likely beat, were they to play them at home.  In order to accomplish this task, our logistic model has at its disposal a set of variable features characterizing each team:  a home feature vector $\textbf{H}_{\alpha}$ and an away feature vector $\textbf{A}_{\alpha}$, each of length 10.  The model predicts a home team $\alpha$ win over away team $\beta$ probability of $h =  1/[1 + \exp(- \textbf{H}_{\alpha} \cdot \textbf{A}_{\beta})]$ $ \in [0,1]$.  In training, the model is initially fed random feature vectors, which are then relaxed to minimize the logistic cost function, $J \equiv$$ - \sum_{i = 1}^{m} y_i \log h_i$$+ (1-y_i) \log (1 - h_i) $, where the sum is over all training examples.  The cost function $J$ heavily penalizes large mismatch between the actual outcome $y$ and the predicted outcome $h$ for any training example — we also added to this a suppression term that prevents over-fitting.
+
+Results:  We trained the above model on the first 800 games of the 2013-14 season, and then tested the accuracy of the model on the remaining 430 games it did not train on.  Sample output is shown in the figure.  As you can see in the last line, the algorithm correctly predicted the outcome of 64% of these games.  As a first pass, this compares favorably to, for example, the accuracy of the predictions provided by [teamrankings.com](http://www.teamrankings.com/nba/betting-models/detailed-splits/) (about 68% for the 2013-14 season). Further, after implementing a quick improvement to the first model above, basing predictions on prior score-differentials, rather than simply win-loss results, we managed to pop our accuracy up to 69% on the same data set.
+
+Caveats & future directions:  Our comparison to teamrankings.com (TR) above isn’t really a fair one.  The reason is that our analysis was only carried out on the final 2/3rds of the last season, whereas TR’s average covered its entirety.  Early-season prediction is necessarily less accurate for all bettors, given the paucity of relevant data available at that time.  Nevertheless, we’re encouraged by our first attempts here.  To improve, we aim next to incorporate the information provided by prior seasons.  A closely related challenge will be to figure out how to intelligently weight data according to its age:  We want to be able to capture timely effects, like current momentum and injuries, while retaining all relevant long-term trends.

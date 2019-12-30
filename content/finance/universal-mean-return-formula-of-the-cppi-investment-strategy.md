@@ -5,7 +5,6 @@ Category: Finance
 Slug: universal-mean-return-formula-of-the-cppi-investment-strategy
 Status: published
 Attachments: wp-content/uploads/2019/12/mean_cppi_growth_rate.png, wp-content/uploads/2019/12/solution_half_safe.png
-Tags: finance
 
 
 CPPI$^{\dagger}$ is a risk management tactic that can be applied to
@@ -42,7 +41,7 @@ should only risk 50% of the initial capital and then continue to bank
 50% of any additional earnings whenever a new all time high is
 reached.
 
-According to Wikipedia, the first person to study CPPI was Perold, who derived the statistical properties of a CPPI portfolio's value at time $t$, assuming the underlying stochastic investment follows a Wiener process. I was introduced to the CPPI concept by the book "Algorithmic Trading" by Ernest Chan. This book implicitly poses the question of what the mean return is for general, discrete investment strategies. Here, I show that a universal formula applies in this case, valid at low to modest leverages and small unit investment Sharpe ratios -- this result is given in equation (\\ref{cppi_asymptotic_growth}) below.
+According to Wikipedia, the first person to study CPPI was Perold, who derived the statistical properties of a CPPI portfolio's value at time $t$, assuming the underlying stochastic investment follows a Wiener process. I was introduced to the CPPI concept by the book "Algorithmic Trading" by Ernest Chan. This book implicitly poses the question of what the mean return is for general, discrete investment strategies. Here, I show that a universal formula applies in this case, valid at low to modest leverages and small unit investment Sharpe ratios -- this result is given in equation (\ref{cppi_asymptotic_growth}) below.
 
 The post proceeds as follows: In the next section, I define some notation and then write down the limiting result. In the following section, I give a numerical example in python. Finally, an appendix contains a derivation of the main result. This makes use of the universal limiting drawdown distribution result from my [prior post](http://efavdb.com/universal-drawdown-statistics-in-investing/).
 
@@ -55,7 +54,7 @@ $$
 W_t = S_t + \Gamma_t
 \end{eqnarray}
 $$
-where $W$ is our total wealth, $S$ is the banked (safe) portion, and $\\Gamma$ is the portion we are willing to bet or gamble. The savings is set so that each time we reach a new all time high wealth, $S$ is adjusted to be equal to a fraction $\Pi$ of the net wealth. When this is done, the value of $\Gamma$ must also be adjusted downwards -- some of the investment money is moved to savings. Before adjustment, the result of a bet moves $\Gamma$ to  
+where $W$ is our total wealth, $S$ is the banked (safe) portion, and $\Gamma$ is the portion we are willing to bet or gamble. The savings is set so that each time we reach a new all time high wealth, $S$ is adjusted to be equal to a fraction $\Pi$ of the net wealth. When this is done, the value of $\Gamma$ must also be adjusted downwards -- some of the investment money is moved to savings. Before adjustment, the result of a bet moves $\Gamma$ to  
 \begin{eqnarray}\label{gamble_eom_cppi} \tag{2}
 \tilde{\Gamma}_{t+1} \equiv \left (1 + f (g_{t} - 1)\right) \Gamma_t.
 \end{eqnarray}  
@@ -123,7 +122,7 @@ def simulate_once(phi, pi, steps):
 
         # play round of investment game  
         dice_roll = np.random.rand()  
-        win = (dice_roll \< P_WIN)  
+        win = (dice_roll < P_WIN)  
         loss = 1 - win  
         g = LIFT_ON_WIN * win + LIFT_ON_LOSS * loss  
         nav_change = gamma * f * (g - 1)
@@ -173,20 +172,20 @@ To begin let us define
 \end{eqnarray}  
 This is the maximum $\Gamma$ seen to date at time $t$. Necessarily, this is the value of $\Gamma$ as of the most recent all time high preceeding $t$. If $\Gamma_t < \Gamma^*_t$, we say that we are in drawdown by value $\Gamma^*_t - \Gamma_t$. At all times, we have  
 \begin{eqnarray}\nonumber  
-S_t &=& \frac{\Pi}{1 - \Pi} \Gamma^*_t \\  
+S_t &=& \frac{\Pi}{1 - \Pi} \Gamma^*_t \  
 &\equiv & \rho \Gamma^*_t.  
 \end{eqnarray}  
 This result holds because the saved portion is $\Pi$ times the net wealth when we reach a new high and $\Gamma^*$ is what's left over, $(1 - \Pi)$ times the net wealth at that time.
 
 From the above definitions, our net wealth after a step is given by  
 \begin{eqnarray}\nonumber  
-W_{t+1} &=& W_{t} \left ( 1 + f(g_t -1) \frac{\Gamma_t}{W_{t}} \right ) \\ \nonumber  
-&=& W_{t} \left ( 1 + f(g_t -1) \frac{\Gamma_t}{S_t + \Gamma_t} \right ) \\  
+W_{t+1} &=& W_{t} \left ( 1 + f(g_t -1) \frac{\Gamma_t}{W_{t}} \right ) \ \nonumber  
+&=& W_{t} \left ( 1 + f(g_t -1) \frac{\Gamma_t}{S_t + \Gamma_t} \right ) \  
 &=& W_{t} \left ( 1 + f(g_t -1) \frac{\frac{\Gamma_t}{\Gamma^*_t}}{\rho+ \frac{\Gamma_t}{\Gamma^*_t}} \right )  
 \end{eqnarray}  
 Iterating and taking the logarithm we obtain  
 \begin{eqnarray}\nonumber \tag{A1} \label{A1}  
-\log W_{t} &=& \log W_{0} + \sum_{i=0}^{t-1} \log \left ( 1 + f(g_i -1) \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} \right ) \\  
+\log W_{t} &=& \log W_{0} + \sum_{i=0}^{t-1} \log \left ( 1 + f(g_i -1) \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} \right ) \  
 &\approx & \log W_{0} + \sum_{i=0}^{t-1} f (g_i -1) \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} - \frac{f^2}{2} \left ((g_i -1) \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}}\right)^2 + \ldots  
 \end{eqnarray}  
 The series expansion in the second line can be shown to converge quickly provided we have selected a leverage $f$ that always results in a small percentage change in our net wealth each step. Note that it is the breakdown of this expansion that causes the slight divergence at low $\phi$ in our last plot above.   
@@ -204,18 +203,18 @@ where $\alpha$ is given in that post as an implicit function of the statistics o
 Using the change of variables rule, we get  
 \begin{eqnarray}  
 p\left(\frac{\Gamma_i}{\Gamma^*_i} = k\right) \sim \begin{cases}  
-\alpha k^{\alpha - 1} & \text{if } x \in (0, 1) \\  
+\alpha k^{\alpha - 1} & \text{if } x \in (0, 1) \  
 0 & \text{else}  
 \end{cases}  
 \end{eqnarray}  
 Again, this is an approximation that assumes we spend relatively little time within one jump from the current all time high -- a result that will hold in the small Sharpe ratio limit. With this result, we obtain  
 \begin{eqnarray}\nonumber \tag{A2} \label{A2}  
-\left \langle \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} \right \rangle &\equiv & \int_0^1 \frac{x}{\rho + x} \alpha x^{\alpha - 1} dx \\  
+\left \langle \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} \right \rangle &\equiv & \int_0^1 \frac{x}{\rho + x} \alpha x^{\alpha - 1} dx \  
 &=&\frac{\alpha \, _2F_1\left(1,\alpha +1;\alpha +2;-\frac{1}{\rho }\right)}{\rho (\alpha +1) }  
 \end{eqnarray}  
 Here, $_2F_1$ is the hypergeometric function. Similarly,  
 \begin{eqnarray}\nonumber \tag{A3} \label{A3}  
-\left \langle \left( \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} \right)^2 \right \rangle &\equiv & \int_0^1 \left( \frac{x}{\rho + x} \right)^2 \alpha x^{\alpha - 1} dx \\  
+\left \langle \left( \frac{\frac{\Gamma_i}{\Gamma^*_i}}{\rho+ \frac{\Gamma_i}{\Gamma^*_i}} \right)^2 \right \rangle &\equiv & \int_0^1 \left( \frac{x}{\rho + x} \right)^2 \alpha x^{\alpha - 1} dx \  
 &=& \frac{\alpha \left(\frac{\rho }{\rho +1}-\frac{(\alpha +1) \, _2F_1\left(1,\alpha  
 +2;\alpha +3;-\frac{1}{\rho }\right)}{\alpha +2}\right)}{\rho ^2}  
 \end{eqnarray}  
@@ -223,24 +222,24 @@ Note that both of the last two lines go to one as $\rho \to 0$, the limit where 
 
 To get the above results, we assumed a small Sharpe ratio. Therefore, to simplify things, we can use the value of $\alpha$ that we derived in our last post that is valid in this limit. This was given by $\alpha \sim 2 \mu / \sigma^2$, where $\mu$ and $\sigma$ and mean and standard deviation of the random walk. We now evaluate these to get an expression for $\alpha$ in terms of the statistics of $g$. First, we note that the mean drift of $\log \Gamma$ is given by  
 \begin{eqnarray}\nonumber  
-\mu &\equiv & \langle \log(1 + f (g-1)) \rangle \\ \nonumber  
-&\sim & f \langle g -1 \rangle - \frac{f^2}{2} \langle (g-1)^2 \rangle \\  
+\mu &\equiv & \langle \log(1 + f (g-1)) \rangle \ \nonumber  
+&\sim & f \langle g -1 \rangle - \frac{f^2}{2} \langle (g-1)^2 \rangle \  
 &\sim & f \langle g -1 \rangle - \frac{f^2}{2} \text{var}(g).  
 \end{eqnarray}  
 The last line follows from the assumption that the Sharpe ratio for $g -1$ is small, so that  
 \begin{eqnarray}\nonumber  
-\langle (g-1)^2 \rangle &=& \left ( \langle (g-1)^2 \rangle - \langle (g-1) \rangle^2 \right) + \langle (g-1) \rangle^2 \\  
+\langle (g-1)^2 \rangle &=& \left ( \langle (g-1)^2 \rangle - \langle (g-1) \rangle^2 \right) + \langle (g-1) \rangle^2 \  
 &=& \text{var}(g) \left ( 1 + \frac{ \langle (g-1) \rangle^2}{\text{var}(g)} \right ).  
 \end{eqnarray}  
 Similarly, one can show that  
 \begin{eqnarray}\nonumber  
-\sigma^2 &\equiv& \text{var} \log(1 + f (g-1)) \\  
+\sigma^2 &\equiv& \text{var} \log(1 + f (g-1)) \  
 &\sim & f^2 \text{var}(g).  
 \end{eqnarray}  
 This gives  
 \begin{eqnarray}\nonumber  
-\alpha &\sim & 2 \frac{\mu}{\sigma^2} \\ \nonumber  
-&\sim & 2 \frac{ f \langle g -1 \rangle - \frac{f^2}{2} \text{var}(g)}{ f^2 \text{var}(g)} \\  
+\alpha &\sim & 2 \frac{\mu}{\sigma^2} \ \nonumber  
+&\sim & 2 \frac{ f \langle g -1 \rangle - \frac{f^2}{2} \text{var}(g)}{ f^2 \text{var}(g)} \  
 &=& \frac{2}{f} \frac{ \langle g -1 \rangle }{ \text{var}(g)} - 1  
 \end{eqnarray}  
 The second term in the first line can be neglected because we require the change in value to be a small fraction of our net wealth. We anticipate applying the algorithm to values of $f$ of order $f \sim O( \frac{ \langle g -1 \rangle }{ \text{var}(g)})$, so the above is $O(1)$. If we plug these results into the limiting form for $\alpha$ and use (\ref{3}) for $f$, we get  

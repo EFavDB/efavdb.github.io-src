@@ -1,0 +1,11 @@
+Title: NBA weekly predictions: up
+Date: 2014-11-08 00:09
+Author: dmcintosh
+Category: NBA prediction project
+Tags: NBA
+Slug: nba-weekly-predictions-up
+Status: published
+
+Every Friday, we will now be reporting our algorithm’s NBA win/loss outcome predictions for the following week.  These can be accessed by clicking the [“Weekly NBA predictions”](http://efavdb.com/weekly-nba-predictions/) link in the header section of our blog.  This week, we make predictions for a total of 51 games, training both on last year’s results, as well as the 70 games that have already been played this season.
+
+As the year progresses, we will continuously tweak our program for improved accuracy (we’re learning, too!).  This week, we implemented one significant change:  Our algorithm now takes into account the momentum of each team — in the form of its most recent 10 win/loss outcomes — when attempting to predict its subsequent win/loss result.  Interestingly, we found that having a home team’s algorithm track its own momentum led to no measurable improvement in its predictive power.  However, when fed the momentum features of the opposing, away team, the accuracy of the algorithm improved by five percent (as tested on 2013/14 stats).  Whether this is a consequence of some peculiarity of our algorithm’s structure, or instead a manifestation of some meaningful psychological effect, we do not know.
