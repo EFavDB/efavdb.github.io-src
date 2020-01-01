@@ -8,8 +8,8 @@ Status: published
 In this post, we review two facts about maximum-likelihood estimators: 1) They are consistent, meaning that they converge to the correct values given a large number of samples, $N$, and 2) They satisfy the [Cramer-Rao](http://efavdb.com/multivariate-cramer-rao-bound/) lower bound for unbiased parameter estimates in this same limit -- that is, they have the lowest possible variance of any unbiased estimator, in the $N\gg 1$ limit.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

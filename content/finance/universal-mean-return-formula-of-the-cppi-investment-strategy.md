@@ -21,8 +21,8 @@ the formula's accuracy with a simulation in python.
 
 *CPPI = "Constant Proportion Portfolio Insurance"
 
-[Follow @efavdb](http://twitter.com/efavdb)
-Follow us on twitter for new submission alerts!
+
+
 
 Introduction
 ------------

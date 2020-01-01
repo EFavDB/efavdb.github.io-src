@@ -8,8 +8,8 @@ Status: published
 We consider how the GDP or utility output of a city depends on the number of people living within it. From this, we derive some interesting consequences that can inform both government and individual attitudes towards newcomers.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### The utility function and benefit per person
 

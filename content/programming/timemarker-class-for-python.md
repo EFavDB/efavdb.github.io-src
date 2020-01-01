@@ -7,7 +7,7 @@ Status: published
 
 We give a simple class for marking the time at different points in a code block and then printing out the time gaps between adjacent marked points. This is useful for identifying slow spots in code.
 
-[Follow @efavdb](http://twitter.com/efavdb)
+
 
 The TimeMarker class
 --------------------

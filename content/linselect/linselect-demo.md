@@ -26,8 +26,8 @@ The data and a Jupyter notebook containing the code for this demo are available 
 The `linselect` package can be found on our github, [here](https://github.com/efavdb/linselect).
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 1 - Load the data and examine some stock traces
 -----------------------------------------------

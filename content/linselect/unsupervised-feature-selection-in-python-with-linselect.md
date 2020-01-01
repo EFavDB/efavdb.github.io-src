@@ -12,7 +12,7 @@ We illustrate the application of two linear compression algorithms in python: Pr
   
 We use our python package `linselect` to carry out efficient feature selection-based compression below -- this is available on pypi (`pip install linselect`) and [GitHub](https://github.com/EFavDB/linselect).
 
-[Follow @efavdb](http://twitter.com/efavdb)
+
 
 Linear compression algorithms
 -----------------------------

@@ -13,8 +13,8 @@ A common task in applied statistics is the pairwise comparison of the responses 
 [edit (6/11/2018): I've added the notebook used below to our Github, [here](https://github.com/EFavDB/improved_bonferroni)]
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

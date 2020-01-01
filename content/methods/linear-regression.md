@@ -11,8 +11,8 @@ We review classical linear regression using vector-matrix notation. In particula
 Last edited July 23, 2016.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

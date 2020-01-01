@@ -9,9 +9,9 @@ Attachments: wp-content/uploads/2014/12/plot.jpg, wp-content/uploads/2014/12/plo
 
 Here, we discuss some methods for carrying out classification when only positive examples are available. The latter half of our discussion borrows heavily from W.S. Lee and B. Liu, Proc. ICML-2003 (2003), which we supplement somewhat.  
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 **I. Generic logistic regression.**  
 [Logistic regression](http://en.wikipedia.org/wiki/Logistic_regression) is a commonly used tool for estimating the level sets of a Boolean function $y$ on a set of feature vectors $\textbf{F}$: In a sense, you can think of it as a method for playing the game \`\`Battleship" on whatever data set you're interested in. Its application requires knowledge of the $\{(\textbf{f}_i,y_i)\}$ pairs on a training set $\textbf{E} \subseteq \textbf{F}$, with label $y_i = 0,1$ for negative and positive examples, respectively. Given these training examples, logistic regression estimates for arbitrary feature vector $\textbf{f}$,  

@@ -8,8 +8,8 @@ Status: published
 This will be the first of a series of short posts relating to subject matter discussed in the text, ["An Introduction to Statistical Learning"](http://www-bcf.usc.edu/~gareth/ISL/). This is an interesting read, but it often skips over statement proofs -- that's where this series of posts comes in! Here, I consider the content of Section 5.1.2: This gives a lightning-quick "short cut" method for evaluating a regression's leave-one-out cross-validation error. The method is applicable to any least-squares linear fit.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction: Leave-one-out cross-validation
 

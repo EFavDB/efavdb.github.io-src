@@ -8,9 +8,9 @@ Attachments: wp-content/uploads/2015/02/measles_vaccine.png, wp-content/uploads/
 
 In this post, we provide a quick overview of the data and science of measles spread. Making use of python (code provided) we extract from a CDC data set the 2012 youth vaccination rate for each USA state -- see figure below. To aid in the interpretation of this data, we also review and describe the results of a generalized \`\`SIR" model for disease spread. The model -- analyzed in [our last post](http://efavdb.com/math-of-measles/) -- predicts that measles outbreaks are supported only if the vaccination rate is below 94%. At higher rates, infection spread is suppressed, and outbreaks do not occur. As seen in the figure, the majority of the states sit just below this critical number, and so are predicted to support youth outbreaks.
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 [caption width="800" caption="Measles vaccination rate by USA state for youths under 36 months in age, 2012. Dashed line at 94% is estimated critical vaccination rate needed to suppress outbreaks. The mean USA youth rate is about 91%."][iframe src="https://plot.ly/~Damien RJ/179" width="90%" height="950"][/caption]
 

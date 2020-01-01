@@ -7,9 +7,9 @@ Status: published
 
 Here, we introduce -- and outline a solution to -- a generalized SIR model for infectious disease. This is referenced in our [following post](http://efavdb.com/vaccination-rates/) on measles and vaccination rates. Our generalized SIR model differs from the [original SIR model](http://en.wikipedia.org/wiki/Epidemic_model#The_SIR_model) of Kermack and McKendrick in that we allow for two susceptible sub-populations, one vaccinated against disease and one not. We conclude by presenting some python code that integrates the equations numerically. An example solution obtained using this code is given below.  
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 [caption width="800" caption="Solution shown corresponds to a 20% unvaccinated population, a condition supporting outbreak."][iframe src="https://plot.ly/~Jonathan Landy/58" width="90%" height="450"][/caption]
 

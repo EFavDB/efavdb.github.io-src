@@ -14,8 +14,8 @@ We describe the mean shift algorithm in some detail in the [technical background
 
 In the next couple of sections, we illustrate application of the algorithm to a couple of problems. We make use of the python package [SkLearn](http://scikit-learn.org/stable/), which contains a mean shift implementation. Following this, we provide a quick discussion and an appendix on technical details.
 
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Mean shift clustering in action
 

@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2016/04/Untitled-2.jpg, wp-content/uploads/2016/
 Queries ping a certain computer server at random times, on average $\lambda$ arriving per second. The server can respond to one per second and those that can't be serviced immediately are queued up. What is the average wait time per query? Clearly if $\lambda \ll 1$, the average wait time is zero. But if $\lambda > 1$, the queue grows indefinitely and the answer is infinity! Here, we give a simple derivation of the general result -- (9) below.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

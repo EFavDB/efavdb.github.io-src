@@ -8,9 +8,9 @@ Status: published
 
 A guest post, contributed by Damien Ramunno-Johnson ([LinkedIn](https://www.linkedin.com/profile/view?id=60223336&authType=NAME_SEARCH&authToken=LOV_&locale=en_US&trk=tyah2&trkInfo=tarId%3A1420748440448%2Ctas%3Adamien%2Cidx%3A1-1-1), [bio-sketch](http://www.efavdb.com/about))
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 **Introduction**  
 Wearable sensors have become increasingly popular over the last few years with the success of smartphones, fitness trackers, and smart watches. All of these devices create a large amount of data that is ideal for machine learning. Two early examples are the FitBit and Jawbone's up band, both of which analyze sensor input to determine how many steps the user has taken, a metric which is helpful for measuring physical activity. There is no reason to stop there: With all of this data available it is also possible to extract more information. For example, fitness trackers coming out now can also analyze your sleep.

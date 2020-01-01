@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2015/12/projection.png, wp-content/uploads/2015/
 We review the two essentials of principal component analysis ("PCA"): 1) The principal components of a set of data points are the eigenvectors of the correlation matrix of these points in feature space. 2) Projecting the data onto the subspace spanned by the first $k$ of these -- listed in descending eigenvalue order -- provides the best possible $k$-dimensional approximation to the data, in the sense of captured variance.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

@@ -8,8 +8,8 @@ Status: published
 We demo a script that converts python numerical commands to LaTeX format. A notebook available on our GitHub page will take this and pretty print the result.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

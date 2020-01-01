@@ -13,8 +13,8 @@ We review the math and code needed to fit a Gaussian Process (GP) regressor to d
 Appendices contain quick reviews on (i) the GP regressor posterior derivation, (ii) SKLearn's GP implementation, and (iii) GP classifiers.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

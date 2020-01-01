@@ -15,8 +15,8 @@ Notice that if the $a_i$ were all the same, $S$ would be a regular geometric ser
 Note: This post covers work done in collaboration with my aged p, S. Landy.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction -- a stock dividend problem
 

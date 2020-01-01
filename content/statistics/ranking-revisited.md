@@ -8,8 +8,8 @@ Attachments: wp-content/uploads/2015/06/sower21.png, wp-content/uploads/2015/06/
 
 What is the best method for ranking items that have positive and negative reviews? Some sites, including reddit, have adopted an algorithm suggested by [Evan Miller](http://www.evanmiller.org/) to generate their item rankings. However, this algorithm can sometimes be unfairly pessimistic about new, good items. This is especially true of items whose first few votes are negative -- an issue that can be "gamed" by adversaries. In this post, we consider three alternative ranking methods that can enable high-quality items to more-easily bubble-up. The last is the simplest, but continues to give good results: One simply seeds each item's vote count with a suitable fixed number of hidden "starter" votes.  
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction -- a review of Evan Miller's post
 

@@ -9,8 +9,8 @@ We evaluate an integral having to do with vector averages over all
 orientations in an n-dimensional space.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 Problem definition
 ------------------

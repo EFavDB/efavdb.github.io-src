@@ -7,8 +7,8 @@ Status: published
 
 The Cramer-Rao inequality addresses the question of how accurately one can estimate a set of parameters $\vec{\theta} = \{\theta_1, \theta_2, \ldots, \theta_m \}$ characterizing a probability distribution $P(x) \equiv P(x; \vec{\theta})$, given only some samples $\{x_1, \ldots, x_n\}$ taken from $P$. Specifically, the inequality provides a rigorous lower bound on the covariance matrix of any unbiased set of estimators to these $\{\theta_i\}$ values. In this post, we review the general, multivariate form of the inequality, including its significance and proof.  
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction and theorem statement
 

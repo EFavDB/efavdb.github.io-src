@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2016/02/k3.jpg, wp-content/uploads/2016/02/mixed
 Two microphones are placed in a room where two conversations are taking place simultaneously. Given these two recordings, can one "remix" them in some prescribed way to isolate the individual conversations? Yes! In this post, we review one simple approach to solving this type of problem, Independent Component Analysis (ICA). We share an ipython document implementing ICA and link to a youtube video illustrating its application to audio de-mixing.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

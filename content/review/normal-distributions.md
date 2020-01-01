@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2017/05/carl-f-gauss-4.jpg
 I review -- and provide derivations for -- some basic properties of Normal distributions. Topics currently covered: (i) Their normalization, (ii) Samples from a univariate Normal, (iii) Multivariate Normal distributions, (iv) Central limit theorem.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

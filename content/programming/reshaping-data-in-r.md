@@ -9,8 +9,8 @@ Status: published
 
 Today, we'll talk about reshaping data in R. At the same time, we'll see how for-loops can be avoided by using R functionals (functions of functions). Functionals are faster than for-loops and make code easier to read by clearly laying out the intent of a loop.  
 
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### The Task
 

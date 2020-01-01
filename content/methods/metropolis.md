@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2016/08/result.png, wp-content/uploads/2016/08/t
 We review the Metropolis algorithm -- a simple Markov Chain Monte Carlo (MCMC) sampling method -- and its application to estimating posteriors in Bayesian statistics. A simple python example is provided.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 Introduction
 ------------
