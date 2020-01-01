@@ -2,7 +2,7 @@ Title: Support Vector Machines for classification
 Date: 2015-10-22 14:24
 Author: Cathy Yeh
 Category: Theory
-Tags: kernel methods, Machine Learning, optimization problem, Python, quadratic programming, SVM
+Tags: kernel methods, Machine Learning, optimization, Python, quadratic programming, SVM
 Slug: svm-classification
 Status: published
 Attachments: wp-content/uploads/2015/05/binaryclass_margin_feature.png, wp-content/uploads/2015/05/softmargin.png, wp-content/uploads/2015/05/binaryclass_margin.png, wp-content/uploads/2015/05/binaryclass_2d.png, wp-content/uploads/2015/05/svm_3d_cropped.png

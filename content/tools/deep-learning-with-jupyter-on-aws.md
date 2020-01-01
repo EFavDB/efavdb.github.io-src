@@ -2,7 +2,7 @@ Title: Start deep learning with Jupyter notebooks in the cloud
 Date: 2016-03-10 20:41
 Author: Cathy Yeh
 Category: Tools
-Tags: AWS, bash, cloud-computing, deep learning, Jupyter
+Tags: AWS, bash, cloud, deep learning, Jupyter
 Slug: deep-learning-with-jupyter-on-aws
 Status: published
 Attachments: wp-content/uploads/2016/03/jupyter-login.png, wp-content/uploads/2016/03/run-00-classification-ipynb.png, wp-content/uploads/2016/03/featured_image.png, wp-content/uploads/2016/03/caffe-examples-directory.png, wp-content/uploads/2016/03/scary-browser-warning.png, wp-content/uploads/2016/03/Step6_Configure-Security-Group.png, wp-content/uploads/2016/03/Step3_Configure-Instance-Details.png
