@@ -1,6 +1,6 @@
 Title: Universal drawdown statistics in investing
 Date: 2019-12-05 15:46
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance
 Slug: universal-drawdown-statistics-in-investing
 Status: published

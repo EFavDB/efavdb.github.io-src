@@ -1,6 +1,6 @@
 Title: Processing and processing.js tips and tricks in WordPress
 Date: 2015-01-05 00:12
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Tools, Visualization
 Tags: programming, visualization
 Slug: processing-and-processing-js-tips-and-tricks

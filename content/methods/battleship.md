@@ -1,6 +1,6 @@
 Title: Deep reinforcement learning, battleship
 Date: 2016-10-15 13:52
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: battleship
 Status: published

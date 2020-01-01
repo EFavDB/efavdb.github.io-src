@@ -1,6 +1,6 @@
 Title: Linear compression in python: PCA vs unsupervised feature selection
 Date: 2018-08-11 07:30
-Author: jslandy
+Author: Jonathan Landy
 Category: linselect
 Slug: unsupervised-feature-selection-in-python-with-linselect
 Status: published

@@ -1,6 +1,6 @@
 Title: NBA week 22 results, NBA season review, MLB week 1
 Date: 2015-04-19 19:46
-Author: jslandy
+Author: Jonathan Landy
 Category: MLB prediction project, NBA prediction project
 Slug: nba-week-22-results-nba-season-review-mlb-week-1
 Status: published

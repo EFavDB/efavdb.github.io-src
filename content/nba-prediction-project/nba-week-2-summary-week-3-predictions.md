@@ -1,6 +1,6 @@
 Title: NBA week 2 summary, week 3 predictions
 Date: 2014-11-21 23:25
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-2-summary-week-3-predictions

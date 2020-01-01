@@ -1,6 +1,6 @@
 Title: How not to sort by average rating, revisited
 Date: 2015-07-11 20:30
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: ranking-revisited
 Status: published

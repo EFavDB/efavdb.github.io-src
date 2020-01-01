@@ -1,6 +1,6 @@
 Title: Utility functions and immigration
 Date: 2019-06-21 09:24
-Author: jslandy
+Author: Jonathan Landy
 Category: Case studies
 Slug: utility-functions-and-immigration
 Status: published

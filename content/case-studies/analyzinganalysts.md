@@ -1,6 +1,6 @@
 Title: Analyzing Analysts
 Date: 2015-02-08 14:15
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Slug: analyzinganalysts
 Status: published

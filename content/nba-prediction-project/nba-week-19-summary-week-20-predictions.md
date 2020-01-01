@@ -1,6 +1,6 @@
 Title: NBA week 19 summary, week 20 predictions
 Date: 2015-03-27 09:58
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-19-summary-week-20-predictions
 Status: published

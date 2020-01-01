@@ -1,6 +1,6 @@
 Title: Compounding benefits of tax protected accounts
 Date: 2019-06-28 09:51
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance
 Slug: compounding-benefits-of-tax-protected-accounts
 Status: published

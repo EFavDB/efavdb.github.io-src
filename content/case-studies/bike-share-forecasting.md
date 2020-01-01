@@ -1,6 +1,6 @@
 Title: Forecasting Bike Sharing Demand
 Date: 2015-03-26 09:20
-Author: damienrj
+Author: Damien RJ
 Category: Case studies
 Slug: bike-share-forecasting
 Status: published

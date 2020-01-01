@@ -1,6 +1,6 @@
 Title: Data reduction by PCA
 Date: 2014-10-23 23:52
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: methods
 Tags: traffic
 Slug: data-reduction-by-pca

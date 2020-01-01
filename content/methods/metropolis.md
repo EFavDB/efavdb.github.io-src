@@ -1,6 +1,6 @@
 Title: Bayesian Statistics: MCMC
 Date: 2016-08-07 18:37
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: metropolis
 Status: published

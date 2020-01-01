@@ -1,6 +1,6 @@
 Title: Linear Regression
 Date: 2016-05-29 11:27
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: linear-regression
 Status: published

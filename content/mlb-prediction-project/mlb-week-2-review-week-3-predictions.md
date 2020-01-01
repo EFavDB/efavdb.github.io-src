@@ -1,6 +1,6 @@
 Title: MLB week 2 review, week 3 predictions
 Date: 2015-04-25 09:01
-Author: jslandy
+Author: Jonathan Landy
 Category: MLB prediction project
 Slug: mlb-week-2-review-week-3-predictions
 Status: published

@@ -1,6 +1,6 @@
 Title: Try Caffe pre-installed on a VirtualBox image
 Date: 2016-03-22 15:02
-Author: cyeh
+Author: Cathy Yeh
 Category: Tools
 Tags: Caffe, deep learning, Jupyter, Vagrant, VirtualBox
 Slug: caffe-virtualbox

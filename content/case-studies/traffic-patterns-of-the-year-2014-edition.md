@@ -1,6 +1,6 @@
 Title: Traffic patterns of the year: 2014 edition
 Date: 2014-10-21 23:47
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Tags: Machine Learning, traffic
 Slug: traffic-patterns-of-the-year-2014-edition

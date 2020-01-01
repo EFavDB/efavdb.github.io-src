@@ -1,6 +1,6 @@
 Title: NBA week 5 summary, week 6 predictions
 Date: 2014-12-12 15:39
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-5-summary-week-6-predictions

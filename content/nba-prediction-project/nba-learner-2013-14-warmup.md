@@ -1,6 +1,6 @@
 Title: NBA learner: 2013-14 warmup
 Date: 2014-10-30 22:07
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: methods, NBA
 Slug: nba-learner-2013-14-warmup

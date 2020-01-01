@@ -1,6 +1,6 @@
 Title: Leave-one-out cross-validation
 Date: 2015-08-01 16:08
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: leave-one-out-cross-validation
 Status: published

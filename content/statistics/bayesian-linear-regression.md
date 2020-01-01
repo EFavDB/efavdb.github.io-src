@@ -1,6 +1,6 @@
 Title: A review of parameter regularization and Bayesian regression
 Date: 2015-10-11 00:01
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: bayesian-linear-regression
 Status: published

@@ -1,6 +1,6 @@
 Title: Independent component analysis
 Date: 2016-02-14 00:00
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: independent-component-analysis
 Status: published

@@ -1,6 +1,6 @@
 Title: Quick tutorial on MySQL
 Date: 2015-01-16 16:07
-Author: jslandy
+Author: Jonathan Landy
 Category: Tools
 Slug: quick-tutorial-on-mysql
 Status: published

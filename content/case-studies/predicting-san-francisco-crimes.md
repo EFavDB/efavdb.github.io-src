@@ -1,6 +1,6 @@
 Title: Machine learning to predict San Francisco crime
 Date: 2015-07-20 03:01
-Author: damienrj
+Author: Damien RJ
 Category: Case studies
 Slug: predicting-san-francisco-crimes
 Status: published

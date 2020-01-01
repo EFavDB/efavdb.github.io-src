@@ -1,6 +1,6 @@
 Title: Reshaping Data in R
 Date: 2015-06-06 19:17
-Author: Cyeh
+Author: Cathy Yeh
 Category: Programming
 Tags: programming, R
 Slug: reshaping-data-in-r

@@ -1,6 +1,6 @@
 Title: NBA week 1 summary, week 2 predictions
 Date: 2014-11-14 23:22
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-1-summary-week-2-predictions

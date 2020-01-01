@@ -1,6 +1,6 @@
 Title: Gaussian Processes
 Date: 2017-11-25 09:53
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Programming, Statistics, Theory
 Slug: gaussian-processes
 Status: published

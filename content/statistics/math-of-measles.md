@@ -1,6 +1,6 @@
 Title: Mathematics of measles
 Date: 2015-02-25 13:37
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: math-of-measles
 Status: published
@@ -11,7 +11,7 @@ Here, we introduce -- and outline a solution to -- a generalized SIR model for i
 
 Follow us on twitter for new submission alerts!
 
-[caption width="800" caption="Solution shown corresponds to a 20% unvaccinated population, a condition supporting outbreak."][iframe src="https://plot.ly/~jslandy/58" width="90%" height="450"][/caption]
+[caption width="800" caption="Solution shown corresponds to a 20% unvaccinated population, a condition supporting outbreak."][iframe src="https://plot.ly/~Jonathan Landy/58" width="90%" height="450"][/caption]
 
 #### **The model**
 

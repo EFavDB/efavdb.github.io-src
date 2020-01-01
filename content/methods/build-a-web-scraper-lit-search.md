@@ -1,6 +1,6 @@
 Title: Build a web scraper for a literature search - from soup to nuts
 Date: 2015-08-25 17:43
-Author: cyeh
+Author: Cathy Yeh
 Category: Methods, Programming, Tools
 Tags: database, R, SQL, SQLite, web scraping
 Slug: build-a-web-scraper-lit-search

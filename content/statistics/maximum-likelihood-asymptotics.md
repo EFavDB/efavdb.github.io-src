@@ -1,6 +1,6 @@
 Title: Maximum-likelihood asymptotics
 Date: 2015-12-30 00:01
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: maximum-likelihood-asymptotics
 Status: published

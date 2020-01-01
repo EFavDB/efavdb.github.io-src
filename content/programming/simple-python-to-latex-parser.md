@@ -1,6 +1,6 @@
 Title: Simple python to LaTeX parser
 Date: 2016-11-18 12:59
-Author: jslandy
+Author: Jonathan Landy
 Category: Programming
 Slug: simple-python-to-latex-parser
 Status: published

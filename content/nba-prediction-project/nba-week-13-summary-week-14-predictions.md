@@ -1,6 +1,6 @@
 Title: NBA week 13 summary, week 14 predictions
 Date: 2015-02-06 11:30
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-13-summary-week-14-predictions
 Status: published

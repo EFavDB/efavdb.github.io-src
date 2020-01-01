@@ -1,6 +1,6 @@
 Title: linselect demo: a tech sector stock analysis
 Date: 2018-05-31 14:17
-Author: jslandy
+Author: Jonathan Landy
 Category: linselect
 Slug: linselect-demo
 Status: published

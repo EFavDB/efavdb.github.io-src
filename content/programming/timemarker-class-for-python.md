@@ -1,6 +1,6 @@
 Title: TimeMarker class for python
 Date: 2019-09-14 22:31
-Author: jslandy
+Author: Jonathan Landy
 Category: Programming, python, Tools
 Slug: timemarker-class-for-python
 Status: published

@@ -1,6 +1,6 @@
 Title: Machine learning with wearable sensors
 Date: 2015-01-09 12:34
-Author: damienrj
+Author: Damien RJ
 Category: Case studies, Guest posts
 Tags: guest
 Slug: machine-learning-with-wearable-sensors
@@ -101,9 +101,9 @@ accuracy_score(pred, label_test), f1_score(label_test, pred))
 **Visualization**  
 Looks like we are getting pretty good accuracy for using only 20% of the features available to us. You may have also noticed that I am outputting the [F1-Score](http://en.wikipedia.org/wiki/F1_score) which is another measure of the accuracy which takes into account the precision and the recall.
 
-Now let's plot some of these data points to see if we can visualize why this is all working. Here, I am using Plot.ly to make the plot. You can make the plots many different ways including converting matplotlib plots into these online plots. If you click on the "play with this data" link at the bottom of the figure (or click [here](https://plot.ly/~damienrj/104)) you can see the code used to make the plot.
+Now let's plot some of these data points to see if we can visualize why this is all working. Here, I am using Plot.ly to make the plot. You can make the plots many different ways including converting matplotlib plots into these online plots. If you click on the "play with this data" link at the bottom of the figure (or click [here](https://plot.ly/~Damien RJ/104)) you can see the code used to make the plot.
 
-[iframe src="https://plot.ly/~damienrj/104" width="100%" height="680"]
+[iframe src="https://plot.ly/~Damien RJ/104" width="100%" height="680"]
 
 I picked two of the features to plot, the z acceleration average, and the z acceleration standard deviation. Note, the gravity component of the acceleration was removed and placed into its own feature. Only 3/6 labels are being plotted to make it a little easier to see what is going on. For example, it is easy to see that the walking profile in the top graph differs significantly from those of standing and laying in the bottom two.
 

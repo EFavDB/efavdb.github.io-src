@@ -1,6 +1,6 @@
 Title: Normal Distributions
 Date: 2017-05-13 21:48
-Author: jslandy
+Author: Jonathan Landy
 Category: Review, Statistics, Theory
 Slug: normal-distributions
 Status: published

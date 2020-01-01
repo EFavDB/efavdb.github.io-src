@@ -1,6 +1,6 @@
 Title: Average queue wait times with random arrivals
 Date: 2016-04-23 09:51
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: average-queue-wait-times-with-random-arrivals
 Status: published

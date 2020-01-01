@@ -1,6 +1,6 @@
 Title: Integration method to map model scores to conversion rates from example data
 Date: 2018-03-03 17:53
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Statistics, Theory
 Slug: integration-method-to-map-model-scores-to-conversion-rates-from-example-data
 Status: published

@@ -1,6 +1,6 @@
 Title: Machine Learning Methods: Decision trees and forests
 Date: 2015-03-13 09:40
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: notes-on-trees
 Status: published

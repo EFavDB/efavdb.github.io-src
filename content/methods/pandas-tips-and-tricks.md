@@ -1,6 +1,6 @@
 Title: Getting started with Pandas
 Date: 2015-10-05 12:00
-Author: damienrj
+Author: Damien RJ
 Category: Methods, Programming, Tools
 Slug: pandas-tips-and-tricks
 Status: published

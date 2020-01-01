@@ -1,6 +1,6 @@
 Title: Obtaining and visualizing traffic data
 Date: 2014-10-16 22:07
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Tags: programming, traffic
 Slug: obtaining-and-visualizing-traffic-data

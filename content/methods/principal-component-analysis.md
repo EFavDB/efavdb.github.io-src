@@ -1,6 +1,6 @@
 Title: Principal component analysis
 Date: 2015-12-05 22:22
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: principal-component-analysis
 Status: published

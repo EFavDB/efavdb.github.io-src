@@ -1,6 +1,6 @@
 Title: Machine Learning Methods: Classification without negative examples
 Date: 2014-12-20 09:58
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Tags: methods
 Slug: methods-regression-without-negative-examples

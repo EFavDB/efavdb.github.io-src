@@ -1,6 +1,6 @@
 Title: MLB week 3 review, week 4 predictions
 Date: 2015-05-02 08:24
-Author: jslandy
+Author: Jonathan Landy
 Category: MLB prediction project
 Slug: mlb-week-3-review-week-4-predictions
 Status: published

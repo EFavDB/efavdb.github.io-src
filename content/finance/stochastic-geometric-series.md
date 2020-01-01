@@ -1,6 +1,6 @@
 Title: Stochastic geometric series
 Date: 2015-09-13 06:00
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance, Statistics
 Slug: stochastic-geometric-series
 Status: published
@@ -118,7 +118,7 @@ As for the integral equation approach, we have not found any other works aimed a
 
 [1] For a discussion on the geometric random walk model for stocks, see [here](http://people.duke.edu/~rnau/411georw.htm).
 
-[2] Elongated bacteria -- eg., e. coli -- grow longer at an exponential rate -- see my [paper on how cell shape affects growth rates](https://www.sites.google.com/site/jslandy/%282014%29cellgrowth.pdf?attredirects=0&d=1). Due to randomness inherent in the growth rates, bacteria populations will have a length distribution, similar in form to $P(S)$.
+[2] Elongated bacteria -- eg., e. coli -- grow longer at an exponential rate -- see my [paper on how cell shape affects growth rates](https://www.sites.google.com/site/Jonathan Landy/%282014%29cellgrowth.pdf?attredirects=0&d=1). Due to randomness inherent in the growth rates, bacteria populations will have a length distribution, similar in form to $P(S)$.
 
 [3] "An exponential functional of random walks" by Szabados and Szekeley, Journal of Applied Probability 2003.
 

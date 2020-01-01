@@ -1,6 +1,6 @@
 Title: Multivariate Cramer-Rao inequality
 Date: 2015-06-20 09:00
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: multivariate-cramer-rao-bound
 Status: published

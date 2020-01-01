@@ -1,6 +1,6 @@
 Title: NBA week 16 summary, week 17 predictions
 Date: 2015-03-06 11:23
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-16-summary-week-17-predictions
 Status: published

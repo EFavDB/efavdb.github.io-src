@@ -1,6 +1,6 @@
 Title: Historic daily traffic patterns and the time scale of deviations
 Date: 2014-11-11 05:25
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Tags: traffic
 Slug: historic-daily-traffic-patterns-and-the-time-scale

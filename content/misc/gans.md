@@ -1,7 +1,7 @@
 Title: Making AI Interpretable with Generative Adversarial Networks
 Date: 2018-04-05 09:43
-Author: damienrj
-Category: Uncategorized
+Author: Damien RJ
+Category: Misc
 Slug: gans
 Status: published
 

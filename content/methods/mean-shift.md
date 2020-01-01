@@ -1,6 +1,6 @@
 Title: The mean shift clustering algorithm
 Date: 2015-04-21 09:17
-Author: damienrj
+Author: Damien RJ
 Category: Methods, Theory
 Slug: mean-shift
 Status: published

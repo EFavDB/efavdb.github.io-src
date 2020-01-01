@@ -1,6 +1,6 @@
 Title: NBA week 10 summary, week 11 predictions
 Date: 2015-01-16 14:42
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-10-summary-week-11-predictions
 Status: published

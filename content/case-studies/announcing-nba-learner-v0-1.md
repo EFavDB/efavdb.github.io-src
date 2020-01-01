@@ -1,6 +1,6 @@
 Title: Announcing: NBA learner v0.1
 Date: 2014-10-29 02:04
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies, NBA prediction project
 Tags: NBA
 Slug: announcing-nba-learner-v0-1

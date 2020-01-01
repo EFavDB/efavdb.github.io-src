@@ -1,6 +1,6 @@
 Title: Improved Bonferroni correction factors for multiple pairwise comparisons
 Date: 2016-04-10 07:58
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: bonferroni-correction-for-multiple-pairwise-comparison-tests
 Status: published

@@ -1,6 +1,6 @@
 Title: NBA week 20 summary, week 21 predictions
 Date: 2015-04-03 17:48
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-20-summary-week-21-predictions
 Status: published

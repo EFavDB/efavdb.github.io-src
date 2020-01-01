@@ -1,6 +1,6 @@
 Title: A review of the online course “Introduction to Big Data with Apache Spark”
 Date: 2015-07-11 14:15
-Author: cyeh
+Author: Cathy Yeh
 Category: Review
 Tags: cloud-computing, Databricks, edX, mooc, review, spark
 Slug: review-intro-to-big-data-with-spark

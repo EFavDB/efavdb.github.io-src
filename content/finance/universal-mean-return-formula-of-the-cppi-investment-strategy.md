@@ -1,13 +1,13 @@
 Title: Universal limiting mean return of CPPI investment portfolios
 Date: 2019-12-09 16:14
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance
 Slug: universal-mean-return-formula-of-the-cppi-investment-strategy
 Status: published
 Attachments: wp-content/uploads/2019/12/mean_cppi_growth_rate.png, wp-content/uploads/2019/12/solution_half_safe.png
 
 
-CPPI$^{\dagger}$ is a risk management tactic that can be applied to
+CPPI* is a risk management tactic that can be applied to
 any investment portfolio. The approach entails banking a percentage of
 profits whenever a new all time high wealth is achieved, thereby
 ensuring that a portfolio's drawdown never goes below some maximum
@@ -19,9 +19,9 @@ depend in detail on the statistics of the investment in question, but
 instead only on its mean return and standard deviation. I illustrate
 the formula's accuracy with a simulation in python.
 
-$\dagger$ CPPI = "Constant Proportion Portfolio Insurance"  
-  
-[Follow @efavdb](http://twitter.com/efavdb)  
+*CPPI = "Constant Proportion Portfolio Insurance"
+
+[Follow @efavdb](http://twitter.com/efavdb)
 Follow us on twitter for new submission alerts!
 
 Introduction

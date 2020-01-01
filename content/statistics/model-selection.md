@@ -1,6 +1,6 @@
 Title: Hyperparameter sample-size dependence
 Date: 2016-08-21 00:00
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: model-selection
 Status: published

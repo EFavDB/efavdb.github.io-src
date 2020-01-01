@@ -1,6 +1,6 @@
 Title: Quantifying the NBA Christmas week flop: one in ten thousand?
 Date: 2014-12-28 21:55
-Author: jslandy
+Author: Jonathan Landy
 Category: Case studies, Methods, NBA prediction project
 Tags: NBA, statistics
 Slug: an-nba-christmas

@@ -1,6 +1,6 @@
 Title: Model AUC depends on test set difficulty
 Date: 2017-03-18 22:36
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: model-auc-depends-on-test-set-difficulty
 Status: published

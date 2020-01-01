@@ -1,6 +1,6 @@
 Title: Logistic Regression
 Date: 2017-07-29 19:10
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Statistics, Theory
 Slug: logistic-regression
 Status: published
