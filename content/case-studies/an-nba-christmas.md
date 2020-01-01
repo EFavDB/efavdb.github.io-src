@@ -1,6 +1,6 @@
 Title: Quantifying the NBA Christmas week flop: one in ten thousand?
 Date: 2014-12-28 21:55
-Author: jslandy
+Author: Jonathan Landy
 Category: Case studies, Methods, NBA prediction project
 Tags: NBA, statistics
 Slug: an-nba-christmas
@@ -9,9 +9,9 @@ Attachments: wp-content/uploads/2014/12/hist.jpg, wp-content/uploads/2014/12/Scr
 
 There were a number of upsets in the NBA this past Christmas week. Here, we offer no explanation, but do attempt to quantify just how bad those upsets were, taken in aggregate. Short answer: real bad! To argue this point, we review and then apply a very simple predictive model for sporting event outcomes -- python code given in footnotes.
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 **Quick review of x-mas week**  
 The Christmas holiday week$^1$ (Dec. 19 - 25) provided a steady stream of frustrating upsets. The two most perplexing, perhaps, were the Lakers win over the Warriors and the Jazz win over the Grizzlies: two of this year's greats losing to two of its most lackluster. In all, $24$ of the $49$ games that week were upsets (with an upset defined here to be one where the winning team started the game with a lower win percentage than the loser). That comes out to an upset ratio just under $49%$, much higher than the typical rate, about $34%$.

@@ -1,6 +1,6 @@
 Title: Machine learning to predict San Francisco crime
 Date: 2015-07-20 03:01
-Author: damienrj
+Author: Damien RJ
 Category: Case studies
 Slug: predicting-san-francisco-crimes
 Status: published
@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2015/07/Insel_Alcatraz.jpg
 In today's post, we document our submission to the recent [Kaggle](https://www.kaggle.com/c/sf-crime) competition aimed at predicting the category of San Francisco crimes, given only their time and location of occurrence. As a reminder, Kaggle is a site where one can compete with other data scientists on various data challenges.  We took this competition as an opportunity to explore the Naive Bayes algorithm. With the few steps discussed below, we were able to quickly move from the middle of the pack to the top 33% on the competition leader board, all the while continuing with this simple model!
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 Introduction
 ------------

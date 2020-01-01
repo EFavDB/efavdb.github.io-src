@@ -1,6 +1,6 @@
 Title: Forecasting Bike Sharing Demand
 Date: 2015-03-26 09:20
-Author: damienrj
+Author: Damien RJ
 Category: Case studies
 Slug: bike-share-forecasting
 Status: published
@@ -10,8 +10,8 @@ In today's post, we document our efforts at applying a gradient boosted trees m
 
 Our work here was inspired by a [post](http://blog.dato.com/using-gradient-boosted-trees-to-predict-bike-sharing-demand) by the people at [Dato.com](http://blog.dato.com/), who used the bike sharing competition as an opportunity to demonstrate their software. Here, we go through a similar, but more detailed discussion using the python package [SKlearn](http://scikit-learn.org/stable/).
 
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 Introduction
 ------------

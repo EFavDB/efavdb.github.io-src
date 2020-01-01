@@ -1,6 +1,6 @@
 Title: Martingales
 Date: 2017-10-20 07:44
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance, Theory
 Slug: martingales
 Status: published
@@ -10,8 +10,8 @@ Here, I give a quick review of the concept of a Martingale. A Martingale is a se
 This note is adapted from Chapter 2 of Stochastic Calculus and Financial Applications, by Steele.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Definition
 

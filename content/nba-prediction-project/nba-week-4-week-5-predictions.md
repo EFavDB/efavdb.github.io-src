@@ -1,6 +1,6 @@
 Title: NBA week 4 summary, week 5 predictions
 Date: 2014-12-05 23:30
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-4-week-5-predictions

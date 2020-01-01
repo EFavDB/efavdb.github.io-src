@@ -1,6 +1,6 @@
 Title: Daily traffic evolution and the Super Bowl
 Date: 2014-10-31 04:02
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Tags: traffic
 Slug: daily-traffic-evolution-and-the-super-bowl

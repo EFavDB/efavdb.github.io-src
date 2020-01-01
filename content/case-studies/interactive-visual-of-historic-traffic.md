@@ -1,6 +1,6 @@
 Title: Interactive visual of historical traffic
 Date: 2014-12-01 06:50
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Tags: programming, traffic
 Slug: interactive-visual-of-historic-traffic
@@ -17,4 +17,4 @@ hope this is a fun and interesting tool to play around
 with.  Commuters may even find it useful.  It defaults to the current
 day and time.
 
-You can tinker with it below or visit [here](https://dmcintosh.shinyapps.io/traffic/).
+You can tinker with it below or visit [here](https://Dustin McIntosh.shinyapps.io/traffic/).

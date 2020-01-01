@@ -1,6 +1,6 @@
 Title: NBA week 8 results, week 9 predictions
 Date: 2015-01-02 16:43
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-8-results-week-9-predictions

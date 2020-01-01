@@ -1,6 +1,6 @@
 Title: Hyperparameter sample-size dependence
 Date: 2016-08-21 00:00
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: model-selection
 Status: published
@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2016/05/title-1.jpg, wp-content/uploads/2016/05/
 Here, we briefly review a subtlety associated with machine-learning model selection: the fact that the optimal hyperparameters for a model can vary with training set size, $N.$ To illustrate this point, we derive expressions for the optimal strength for both $L_1$ and $L_2$ regularization in single-variable models. We find that the optimal $L_2$ approaches a finite constant as $N$ increases, but that the optimal $L_1$ decays exponentially fast with $N.$ Sensitive dependence on $N$ such as this should be carefully extrapolated out when optimizing mission-critical models.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

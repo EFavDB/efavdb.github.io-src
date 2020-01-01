@@ -1,15 +1,15 @@
 Title: Machine learning for facial recognition
 Date: 2015-01-21 17:12
-Author: damienrj
+Author: Damien RJ
 Category: Case studies, Guest posts
 Slug: machine-learning-for-facial-recognition-3
 Status: published
 
 A guest post, contributed by Damien Ramunno-Johnson ([LinkedIn](https://www.linkedin.com/profile/view?id=60223336&authType=NAME_SEARCH&authToken=LOV_&locale=en_US&trk=tyah2&trkInfo=tarId%3A1420748440448%2Ctas%3Adamien%2Cidx%3A1-1-1), [bio-sketch](http://www.efavdb.com/about))
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 #### **Introduction**
 

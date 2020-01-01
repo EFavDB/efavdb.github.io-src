@@ -1,6 +1,6 @@
 Title: Compounding benefits of tax protected accounts
 Date: 2019-06-28 09:51
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance
 Slug: compounding-benefits-of-tax-protected-accounts
 Status: published
@@ -8,8 +8,8 @@ Status: published
 Here, we highlight one of the most important benefits of tax protected accounts (eg Traditional and Roth IRAs and 401ks). Specifically, we review the fact that not having to pay taxes on any investment growth that occurs while the money is held in the account results in compounding / exponential growth with a larger exponent than would be obtained in a traditional account.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 The growth equations
 --------------------

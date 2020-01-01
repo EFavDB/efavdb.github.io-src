@@ -1,6 +1,6 @@
 Title: NBA week 9 summary, week 10 predictions
 Date: 2015-01-09 12:22
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-9-summary-week-10-predictions

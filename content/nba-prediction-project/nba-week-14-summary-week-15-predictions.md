@@ -1,6 +1,6 @@
 Title: NBA week 14 summary, week 15 predictions
 Date: 2015-02-20 11:12
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-14-summary-week-15-predictions
 Status: published

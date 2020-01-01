@@ -1,13 +1,13 @@
 Title: TimeMarker class for python
 Date: 2019-09-14 22:31
-Author: jslandy
+Author: Jonathan Landy
 Category: Programming, python, Tools
 Slug: timemarker-class-for-python
 Status: published
 
 We give a simple class for marking the time at different points in a code block and then printing out the time gaps between adjacent marked points. This is useful for identifying slow spots in code.
 
-[Follow @efavdb](http://twitter.com/efavdb)
+
 
 The TimeMarker class
 --------------------

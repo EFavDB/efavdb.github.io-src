@@ -1,6 +1,6 @@
 Title: MLB week 5 review, week 6 posted
 Date: 2015-05-16 09:07
-Author: jslandy
+Author: Jonathan Landy
 Category: MLB prediction project
 Slug: mlb-week-5-review-week-6-posted
 Status: published

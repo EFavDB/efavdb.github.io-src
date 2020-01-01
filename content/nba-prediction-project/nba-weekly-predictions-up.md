@@ -1,6 +1,6 @@
 Title: NBA weekly predictions: up
 Date: 2014-11-08 00:09
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-weekly-predictions-up

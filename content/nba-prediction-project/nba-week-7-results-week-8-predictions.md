@@ -1,6 +1,6 @@
 Title: NBA week 7 results, week 8 predictions
 Date: 2014-12-25 23:59
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-7-results-week-8-predictions

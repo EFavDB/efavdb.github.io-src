@@ -1,6 +1,6 @@
 Title: MLB week 6 overview, week 7 posted
 Date: 2015-05-25 15:27
-Author: jslandy
+Author: Jonathan Landy
 Category: MLB prediction project
 Slug: mlb-week-6-overview-week-7-posted
 Status: published

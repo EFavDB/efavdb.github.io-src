@@ -1,6 +1,6 @@
 Title: Deep reinforcement learning, battleship
 Date: 2016-10-15 13:52
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: battleship
 Status: published
@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2016/10/trace.jpg, wp-content/uploads/2016/10/ba
 Here, we provide a brief introduction to reinforcement learning (RL) -- a general technique for training programs to play games efficiently. Our aim is to explain its practical implementation: We cover some basic theory and then walk through a minimal python program that trains a neural network to play the game battleship.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

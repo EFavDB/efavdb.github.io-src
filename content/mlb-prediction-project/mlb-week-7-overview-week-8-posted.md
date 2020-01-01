@@ -1,6 +1,6 @@
 Title: MLB week 7 overview, week 8 posted
 Date: 2015-05-30 22:32
-Author: jslandy
+Author: Jonathan Landy
 Category: MLB prediction project
 Slug: mlb-week-7-overview-week-8-posted
 Status: published

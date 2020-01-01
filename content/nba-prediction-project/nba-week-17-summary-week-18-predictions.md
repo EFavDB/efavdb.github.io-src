@@ -1,6 +1,6 @@
 Title: NBA week 17 summary, week 18 predictions
 Date: 2015-03-13 09:38
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-17-summary-week-18-predictions
 Status: published

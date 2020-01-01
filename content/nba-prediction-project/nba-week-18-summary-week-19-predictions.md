@@ -1,6 +1,6 @@
 Title: NBA week 18 summary, week 19 predictions
 Date: 2015-03-20 10:29
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-18-summary-week-19-predictions
 Status: published

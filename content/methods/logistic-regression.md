@@ -1,6 +1,6 @@
 Title: Logistic Regression
 Date: 2017-07-29 19:10
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Statistics, Theory
 Slug: logistic-regression
 Status: published
@@ -11,8 +11,8 @@ We review binary logistic regression. In particular, we derive a) the equations 
 Our python code can be downloaded from our github page, [here](https://github.com/EFavDB/logistic-regression-with-error). Its use requires the jupyter, numpy, sklearn, and matplotlib packages.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

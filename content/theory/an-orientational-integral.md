@@ -1,15 +1,16 @@
 Title: An orientational integral
 Date: 2019-07-02 07:04
-Author: jslandy
+Author: Jonathan Landy
 Category: Theory
 Slug: an-orientational-integral
 Status: published
 
-We evaluate an integral having to do with vector averages over all orientations in an $n$-dimensional space.
+We evaluate an integral having to do with vector averages over all
+orientations in an n-dimensional space.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 Problem definition
 ------------------

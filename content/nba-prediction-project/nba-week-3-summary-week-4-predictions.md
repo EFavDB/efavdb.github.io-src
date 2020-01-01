@@ -1,6 +1,6 @@
 Title: NBA week 3 summary, week 4 predictions
 Date: 2014-11-28 21:39
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA
 Slug: nba-week-3-summary-week-4-predictions

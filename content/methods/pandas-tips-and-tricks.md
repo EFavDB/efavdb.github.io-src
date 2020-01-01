@@ -1,6 +1,6 @@
 Title: Getting started with Pandas
 Date: 2015-10-05 12:00
-Author: damienrj
+Author: Damien RJ
 Category: Methods, Programming, Tools
 Slug: pandas-tips-and-tricks
 Status: published
@@ -22,8 +22,8 @@ Notes:
 -   This post was partially inspired by Tom Augspurger's Pandas [tutorial](https://github.com/tomaugspurger/pydataseattle), which has a [youtube video](https://www.youtube.com/watch?v=otCriSKVV_8) that can be viewed along side it. We also suggest some other excellent resource materials -- where relevant -- below.
 -   The notebook we use below can be downloaded from our [github page](https://github.com/EFavDB/Pandas). Feel free to grab it and follow along.
 
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Jupyter (Formally IPython) notebook tips
 

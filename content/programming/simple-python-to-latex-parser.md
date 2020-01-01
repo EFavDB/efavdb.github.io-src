@@ -1,6 +1,6 @@
 Title: Simple python to LaTeX parser
 Date: 2016-11-18 12:59
-Author: jslandy
+Author: Jonathan Landy
 Category: Programming
 Slug: simple-python-to-latex-parser
 Status: published
@@ -8,8 +8,8 @@ Status: published
 We demo a script that converts python numerical commands to LaTeX format. A notebook available on our GitHub page will take this and pretty print the result.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

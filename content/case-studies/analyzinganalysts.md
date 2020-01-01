@@ -1,6 +1,6 @@
 Title: Analyzing Analysts
 Date: 2015-02-08 14:15
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: Case studies
 Slug: analyzinganalysts
 Status: published
@@ -8,9 +8,9 @@ Attachments: wp-content/uploads/2015/02/errorClass.png, wp-content/uploads/2015/
 
 In this post, Dustin provides an overview of some of his work from his time in the [Insight Data Science Fellowship](http://insightdatascience.com/) program — work done in collaboration with [Mode Analytics](https://modeanalytics.com/), an online collaborative SQL platform.
 
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 **[Insight Demo](//www.slideshare.net/DustinMcIntosh/insight-demo-44864932 "Insight Demo")** from **[Dustin McIntosh](//www.slideshare.net/DustinMcIntosh)**
 

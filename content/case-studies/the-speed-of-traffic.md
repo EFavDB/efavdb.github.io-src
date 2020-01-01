@@ -1,6 +1,6 @@
 Title: The speed of traffic
 Date: 2019-06-14 09:21
-Author: jslandy
+Author: Jonathan Landy
 Category: Case studies, Theory, Traffic project
 Slug: the-speed-of-traffic
 Status: published
@@ -8,8 +8,8 @@ Status: published
 We use a simple argument to estimate the speed of traffic on a highway as a function of the density of cars. The idea is to simply calculate the maximum speed that traffic could go without supporting a growing traffic jam.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Jam dissipation argument
 

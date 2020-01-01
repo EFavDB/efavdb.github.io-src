@@ -1,6 +1,6 @@
 Title: Machine Learning Methods: Decision trees and forests
 Date: 2015-03-13 09:40
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: notes-on-trees
 Status: published
@@ -8,9 +8,9 @@ Attachments: wp-content/uploads/2015/03/2798303714_bc07ce3d44_b.jpg, wp-content/
 
 This post contains our crib notes on the basics of decision trees and forests. We first discuss the construction of individual trees, and then introduce random and boosted forests. We also discuss efficient implementations of greedy tree construction algorithms, showing that a single tree can be constructed in $O(k \times n \log n)$ time, given $n$ training examples having $k$ features each. We provide exercises on interesting related points and an appendix containing relevant python/sk-learn function calls.  
   
-[Follow @efavdb](http://twitter.com/efavdb)  
+  
 
-Follow us on twitter for new submission alerts!
+
 
 **Introduction**
 ----------------

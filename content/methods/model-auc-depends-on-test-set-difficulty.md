@@ -1,6 +1,6 @@
 Title: Model AUC depends on test set difficulty
 Date: 2017-03-18 22:36
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Theory
 Slug: model-auc-depends-on-test-set-difficulty
 Status: published
@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2017/03/spectrum.jpg, wp-content/uploads/2017/03
 The AUC score is a popular summary statistic that is often used to communicate the performance of a classifier. However, we illustrate here that this score depends not only on the quality of the model in question, but also on the difficulty of the test set considered: If samples are added to a test set that are easily classified, the AUC will go up -- even if the model studied has not improved. In general, this behavior implies that isolated, single AUC scores cannot be used to meaningfully qualify a model's performance. Instead, the AUC should be considered a score that is primarily useful for comparing and ranking multiple models -- each at a common test set difficulty.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction
 

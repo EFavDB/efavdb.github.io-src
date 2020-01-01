@@ -1,6 +1,6 @@
 Title: A review of parameter regularization and Bayesian regression
 Date: 2015-10-11 00:01
-Author: jslandy
+Author: Jonathan Landy
 Category: Statistics
 Slug: bayesian-linear-regression
 Status: published
@@ -10,8 +10,8 @@ Here, we review parameter regularization, which is a method for improving regres
 This is the second of a series of posts expounding on topics discussed in the text, ["An Introduction to Statistical Learning"](http://www-bcf.usc.edu/~gareth/ISL/). Here, we cover material from its Chapters 2 and 6. See prior post [here](http://efavdb.com/leave-one-out-cross-validation/).
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Introduction and overview
 

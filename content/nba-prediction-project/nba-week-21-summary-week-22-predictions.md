@@ -1,6 +1,6 @@
 Title: NBA week 21 summary, week 22 predictions
 Date: 2015-04-10 21:15
-Author: jslandy
+Author: Jonathan Landy
 Category: NBA prediction project
 Slug: nba-week-21-summary-week-22-predictions
 Status: published

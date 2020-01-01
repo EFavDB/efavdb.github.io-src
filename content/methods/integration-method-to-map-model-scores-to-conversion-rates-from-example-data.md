@@ -1,6 +1,6 @@
 Title: Integration method to map model scores to conversion rates from example data
 Date: 2018-03-03 17:53
-Author: jslandy
+Author: Jonathan Landy
 Category: Methods, Statistics, Theory
 Slug: integration-method-to-map-model-scores-to-conversion-rates-from-example-data
 Status: published
@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2018/03/image17.png, wp-content/uploads/2018/03/
 This note addresses the typical applied problem of estimating from data how a target "conversion rate" function varies with some available scalar score function -- e.g., estimating conversion rates from some marketing campaign as a function of a targeting model score. The idea centers around estimating the integral of the rate function; differentiating this gives the rate function. The method is a variation on a standard technique for estimating pdfs via fits to empirical cdfs.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 ### Problem definition and naive binning solution
 

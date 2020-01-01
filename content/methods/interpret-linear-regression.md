@@ -1,6 +1,6 @@
 Title: Interpreting the results of linear regression
 Date: 2016-06-29 14:54
-Author: cyeh
+Author: Cathy Yeh
 Category: Methods, Theory
 Tags: statistics
 Slug: interpret-linear-regression

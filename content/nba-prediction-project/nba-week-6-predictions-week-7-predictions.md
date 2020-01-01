@@ -1,6 +1,6 @@
 Title: NBA week 6 results, week 7 predictions, intro to dash
 Date: 2014-12-19 10:44
-Author: dmcintosh
+Author: Dustin McIntosh
 Category: NBA prediction project
 Tags: NBA, programming
 Slug: nba-week-6-predictions-week-7-predictions

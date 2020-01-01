@@ -1,6 +1,6 @@
 Title: GPU-accelerated Theano & Keras with Windows 10
 Date: 2016-09-22 21:48
-Author: damienrj
+Author: Damien RJ
 Category: Methods, Tools
 Slug: gpu-accelerated-theano-keras-with-windows-10
 Status: published

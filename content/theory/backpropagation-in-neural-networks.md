@@ -1,6 +1,6 @@
 Title: Backpropagation in neural networks
 Date: 2019-07-18 23:35
-Author: cyeh
+Author: Cathy Yeh
 Category: Theory
 Slug: backpropagation-in-neural-networks
 Status: published

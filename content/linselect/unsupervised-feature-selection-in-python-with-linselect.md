@@ -1,6 +1,6 @@
 Title: Linear compression in python: PCA vs unsupervised feature selection
 Date: 2018-08-11 07:30
-Author: jslandy
+Author: Jonathan Landy
 Category: linselect
 Slug: unsupervised-feature-selection-in-python-with-linselect
 Status: published
@@ -12,7 +12,7 @@ We illustrate the application of two linear compression algorithms in python: Pr
   
 We use our python package `linselect` to carry out efficient feature selection-based compression below -- this is available on pypi (`pip install linselect`) and [GitHub](https://github.com/EFavDB/linselect).
 
-[Follow @efavdb](http://twitter.com/efavdb)
+
 
 Linear compression algorithms
 -----------------------------

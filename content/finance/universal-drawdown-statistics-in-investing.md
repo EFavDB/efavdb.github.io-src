@@ -1,6 +1,6 @@
 Title: Universal drawdown statistics in investing
 Date: 2019-12-05 15:46
-Author: jslandy
+Author: Jonathan Landy
 Category: Finance
 Slug: universal-drawdown-statistics-in-investing
 Status: published
@@ -9,8 +9,8 @@ Attachments: wp-content/uploads/2019/12/binary_sol.png, wp-content/uploads/2019/
 We consider the equilibrium drawdown distribution for a biased random walk -- in the context of a repeated investment game, the drawdown at a given time is how much has been lost relative to the maximum capital held up to that time. We show that in the tail, this is exponential. Further, when mean drift is small, this has an exponent that is universal in form, depending only on the mean and standard deviation of the step distribution. We give simulation examples in python consistent with the results.
 
   
-[Follow @efavdb](http://twitter.com/efavdb)  
-Follow us on twitter for new submission alerts!
+  
+
 
 Introduction and main results
 -----------------------------
