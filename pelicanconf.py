@@ -78,20 +78,36 @@ MENUITEMS = [('Home', '/'),
              ('Tags', '/tags.html'),
              ('linselect - feature selection','/pages/linselect.html'),
 ]
-HOME_COVER = 'images/home_cover_santa_barbara.jpg'
+#HOME_COVER = 'images/home_cover_santa_barbara.jpg'
 
 # theme specific settings
 SHOW_CREDITS = False
-# AUTHORS_BIO = {
-#   "jslandy": {
-#     "name": "Jonathan Landy",
-#     "cover": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
-#     "image": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
-#     "website": "http://blog.arulraj.net",
-#     "location": "Chennai",
-#     "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
-#   }
-# }
+AUTHORS_BIO = {
+    "jonathan landy": {
+        "name": "Jonathan Landy",
+        "cover": "/images/home_cover_santa_barbara.jpg",
+        "image": "/wp-content/uploads/2014/12/JonathanLinkedIn.jpg",
+        "bio": "Jonathan grew up in the midwest and then went to school at Caltech and UCLA. Following this, he did two postdocs, one at UCSB and one at UC Berkeley.  His academic research focused primarily on applications of statistical mechanics, but his professional passion has always been in the mastering, development, and practical application of slick math methods/tools. He worked as a data-scientist at Square for four years and is now working on a quantitative investing startup."
+    },
+    "dustin mcintosh": {
+        "name": "Dustin McIntosh",
+        "cover": "/images/home_cover_santa_barbara.jpg",
+        "image": "/wp-content/uploads/2014/12/DustinLinkedIn2.png",
+        "bio": "Dustin got a B.S in Engineering Physics from the Colorado School of Mines (Golden, CO) before moving to UC Santa Barbara for graduate school. There he became interested in Soft Condensed Matter Physics and Polymer Physics, studying the interaction between single DNA molecules and salt ions. After a brief postdoc at UC San Diego studying the physics of bacterial growth, Dustin decided to move into the data science business for good - he is now a Quantitative Analyst at Google in Mountain View."
+    },
+    "damien rj": {
+        "name": "Damien Ramunno-Johnson",
+        "cover": "/images/home_cover_santa_barbara.jpg",
+        "image": "/wp-content/uploads/2014/12/headshot.jpg",
+        "bio": "Damien is a highly experienced researcher with a background in clinical and applied research. Like JSL, he got his PhD at UCLA. He has many years of experience working with imaging, and has a particularly strong background in image segmentation, registration, detection, data analysis, and more recently machine learning. He now works as a data-scientist at Square in San Francisco."
+    },
+    "cathy yeh": {
+        "name": "Cathy Yeh",
+        "cover": "/images/home_cover_santa_barbara.jpg",
+        "image": "/wp-content/uploads/2014/12/cathy_photo.jpg",
+        "bio": "Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer physics. She is currently looking to transition to a career in data science after wrapping up work with the translational modeling group in a pharmaceutical company in San Diego. She enjoys mining big data and big ice cream and seeing how both can help make the world a better place."
+    },
+}
 
 ## plugin settings
 # render_math
