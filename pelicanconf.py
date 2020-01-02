@@ -12,13 +12,13 @@ SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
 SITEURL = 'http://frangipane.github.io'
 #SITEURL = 'localhost'
-THEME = f'{CURRENT_DIR_PATH}/theme'
+THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
 PATH = 'content'
 
 # General settings
 TIMEZONE = 'America/Los_Angeles'
 DEFAULT_LANG = 'en'
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 6
 SUMMARY_MAX_LENGTH = 50
 #SUMMARY_BEGIN_MARKER = '<!--summary-->'
 #SUMMARY_END_MARKER = '<!--more-->'
@@ -34,11 +34,12 @@ AUTHOR_FEED_RSS = None
 #PAGE_URL = '{path}'
 #PAGE_SAVE_AS = '{path}'
 TAGS_URL = 'tags.html'
-ARCHIVES_URL = 'archive.html'
+ARCHIVES_URL = 'archives.html'
 PAGE_PATHS = ['pages']
-STATIC_PATHS = ['images', 'wp-content']
+STATIC_PATHS = ['images', 'wp-content', 'extras']
+#EXTRA_PATH_METADATA = {'extras/custom.css': {'path': 'static/css/custom.css'}}
 PAGE_EXCLUDES = ['wp-content']
-ARTICLE_EXCLUDES = ['wp-content']
+ARTICLE_EXCLUDES = ['wp-content', 'extras']
 # have output paths mirror source content's filesystem path hierarchy
 # n.b. does not play well with wp-content static path references
 #PATH_METADATA = '(?P<path_no_ext>.*)\..*'
@@ -67,47 +68,53 @@ PLUGINS = ['sitemap',
            'summary',
            'render_math',
            'neighbors',
+           'tipue_search'
 ]
+DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 
 # Theme specific setting
+LANDING_PAGE_TITLE = 'EFAVDB'
+PROJECTS_TITLE = 'Projects'
+PROJECTS = [{'name': 'linselect', 'url': '/pages/linselect.html',
+             'description': 'Fast, flexible, performant feature selection package for python'},
+            {'name': 'nba predictions', 'url': '/pages/nba-dash.html',
+             'description': 'NBA Dashboard'},]
+
+
 DISPLAY_CATEGORIES_ON_MENU = False
-DISPLAY_PAGES_ON_MENU = False  # turn this off so we can specify ordering
-MENUITEMS = [('Home', '/'),
-             ('About & Consulting', '/pages/about.html'),
-             ('Archive', '/archives.html'),
-             ('Tags', '/tags.html'),
-             ('linselect - feature selection','/pages/linselect.html'),
-]
-#HOME_COVER = 'images/home_cover_santa_barbara.jpg'
+DISPLAY_PAGES_ON_MENU = True  # turn this off so we can specify ordering
+CACHE_CONTENT = False
+CACHE_PATH = '.cache'
+LOAD_CONTENT_CACHE = False
+TYPOGRIFY = True
+RECENT_ARTICLE_SUMMARY = False
+RESPONSIVE_IMAGES = True
+
 
 # theme specific settings
-SHOW_CREDITS = False
-AUTHORS_BIO = {
-    "jonathan landy": {
-        "name": "Jonathan Landy",
-        "cover": "/images/home_cover_santa_barbara.jpg",
-        "image": "/wp-content/uploads/2014/12/JonathanLinkedIn.jpg",
-        "bio": "Jonathan grew up in the midwest and then went to school at Caltech and UCLA. Following this, he did two postdocs, one at UCSB and one at UC Berkeley.  His academic research focused primarily on applications of statistical mechanics, but his professional passion has always been in the mastering, development, and practical application of slick math methods/tools. He worked as a data-scientist at Square for four years and is now working on a quantitative investing startup."
+# for more settings, see https://github.com/iranzo/blog-o-matic/blob/source/pelicanconf.py
+DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
+RECENT_ARTICLES_COUNT = 5
+SHOW_CREDITS = True
+AUTHORS = {
+    "Jonathan Landy": {
+        "avatar": "/wp-content/uploads/2014/12/JonathanLinkedIn.jpg",
+        "blurb": "Jonathan grew up in the midwest and then went to school at Caltech and UCLA. Following this, he did two postdocs, one at UCSB and one at UC Berkeley.  His academic research focused primarily on applications of statistical mechanics, but his professional passion has always been in the mastering, development, and practical application of slick math methods/tools. He worked as a data-scientist at Square for four years and is now working on a quantitative investing startup."
     },
-    "dustin mcintosh": {
-        "name": "Dustin McIntosh",
-        "cover": "/images/home_cover_santa_barbara.jpg",
-        "image": "/wp-content/uploads/2014/12/DustinLinkedIn2.png",
-        "bio": "Dustin got a B.S in Engineering Physics from the Colorado School of Mines (Golden, CO) before moving to UC Santa Barbara for graduate school. There he became interested in Soft Condensed Matter Physics and Polymer Physics, studying the interaction between single DNA molecules and salt ions. After a brief postdoc at UC San Diego studying the physics of bacterial growth, Dustin decided to move into the data science business for good - he is now a Quantitative Analyst at Google in Mountain View."
+    "Dustin McIntosh": {
+        "avatar": "/wp-content/uploads/2014/12/DustinLinkedIn2.png",
+        "blurb": "Dustin got a B.S in Engineering Physics from the Colorado School of Mines (Golden, CO) before moving to UC Santa Barbara for graduate school. There he became interested in Soft Condensed Matter Physics and Polymer Physics, studying the interaction between single DNA molecules and salt ions. After a brief postdoc at UC San Diego studying the physics of bacterial growth, Dustin decided to move into the data science business for good - he is now a Quantitative Analyst at Google in Mountain View."
     },
-    "damien rj": {
-        "name": "Damien Ramunno-Johnson",
-        "cover": "/images/home_cover_santa_barbara.jpg",
-        "image": "/wp-content/uploads/2014/12/headshot.jpg",
-        "bio": "Damien is a highly experienced researcher with a background in clinical and applied research. Like JSL, he got his PhD at UCLA. He has many years of experience working with imaging, and has a particularly strong background in image segmentation, registration, detection, data analysis, and more recently machine learning. He now works as a data-scientist at Square in San Francisco."
+    "Damien RJ": {
+        "avatar": "/wp-content/uploads/2014/12/headshot.jpg",
+        "blurb": "Damien is a highly experienced researcher with a background in clinical and applied research. Like JSL, he got his PhD at UCLA. He has many years of experience working with imaging, and has a particularly strong background in image segmentation, registration, detection, data analysis, and more recently machine learning. He now works as a data-scientist at Square in San Francisco."
     },
-    "cathy yeh": {
-        "name": "Cathy Yeh",
-        "cover": "/images/home_cover_santa_barbara.jpg",
-        "image": "/wp-content/uploads/2014/12/cathy_photo.jpg",
-        "bio": "Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer physics. She is currently looking to transition to a career in data science after wrapping up work with the translational modeling group in a pharmaceutical company in San Diego. She enjoys mining big data and big ice cream and seeing how both can help make the world a better place."
+    "Cathy Yeh": {
+        "avatar": "/wp-content/uploads/2014/12/cathy_photo.jpg",
+        "blurb": "Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer physics. She is currently looking to transition to a career in data science after wrapping up work with the translational modeling group in a pharmaceutical company in San Diego. She enjoys mining big data and big ice cream and seeing how both can help make the world a better place."
     },
 }
+
 
 ## plugin settings
 # render_math
@@ -129,7 +136,6 @@ SITEMAP = {
         'indexes': 'daily'
     },
 }
-
 
 
 # publish
