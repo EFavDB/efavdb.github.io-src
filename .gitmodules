@@ -3,7 +3,7 @@
 	url = https://github.com/getpelican/pelican-plugins.git
 [submodule "output"]
 	path = output
-	url = https://github.com/frangipane/frangipane.github.io.git
+	url = https://github.com/efavdb/efavdb.github.io.git
 [submodule "elegant-theme"]
 	path = elegant-theme
-	url = git@github.com:frangipane/elegant.git
+	url = git@github.com:efavdb/elegant.git
