@@ -10,7 +10,7 @@ CURRENT_DIR_PATH = Path(__file__).resolve().parent
 AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
-SITEURL = 'http://frangipane.github.io'
+SITEURL = 'http://efavdb.github.io'
 #SITEURL = 'localhost'
 THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
 PATH = 'content'
@@ -22,6 +22,9 @@ DEFAULT_PAGINATION = 6
 SUMMARY_MAX_LENGTH = 50
 #SUMMARY_BEGIN_MARKER = '<!--summary-->'
 #SUMMARY_END_MARKER = '<!--more-->'
+DEFAULT_METADATA = {
+    'status': 'draft',
+}
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -36,10 +39,9 @@ AUTHOR_FEED_RSS = None
 TAGS_URL = 'tags.html'
 ARCHIVES_URL = 'archives.html'
 PAGE_PATHS = ['pages']
-STATIC_PATHS = ['images', 'wp-content', 'extras']
-#EXTRA_PATH_METADATA = {'extras/custom.css': {'path': 'static/css/custom.css'}}
+STATIC_PATHS = ['images', 'wp-content']
 PAGE_EXCLUDES = ['wp-content']
-ARTICLE_EXCLUDES = ['wp-content', 'extras']
+ARTICLE_EXCLUDES = ['wp-content', 'articles/drafts']
 # have output paths mirror source content's filesystem path hierarchy
 # n.b. does not play well with wp-content static path references
 #PATH_METADATA = '(?P<path_no_ext>.*)\..*'
@@ -68,7 +70,9 @@ PLUGINS = ['sitemap',
            'summary',
            'render_math',
            'neighbors',
-           'tipue_search'
+           'tipue_search',
+           'share_post',
+           'disqus_static',
 ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 
@@ -96,6 +100,9 @@ RESPONSIVE_IMAGES = True
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
 RECENT_ARTICLES_COUNT = 5
 SHOW_CREDITS = True
+SHARE_POST_INTRO = "Like this post?  Share on:"
+RELATED_POSTS_LABEL = "Keep reading"
+
 AUTHORS = {
     "Jonathan Landy": {
         "avatar": "/wp-content/uploads/2014/12/JonathanLinkedIn.jpg",
@@ -137,6 +144,9 @@ SITEMAP = {
     },
 }
 
+# disqus
+DISQUS_SITENAME = 'EFAVDB'
+DISQUS_DISPLAY_COUNTS = True
 
 # publish
 DELETE_OUTPUT_DIRECTORY = False
