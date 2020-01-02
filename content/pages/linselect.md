@@ -2,7 +2,8 @@ Title: linselect
 Date: 2018-04-28 07:59
 Author: jslandy
 Slug: linselect
-Status: published
+Layout: pages
+Status: hidden
 
 *A fast, flexible, and performant feature selection package for python.*
 
