@@ -4,3 +4,6 @@
 [submodule "output"]
 	path = output
 	url = https://github.com/frangipane/frangipane.github.io.git
+[submodule "elegant-theme"]
+	path = elegant-theme
+	url = git@github.com:frangipane/elegant.git
