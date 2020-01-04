@@ -32,8 +32,8 @@ recently machine learning. He now works as a data-scientist at Square
 in San Francisco.
 
 * * * * *
-
-[![cathy about photo]({static}/wp-content/uploads/2014/12/cathy_photo.jpg)]({static}/wp-content/uploads/2014/12/cathy_photo.jpg)
+<img src="{static}/wp-content/uploads/2014/12/cathy_photo.jpg" alt="cathy about photo"
+	title="A cute kitten" width="550" />
 Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer
 physics. She is currently looking to transition to a career in data
 science after wrapping up work with the translational modeling group
