@@ -6,8 +6,8 @@ Slug: authors
 Status: published
 
 * * * * *
-
-[![JonathanLinkedIn]({static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg)]({static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg){:height="50%" width="50%"}Jonathan
+<img src="{static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg" alt="Jonathan about photo" width="200" />
+Jonathan
 Landy ([LinkedIn](https://www.linkedin.com/profile/view?id=259212684))
 grew up in the midwest and then went to school at Caltech
 and UCLA. Following this, he did two postdocs, one at UCSB and one at
@@ -18,12 +18,10 @@ methods/tools. He worked as a data-scientist at Square for four years
 and is now working on a quantitative investing startup.
 
 * * * * *
-
-[![damienheadshot]({static}/wp-content/uploads/2014/12/headshot.jpg)]({static}/wp-content/uploads/2014/12/headshot.jpg)
+<img src="{static}/wp-content/uploads/2014/12/headshot.jpg" alt="Damien about photo" width="200" />
 Damien Ramunno-Johnson
-([LinkedIn](https://www.linkedin.com/profile/view?id=60223336&authType=NAME_SEARCH&authToken=LOV_&locale=en_US&trk=tyah2&trkInfo=tarId%3A1420748440448%2Ctas%3Adamien%2Cidx%3A1-1-1),
-[Twitter](https://twitter.com/Damienrj),
-[posts](http://efavdb.com/author/damienrj/)) is a highly experienced
+([LinkedIn](https://www.linkedin.com/in/damienrj/),
+[Twitter](https://twitter.com/Damienrj)) is a highly experienced
 researcher with a background in clinical and applied research. Like,
 JSL, he got his PhD at UCLA. He has many years of experience working
 with imaging, and has a particularly strong background in image
@@ -33,7 +31,7 @@ in San Francisco.
 
 * * * * *
 
-[![cathy about photo]({static}/wp-content/uploads/2014/12/cathy_photo.jpg)]({static}/wp-content/uploads/2014/12/cathy_photo.jpg)
+<img src="{static}/wp-content/uploads/2014/12/cathy_photo.jpg" alt="cathy about photo" width="200" />
 Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer
 physics. She is currently looking to transition to a career in data
 science after wrapping up work with the translational modeling group
@@ -42,8 +40,8 @@ and big ice cream and seeing how both can help make the world a better
 place.
 
 * * * * *
-
-[![DustinLinkedIn2]({static}/wp-content/uploads/2014/12/DustinLinkedIn2.png)]({static}/wp-content/uploads/2014/12/DustinLinkedIn2.png)Dustin
+<img src="{static}/wp-content/uploads/2014/12/DustinLinkedIn2.png" alt="Dustin about photo" width="200" />
+Dustin
 McIntosh
 ([LinkedIn](https://www.linkedin.com/profile/view?id=33554236)) got a
 B.S in Engineering Physics from the Colorado School of Mines (Golden,
