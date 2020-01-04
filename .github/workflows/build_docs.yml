@@ -1,7 +1,9 @@
-name: Python package
+name: Build Webiste
 
-on: [pull_request]
-
+on:
+  pull_request:
+    types: [closed]
+    
 jobs:
   build:
 
@@ -22,7 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pipenv
         pipenv install --dev --system
-        pip list
     - name: git submodule update
       run: |
         git submodule update --init --recursive
