@@ -11,6 +11,7 @@ AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
 SITEURL = 'http://efavdb.github.io'
+GITHUB_URL = 'https://github.com/efavdb'
 #SITEURL = 'localhost'
 THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
 PATH = 'content'
@@ -56,8 +57,9 @@ LINKS = (('Home', '/index.html'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('twitter', 'https://twitter.com/efavdb'),
-          ('Another social link', '#'),)
+SOCIAL = (('Twitter', 'https://twitter.com/efavdb'),
+          ('Github', 'https://github.com/efavdb'),
+          ('Youtube', 'https://www.youtube.com/channel/UClfvjoSiu0VvWOh5OpnuusA'),)
 
 
 
