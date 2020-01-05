@@ -1,7 +1,8 @@
 Title: Machine learning for facial recognition
 Date: 2015-01-21 17:12
 Author: Damien RJ
-Category: Case studies, Guest posts
+Category: Case studies
+Tags: machine learning
 Slug: machine-learning-for-facial-recognition-3
 Status: published
 

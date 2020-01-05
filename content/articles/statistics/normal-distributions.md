@@ -1,7 +1,8 @@
 Title: Normal Distributions
 Date: 2017-05-13 21:48
 Author: Jonathan Landy
-Category: Review, Statistics, Theory
+Category: Statistics
+Tags: theory, statistics
 Slug: normal-distributions
 Status: published
 Attachments: wp-content/uploads/2017/05/carl-f-gauss-4.jpg

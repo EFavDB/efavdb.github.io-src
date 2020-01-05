@@ -1,9 +1,10 @@
 Title: Stochastic geometric series
 Date: 2015-09-13 06:00
 Author: Jonathan Landy
-Category: Finance, Statistics
+Category: Finance
 Slug: stochastic-geometric-series
 Status: published
+Tags: statistics
 Attachments: wp-content/uploads/2015/08/Screen-Shot-2015-08-16-at-10.34.46-PM.png
 
 Let $a_1, a_2, \ldots$ be an infinite set of non-negative samples taken from a distribution $P_0(a)$, and write  

@@ -1,7 +1,8 @@
 Title: Gaussian Processes
 Date: 2017-11-25 09:53
 Author: Jonathan Landy
-Category: Methods, Programming, Statistics, Theory
+Category: Methods
+Tags: methods, programming, statistics, theory
 Slug: gaussian-processes
 Status: published
 Attachments: wp-content/uploads/2017/11/intervals.jpg, wp-content/uploads/2017/11/full_search.gif, wp-content/uploads/2017/11/sklearn.jpg, wp-content/uploads/2017/11/samples.jpg, wp-content/uploads/2017/11/gp.jpg

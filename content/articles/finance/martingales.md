@@ -1,7 +1,8 @@
 Title: Martingales
 Date: 2017-10-20 07:44
 Author: Jonathan Landy
-Category: Finance, Theory
+Category: Finance
+Tags: theory
 Slug: martingales
 Status: published
 

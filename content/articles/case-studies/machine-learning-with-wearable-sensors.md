@@ -1,8 +1,8 @@
 Title: Machine learning with wearable sensors
 Date: 2015-01-09 12:34
 Author: Damien RJ
-Category: Case studies, Guest posts
-Tags: guest
+Category: Case studies
+Tags: machine learning
 Slug: machine-learning-with-wearable-sensors
 Status: published
 
