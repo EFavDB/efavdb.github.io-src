@@ -1,7 +1,8 @@
 Title: The speed of traffic
 Date: 2019-06-14 09:21
 Author: Jonathan Landy
-Category: Case studies, Theory, Traffic project
+Category: Case studies
+Tags: theory, traffic
 Slug: the-speed-of-traffic
 Status: published
 

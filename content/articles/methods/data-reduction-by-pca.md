@@ -1,8 +1,8 @@
 Title: Data reduction by PCA
 Date: 2014-10-23 23:52
 Author: Dustin McIntosh
-Category: methods
-Tags: traffic
+Category: Methods
+Tags: traffic, methods
 Slug: data-reduction-by-pca
 Status: published
 Attachments: wp-content/uploads/2014/10/evals.png

@@ -1,7 +1,7 @@
 Title: MLB predictions take off!
 Date: 2015-04-11 10:04
 Author: Jonathan Landy
-Category: Case studies, MLB prediction project
+Category: MLB prediction project
 Slug: mlb-predictions-take-off
 Status: published
 Attachments: wp-content/uploads/2015/04/Screen-Shot-2015-04-11-at-10.51.35-AM.png

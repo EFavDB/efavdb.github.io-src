@@ -5,11 +5,10 @@ Layout: page
 Slug: authors
 Status: published
 
-* * * * *
-<img src="{static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg" alt="Jonathan about photo" width="200" />
+<img src="{static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg" alt="Jonathan about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
 Jonathan
 Landy ([LinkedIn](https://www.linkedin.com/profile/view?id=259212684))
-grew up in the midwest and then went to school at Caltech
+grew up in the Midwest and then went to school at Caltech
 and UCLA. Following this, he did two postdocs, one at UCSB and one at
 UC Berkeley.  His academic research focused primarily on applications
 of statistical mechanics, but his professional passion has always been
@@ -18,7 +17,7 @@ methods/tools. He worked as a data-scientist at Square for four years
 and is now working on a quantitative investing startup.
 
 * * * * *
-<img src="{static}/wp-content/uploads/2014/12/headshot.jpg" alt="Damien about photo" width="200" />
+<img src="{static}/wp-content/uploads/2014/12/headshot.jpg" alt="Damien about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
 Damien Ramunno-Johnson
 ([LinkedIn](https://www.linkedin.com/in/damienrj/),
 [Twitter](https://twitter.com/Damienrj)) is a highly experienced
@@ -29,9 +28,11 @@ segmentation, registration, detection, data analysis, and more
 recently machine learning. He now works as a data-scientist at Square
 in San Francisco.
 
+&nbsp;&nbsp;
+
 * * * * *
 
-<img src="{static}/wp-content/uploads/2014/12/cathy_photo.jpg" alt="cathy about photo" width="200" />
+<img src="{static}/images/cy_efavdb_headshot.jpg" alt="Cathy about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
 Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer
 physics. She is currently looking to transition to a career in data
 science after wrapping up work with the translational modeling group
@@ -39,8 +40,11 @@ in a pharmaceutical company in San Diego. She enjoys mining big data
 and big ice cream and seeing how both can help make the world a better
 place.
 
+<p>&nbsp;    </p>
+
 * * * * *
-<img src="{static}/wp-content/uploads/2014/12/DustinLinkedIn2.png" alt="Dustin about photo" width="200" />
+
+<img src="{static}/wp-content/uploads/2014/12/DustinLinkedIn2.png" alt="Dustin about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
 Dustin
 McIntosh
 ([LinkedIn](https://www.linkedin.com/profile/view?id=33554236)) got a

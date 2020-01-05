@@ -1,8 +1,8 @@
 Title: Dotfiles for peace of mind
 Date: 2016-02-23 12:18
 Author: Cathy Yeh
-Category: Programming, Tools
-Tags: bash, conda, dotfiles, emacs
+Category: Programming
+Tags: programming, tools, bash, conda
 Slug: dotfiles
 Status: published
 Attachments: wp-content/uploads/2016/02/dotfiles_header.png
