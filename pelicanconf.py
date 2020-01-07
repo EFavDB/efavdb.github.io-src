@@ -10,9 +10,8 @@ CURRENT_DIR_PATH = Path(__file__).resolve().parent
 AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
-SITEURL = 'http://efavdb.github.io'
+SITEURL = ''
 GITHUB_URL = 'https://github.com/efavdb'
-#SITEURL = 'localhost'
 THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
 PATH = 'content'
 
@@ -43,10 +42,15 @@ PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images', 'wp-content']
 PAGE_EXCLUDES = ['wp-content']
 ARTICLE_EXCLUDES = ['wp-content', 'articles/drafts']
+
+# clean-url (lacks .html) -- n.b. disqus mapping assumes slug is
+# missing .html, would have to redo it if we revert this
+ARTICLE_URL = "{slug}"
+
 # have output paths mirror source content's filesystem path hierarchy
 # n.b. does not play well with wp-content static path references
 #PATH_METADATA = '(?P<path_no_ext>.*)\..*'
-#ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
+
 
 # Blogroll
 LINKS = (('Home', '/index.html'),
@@ -62,7 +66,6 @@ SOCIAL = (('Twitter', 'https://twitter.com/efavdb'),
           ('Youtube', 'https://www.youtube.com/channel/UClfvjoSiu0VvWOh5OpnuusA'),)
 
 
-
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
@@ -74,7 +77,6 @@ PLUGINS = ['sitemap',
            'neighbors',
            'tipue_search',
            'share_post',
-           'disqus_static',
 ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 
@@ -88,7 +90,7 @@ PROJECTS = [{'name': 'linselect', 'url': '/pages/linselect.html',
 
 
 DISPLAY_CATEGORIES_ON_MENU = False
-DISPLAY_PAGES_ON_MENU = True  # turn this off so we can specify ordering
+DISPLAY_PAGES_ON_MENU = True
 CACHE_CONTENT = False
 CACHE_PATH = '.cache'
 LOAD_CONTENT_CACHE = False
@@ -145,10 +147,6 @@ SITEMAP = {
         'indexes': 'daily'
     },
 }
-
-# disqus
-DISQUS_SITENAME = 'EFAVDB'
-DISQUS_DISPLAY_COUNTS = True
 
 # publish
 DELETE_OUTPUT_DIRECTORY = False
