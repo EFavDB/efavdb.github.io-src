@@ -14,7 +14,12 @@ ls output
 
 git submodule update --init --recursive
 # now those same dirs should no longer be empty
+```
 
+
+Below is optional now that publishing to github happens automatically with PR merge.  
+Feel free to skip.
+```shell
 cd output
 git remote -v
 # should show
@@ -47,7 +52,11 @@ make devserver
 
 ## Developing
 
-- The markdown articles are located under `content/`.
+- The markdown articles are located under `content/`.  Feel free to
+  place WIP drafts in `content/articles/drafts` for easy tracking, but
+  technically, you can put them anywhere and they won't be published
+  unless you specify their status as such (default is `draft`) in the
+  article metadata.
 - New images should be placed under `content/images/` as opposed to
   `content/wp-content/...`.  The latter made sense to keep as part of
   the migration from WordPress, but we don't need to keep adding to it
@@ -61,6 +70,18 @@ From the root of the project:
 - Open up the dev website at http://localhost:8000/
 - Make your changes to the `content/` dir, where the articles are
   located. Verify your changes are picked up on the dev website.
+- Note, Disqus comments won't be visible in dev mode because Disqus
+  requires absolute URLs.
+- If you want to check the published version of the site (uses
+  absolute URLs, which you can see in page source links), run:
+  - `make publish`
+  - `make serve` -- see site at localhost:8000.
+- Open a PR with your content changes.  When you merge the PR, changes
+  will automatically be published to github pages.  (Thanks Damien!)
+
+
+
+### DEPRECATED steps for manual publishing to github pages
 
 The files in the `output/` subdir should have been automatically
 regenerated in development mode.
