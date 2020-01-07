@@ -10,9 +10,8 @@ CURRENT_DIR_PATH = Path(__file__).resolve().parent
 AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
-SITEURL = 'http://efavdb.github.io'
+SITEURL = ''
 GITHUB_URL = 'https://github.com/efavdb'
-#SITEURL = 'localhost'
 THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
 PATH = 'content'
 
@@ -74,7 +73,6 @@ PLUGINS = ['sitemap',
            'neighbors',
            'tipue_search',
            'share_post',
-           'disqus_static',
 ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
 
@@ -145,10 +143,6 @@ SITEMAP = {
         'indexes': 'daily'
     },
 }
-
-# disqus
-DISQUS_SITENAME = 'EFAVDB'
-DISQUS_DISPLAY_COUNTS = True
 
 # publish
 DELETE_OUTPUT_DIRECTORY = False
