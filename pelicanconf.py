@@ -42,10 +42,15 @@ PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images', 'wp-content']
 PAGE_EXCLUDES = ['wp-content']
 ARTICLE_EXCLUDES = ['wp-content', 'articles/drafts']
+
+# clean-url (lacks .html) -- n.b. disqus mapping assumes slug is
+# missing .html, would have to redo it if we revert this
+ARTICLE_URL = "{slug}"
+
 # have output paths mirror source content's filesystem path hierarchy
 # n.b. does not play well with wp-content static path references
 #PATH_METADATA = '(?P<path_no_ext>.*)\..*'
-#ARTICLE_URL = ARTICLE_SAVE_AS = PAGE_URL = PAGE_SAVE_AS = '{path_no_ext}.html'
+
 
 # Blogroll
 LINKS = (('Home', '/index.html'),
@@ -59,7 +64,6 @@ LINKS = (('Home', '/index.html'),
 SOCIAL = (('Twitter', 'https://twitter.com/efavdb'),
           ('Github', 'https://github.com/efavdb'),
           ('Youtube', 'https://www.youtube.com/channel/UClfvjoSiu0VvWOh5OpnuusA'),)
-
 
 
 # Uncomment following line if you want document-relative URLs when developing
@@ -86,7 +90,7 @@ PROJECTS = [{'name': 'linselect', 'url': '/pages/linselect.html',
 
 
 DISPLAY_CATEGORIES_ON_MENU = False
-DISPLAY_PAGES_ON_MENU = True  # turn this off so we can specify ordering
+DISPLAY_PAGES_ON_MENU = True
 CACHE_CONTENT = False
 CACHE_PATH = '.cache'
 LOAD_CONTENT_CACHE = False
