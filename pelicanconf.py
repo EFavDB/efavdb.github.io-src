@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
-from pathlib import Path
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-
-CURRENT_DIR_PATH = Path(__file__).resolve().parent
 
 # Site settings
 AUTHOR = 'efavdb'
@@ -12,7 +11,7 @@ SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
 SITEURL = ''
 GITHUB_URL = 'https://github.com/efavdb'
-THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
+THEME = '%s/elegant-theme' % dir_path
 PATH = 'content'
 
 # General settings
