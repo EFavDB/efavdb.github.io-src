@@ -6,18 +6,18 @@ Tags: reinforcement learning, machine learning
 Slug: intro-reinforcement-learning-example
 Status: published
 
-We’ll introduce reinforcement learning (RL) using a toy example: a student going through college.  This example is lifted directly from David Silver’s [lecture notes](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html) on RL.
+We’ll introduce reinforcement learning (RL) framed as a Markov Decision Process using a toy example: a student going through college.  This example is lifted directly from David Silver’s [lecture notes](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html) on RL.
 
 
 ## Student in toy college
 
-We model the student as an agent in a college environment who can move between five states: CLASS 1, 2, 3, the FACEBOOK state, and SLEEP state.  The states are represented by the four circles and square in \fig().  The SLEEP state -- the square with no outward bound arrows -- is a terminal state, i.e. once a student reaches that state, her journey is finished.
+We model the student as an agent in a college environment who can move between five states: CLASS 1, 2, 3, the FACEBOOK state, and SLEEP state.  The states are represented by the four circles and square.  The SLEEP state -- the square with no outward bound arrows -- is a terminal state, i.e. once a student reaches that state, her journey is finished.
 
-(TODO: diagram should label states).
+![student MDP]({static}/images/student_mdp.png)
 
 Actions that a student can take in her current state are labeled in red (facebook/quit/study/sleep/pub) and influence which state she’ll find herself in next.
 
-In this model, most state transitions are deterministic functions of the action in the current state, e.g. if she decides to study in CLASS 1, then she’ll definitely advance to CLASS 2.  The single non-deterministic state transition is if she goes pubbing while in CLASS 3, where the pubbing action is indicated by a solid dot.  Depending on how reckless the night of pubbing was, she can end up in CLASS 1, 2 or 3 with probability 0.2, 0.4, or 0.4, respectively.
+In this model, most state transitions are deterministic functions of the action in the current state, e.g. if she decides to study in CLASS 1, then she’ll definitely advance to CLASS 2.  The single non-deterministic state transition is if she goes pubbing while in CLASS 3, where the pubbing action is indicated by a solid dot; she can end up in CLASS 1, 2 or back in 3 with probability 0.2, 0.4, or 0.4, respectively, depending on how reckless the pubbing was.
 
 The model also specifies the reward $R$ associated with acting in one state and ending up in the next.  In this example, the dynamics $p(s’,r|s,a)$, are given to us, i.e. we have a full model of the environment, and, hopefully, the rewards have been designed to capture the actual end goal of the student.
 
@@ -37,7 +37,7 @@ where the dynamics of the system are described by the probabilities of receiving
 
 The student’s agency in this environment comes from how she acts in each state.  The mapping of a state to actions is the **policy**, $\pi(a|s) := p(a|s)$, which can be a deterministic or stochastic function of her current state.  Suppose we have an indifferent student who always chooses actions randomly.  We can sample from the MDP to get some example trajectories the student might experience with this policy:
 
-**trajectories**:
+**Sample trajectories**:
 ```
 (CLASS1)--[facebook]-->(FACEBOOK)--[facebook]-->(FACEBOOK)--[facebook]-->(FACEBOOK)--[facebook]-->(FACEBOOK)--[quit]-->(CLASS1)--[facebook]-->(FACEBOOK)--[quit]-->(CLASS1)--[study]-->(CLASS2)--[sleep]-->(SLEEP)
 
@@ -55,9 +55,9 @@ This [jupyter notebook](https://github.com/frangipane/reinforcement-learning/blo
 
 **Rewards following a random policy**:
 
-Under this random policy, what total reward would the student expect when starting from any of the states?  We can estimate the expected rewards by summing up the rewards per trajectory and plotting the distributions of total rewards per starting state:
+Under this random policy, what total reward would the student expect when starting from any of the states?  We can estimate the expected rewards by summing up the rewards per trajectory and plotting the distributions of total rewards (the "returns") per starting state:
 
-[![histogram of sampled returns]({static}/images/intro_rl_histogram_sampled_returns.png)]({static}/images/intro_rl_histogram_sampled_returns.png)
+![histogram of sampled returns]({static}/images/intro_rl_histogram_sampled_returns.png)
 
 
 ## Maximizing rewards: discounted return and value functions
@@ -76,7 +76,7 @@ where $0 \leq \gamma \leq 1$.  $\gamma$ is the *discount rate* which characteriz
 
 ### Value functions
 
-Earlier, we were able to estimate the expected undiscounted returns (\fig()) starting from each state by sampling from the MDP under a random policy.  Formally, the state value function $v_{\pi}(s)$ is the expected return when starting in state $s$, following policy $\pi$:
+Earlier, we were able to estimate the expected undiscounted returns starting from each state by sampling from the MDP under a random policy.  Formally, the state value function $v_{\pi}(s)$ is the expected return when starting in state $s$, following policy $\pi$:
 
 \begin{eqnarray}\label{state-value} \tag{2}
 v_{\pi}(s) = \mathbb{E}_{\pi}[G_t | S_t = s]
@@ -90,11 +90,11 @@ v_{\pi}(s) &=& \mathbb{E}_{\pi}[G_t | S_t = s] \\
        &=& \sum_{a} \pi(a|s) \sum_{s’, r} p(s’, r | s, a) [r + \gamma v_{\pi}(s’) ]
 \end{eqnarray}
 
-This equation expresses the value of a state as an average over the discounted value of its neighbor / successor states, plus the expected reward transitioning from $s$ to $s’$, and $v_{\pi}$ is the unique* solution.  Note that the distribution of rewards depends on the student’s policy since her actions influence her future rewards.
+This equation expresses the value of a state as an average over the discounted value of its neighbor / successor states, plus the expected reward transitioning from $s$ to $s’$, and $v_{\pi}$ is the unique[*](#unique) solution.  Note that the distribution of rewards depends on the student’s policy since her actions influence her future rewards.
 
-We can “just” solve the Bellman equation for the value function instead of sampling to estimate it as we did in (\fig()) from the MDP.  For the student toy example (a small number of states and full knowledge of the environment) a direct solution is feasible, e.g. by directly solving the system of linear equations or iteratively using dynamic programming.  Here is the solution to \eq() for the student example:
+We can “just” solve the Bellman equation for the value function as an alternative to the sampling we did earlier.  For the student toy example (a small number of states and full knowledge of the environment) a direct solution is feasible, e.g. by directly solving the system of linear equations or iteratively using dynamic programming.  Here is the solution to (\ref{state-value-bellman}) for the student example (compare to the sample means in the histogram of returns):
 
-[TODO: insert diagram of student MDP with state value functions]
+![student MDP value function random policy]({static}/images/student_mdp_values_random_policy.png)
 
 We can verify that the solution is self-consistent by spot-checking the value of a state in terms of the values of its neighboring states according to the Bellman equation, e.g. the CLASS1 state with $v_{\pi}(\text{CLASS1}) = -1.3$:
 
@@ -118,11 +118,10 @@ We can also write the state-value and action-value functions in terms of each ot
 v_{\pi}(s) = \sum_{a} \pi(a|s) q_{\pi}(s, a)
 \end{eqnarray}
 
-[TODO: should I talk about backup diagrams?  How are they useful? See S&B p. 60]
 
 ## Optimal value and policy
 
-The crux of the RL problem is finding a policy that maximizes the expected return.  A policy $\pi$ is defined to be better than another policy $\pi’$ if $v_{\pi}(s) > v_{\pi’}(s)$ for all states.  We are guaranteed* an optimal state-value function $v_*$ which corresponds to one or more optimal policies $\pi*$.
+The crux of the RL problem is finding a policy that maximizes the expected return.  A policy $\pi$ is defined to be better than another policy $\pi’$ if $v_{\pi}(s) > v_{\pi’}(s)$ for all states.  We are guaranteed[*](#unique) an optimal state-value function $v_*$ which corresponds to one or more optimal policies $\pi*$.
 
 Recall that the value function for an arbitrary policy was self-consistently characterized in terms of an average over the action-values for that state, leading to the Bellman expectation equation.  In contrast, the optimal value function $v_*$ must be consistent with following a policy that selects the action(s) that maximize the action-value functions from a state, i.e. taking a $\max$ (\ref{state-value-bellman-optimality}) instead of an average (\ref{state-value-one-step-backup}) over $q$s, leading to the **Bellman optimality equation** for $v_*$:
 
@@ -132,15 +131,15 @@ v_*(s) &=& \max_a q_{\pi*}(s, a) \\
     &=& \max_a \sum_{s’, r} p(s’, r | s, a) [r + \gamma v_*(s’) ]
 \end{eqnarray}
 
-The MDP is "solved" when we know the optimal value function, since the optimal policy immediately follows; namely, take the action in a state that maximizes the right hand side of (\ref{state-value-bellman-optimality}).  The [principle of optimality](https://en.wikipedia.org/wiki/Bellman_equation#Bellman's_Principle_of_Optimality), which applies to the Bellman optimality equation, means that this greedy policy actually corresponds to the optimal policy!
+The optimal policy immediately follows; namely, take the action in a state that maximizes the right hand side of (\ref{state-value-bellman-optimality}).  The [principle of optimality](https://en.wikipedia.org/wiki/Bellman_equation#Bellman's_Principle_of_Optimality), which applies to the Bellman optimality equation, means that this greedy policy actually corresponds to the optimal policy!
 
 Note: Unlike the Bellman expectation equations, the Bellman optimality equations are a nonlinear system of equations due to taking the max.  Analogous equations exist for the action-value functions $q_*(s,a)$.
 
 Here is the optimal state value function and policy for the student example, which we solve for in a later post:
 
-[TODO insert diagram of optimal policy in student example]
+![student MDP optimal value function]({static}/images/student_mdp_optimal_values.png)
 
-Compare the values per state under the optimal policy vs the random policy in figure ().  The value in every state under the optimal policy exceeds the value under the random policy.
+Compare the values per state under the optimal policy vs the random policy.  The value in every state under the optimal policy exceeds the value under the random policy.
 
 ## Summary
 
@@ -148,7 +147,6 @@ We’ve discussed how the problem of sequential decision making can be framed as
 
 MDPs provide a framework for approaching the problem by defining the value of each state, the value functions, and using the value functions to define what a “best policy” means.  The value functions are unique solutions to the Bellman equations, and the MDP is “solved” when we know the optimal value function.
 
-*The uniqueness of the solution to the Bellman equations for finite MDPs is stated without proof in Ref [2], but Ref [1] motivates it briefly via the contraction mapping theorem.
 
 ### Example code
 
@@ -156,6 +154,7 @@ Code for sampling from the student environment under a random policy in order to
 
 The [code](https://github.com/frangipane/reinforcement-learning/blob/master/02-dynamic-programming/discrete_limit_env.py) for the student environment is modeled after OpenAI gym standards, specifically the `gym.envs.toy_text.DiscreteEnv` environment.
 
+<a name="unique">*</a>The uniqueness of the solution to the Bellman equations for finite MDPs is stated without proof in Ref [2], but Ref [1] motivates it briefly via the *contraction mapping theorem*.
 
 ## References
 
