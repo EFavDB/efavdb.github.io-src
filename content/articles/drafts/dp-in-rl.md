@@ -194,3 +194,5 @@ You can see the application of both policy evaluation and value iteration to the
   [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/RLbook2018.pdf) - Chapter 4: Dynamic Programming
 
 [3] Denny Britz’s [notes](https://github.com/dennybritz/reinforcement-learning/tree/master/DP) on RL and DP, including crisp implementations in code of policy evaluation, policy iteration, and value iteration for the gridworld example discussed in [2].
+
+[4] Deep RL Bootcamp Lecture 1: Motivation + Overview + Exact Solution Methods, by Pieter Abbeel ([video](https://www.youtube.com/watch?v=qaMdN6LS9rA), [slides](https://drive.google.com/open?id=0BxXI_RttTZAhVXBlMUVkQ1BVVDQ)) - a very compressed intro.
