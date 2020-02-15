@@ -1,5 +1,5 @@
 Title: Introduction to OpenAI Scholars 2020
-Date: 2019-02-14 09:00
+Date: 2020-02-14 09:00
 Author: Cathy Yeh
 Category: Misc
 Tags: OpenAI, reinforcement learning, machine learning, deep learning
