@@ -33,12 +33,12 @@ in San Francisco.
 * * * * *
 
 <img src="{static}/images/cy_efavdb_headshot.jpg" alt="Cathy about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
+
 Cathy Yeh got a PhD at UC Santa Barbara studying soft-matter/polymer
-physics. She is currently looking to transition to a career in data
-science after wrapping up work with the translational modeling group
-in a pharmaceutical company in San Diego. She enjoys mining big data
-and big ice cream and seeing how both can help make the world a better
-place.
+physics. After stints in a translational modeling group at Pfizer in
+San Diego, Driver (a no longer extant startup trying to match cancer
+patients to clinical trials) in San Francisco, and Square, she is
+currently participating in the OpenAI Scholars program.
 
 <p>&nbsp;    </p>
 
