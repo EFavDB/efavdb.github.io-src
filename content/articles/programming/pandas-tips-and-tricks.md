@@ -23,7 +23,7 @@ Notes:
 -   This post was partially inspired by Tom Augspurger's Pandas [tutorial](https://github.com/tomaugspurger/pydataseattle), which has a [youtube video](https://www.youtube.com/watch?v=otCriSKVV_8) that can be viewed along side it. We also suggest some other excellent resource materials -- where relevant -- below.
 -   The notebook we use below can be downloaded from our [github page](https://github.com/EFavDB/Pandas). Feel free to grab it and follow along.
 
-  
+
 
 
 ### Jupyter (Formally IPython) notebook tips
@@ -42,10 +42,10 @@ To understand Pandas, you gotta understand NumPy, as Pandas is built on top of i
 
 **Broadcasting:** Broadcasting describes how NumPy treats arrays with different shapes. Essentially the smaller array is “broadcast” across the larger array so that they have compatible shapes. This makes it possible to have vectorized array operations, enabling the use of C instead of Python for the looping. Broadcasting also prevents needless copies of data from being created by making a new array with repeating copies.  The simplest broadcasting example occurs when combining an array with a scaler. This is something Pandas uses for efficiency and ease of use.
 
-```  
-a = np.array([1.0, 2.0, 3.0])  
-b = 2.0  
-a * b  
+```
+a = np.array([1.0, 2.0, 3.0])
+b = 2.0
+a * b
 ```
 
     >>> array([ 2., 4., 6.])
@@ -65,11 +65,11 @@ For those interested, I recommend Jake Vanderplas's [talk](https://www.youtube.c
 
 ### Pandas Data Structures
 
-**Series**  
+**Series**
 We now move to the Pandas-specific data types. First up are Series, which are one-dimensional labeled arrays. Unlike ndarrays, these are capable of holding mixed data types. The cells of the series are labeled via the series **Index**. We will discuss indices more in a bit. The general method of creating a series is as follows.
 
-```  
-s = Series(data, index=index)  
+```
+s = Series(data, index=index)
 pd.Series([1,2,3,4], index=['a', 'b', 'c', 'd'])
 
 ```
@@ -85,55 +85,24 @@ pd.Series([1,2,3,4], index=['a', 'b', 'c', 'd'])
 
 As we have seen in other posts on the site, the DataFrame is the main attraction for Pandas. It is a 2-dimensional labeled data structure with columns of potentially different types. You can think of it like a spreadsheet or SQL table, or a dict of Series objects. Like Series, DataFrame accepts many different kinds of input. One way of making a DataFrame is using a dictionary as input.
 
-```  
-d = {'one' : [1., 2., 3., 4.],  
-'two' : [4., 3., 2., 1.],  
+```
+d = {'one' : [1., 2., 3., 4.],
+'two' : [4., 3., 2., 1.],
 'good' :[True, False, False, True]}
 
-df = pd.DataFrame(d, index=['a', 'b', 'c', 'd'])  
+df = pd.DataFrame(d, index=['a', 'b', 'c', 'd'])
 ```
 
 Running the code in a notebook will output a nicely formatted table.
 
-good
+| | good | one | two |
+| -- | -- | -- | -- |
+| a | TRUE | 1 | 4 |
+| b | FALSE | 2 | 3 |
+| c | FALSE | 3 | 2 |
+| d | TRUE | 4 | 1 |
 
-one
-
-two
-
-a
-
-True
-
-1
-
-4
-
-b
-
-False
-
-2
-
-3
-
-c
-
-False
-
-3
-
-2
-
-d
-
-True
-
-4
-
-1
-
-**  
+**
 Index**
 
 The index in Pandas provides axis labeling information for pandas objects -- it can serve many purposes. First, an index can provide metadata, potentially important for analysis, visualization, and so on. Second, it can enable automatic data alignment when preforming operations on multiple DataFrames or Series. Third, it can allow easy access to subsets of the data.
@@ -142,8 +111,8 @@ The index in Pandas provides axis labeling information for pandas objects -- it
 
 A huge improvement over numpy arrays is labeled indexing. We can select subsets by column, row, or both. To select columns use [].
 
-```  
-df['good']  
+```
+df['good']
 ```
 
     >>>
@@ -155,128 +124,58 @@ df['good']
 
 As we can see here, Pandas will reduce dimensions when possible which is why the output above is a Series instead of a DataFrame -- if you wish to force the returned result to be a DataFrame, you must supply a list of arguments, eg `df[['good']]`. You can also select individual columns with the dot (.) operator, for example `df.good` will give the same result. However, when using this approach, the column name selected must not have any spaces or special characters, nor can it conflict with any DataFrame methods. In order to add a column to a DataFrame, we write,
 
-```  
-df['A'] = [1, 2, 3]  
+```
+df['A'] = [1, 2, 3]
 ```
 
 You can also select multiple columns using a column name list.
 
-```  
-df[['good', 'two']]  
+```
+df[['good', 'two']]
 ```
 
-good
-
-two
-
-a
-
-True
-
-4
-
-b
-
-False
-
-3
-
-c
-
-False
-
-2
-
-d
-
-True
-
-1
+|  | good | two |
+| -- | -- | -- |
+| a | TRUE | 4 |
+| b | FALSE | 3 |
+| c | FALSE | 2 |
 
 For row selection, use `.loc[row_lables, column_labels]` for label-based indexing and use `.iloc[row_positions, column_positions]` for ordinal/positional selection.
 
-```  
-df.loc[['a', 'd']]  
+```
+df.loc[['a', 'd']]
 ```
 
-good
-
-one
-
-two
-
-a
-
-True
-
-1
-
-4
-
-d
-
-True
-
-4
-
-1
-
-```  
-df.loc['a':'b']  
+| good | one | two |
+| -- | -- | -- |
+| a | TRUE | 1 | 4 |
+| d | TRUE | 4 | 1 |
+<br />
+```
+df.loc['a':'b']
 ```
 
-good
+| good | one | two |
+| -- | -- | -- |
+| a | TRUE | 1 | 4 |
+| b | FALSE | 2 | 3 |
 
-one
-
-two
-
-a
-
-True
-
-1
-
-4
-
-b
-
-False
-
-2
-
-3
 
 Notice that the slice is **inclusive**: It includes both the start and end index -- unlike normal python indexing.
 
-```  
-df.iloc[0:2]  
+```
+df.iloc[0:2]
 ```
 
-good
+| good | one | two |
+| -- | -- | -- |
+| a | TRUE | 1 | 4 |
+| b | FALSE | 2 | 3 |
 
-one
+<br />
 
-two
-
-a
-
-True
-
-1
-
-4
-
-b
-
-False
-
-2
-
-3
-
-```  
-df.loc['b', 'good']  
+```
+df.loc['b', 'good']
 ```
 
     >>> False
@@ -289,186 +188,60 @@ After reading in the data, we see that each row corresponds to one unemployment 
 
 Next, we assign our IDs to the DataFrame index using `set_index`, and then drop the column since it is no longer needed.  Lastly we transpose the table so that each row corresponds to a different time point and the columns to the separate measures.
 
-```  
+```
 df = pd.read_csv('data.csv')
 
-df['Series ID']= ['Labor force', 'Participation rate',  
-'Rate', 'Rate - 16-19 yrs','Rate - 20+ yrs (Men)',  
-'Rate - 20+ yrs (Women)','Rate - White',  
-'Rate - Black or African American','Rate - Asian',  
-'Rate - Hispanic or Latino','No High School Diploma',  
-'High School Graduates','Some College or Associate Degree',  
-'Bachelor degree and higher','Under 5 Weeks',  
-'5-14 Weeks', '15 Weeks & over', '27 Weeks & over']  
-df.drop('Jan 2000', axis=1, inplace=True)  
-df.set_index(df['Series ID'], inplace=True)  
-df.drop('Series ID', axis=1, inplace=True)  
-df = df.transpose().convert_objects(convert_numeric=True)  
+df['Series ID']= ['Labor force', 'Participation rate',
+'Rate', 'Rate - 16-19 yrs','Rate - 20+ yrs (Men)',
+'Rate - 20+ yrs (Women)','Rate - White',
+'Rate - Black or African American','Rate - Asian',
+'Rate - Hispanic or Latino','No High School Diploma',
+'High School Graduates','Some College or Associate Degree',
+'Bachelor degree and higher','Under 5 Weeks',
+'5-14 Weeks', '15 Weeks & over', '27 Weeks & over']
+df.drop('Jan 2000', axis=1, inplace=True)
+df.set_index(df['Series ID'], inplace=True)
+df.drop('Series ID', axis=1, inplace=True)
+df = df.transpose().convert_objects(convert_numeric=True)
 ```
 
 With these steps, we take the original table:
 
-Series ID
-
-Jan 2000
-
-Feb 2000
-
-Mar 2000
-
-Apr 2000
-
-0
-
-LNS11000000
-
-142267(1)
-
-142456
-
-142434
-
-142751
-
-1
-
-LNS11300000
-
-67.3
-
-67.3
-
-67.3
-
-67.3
-
-2
-
-LNS14000000
-
-4.0
-
-4.1
-
-4.0
-
-3.8
-
-3
-
-LNS14000012
-
-12.7
-
-13.8
-
-13.3
-
-12.6
-
-4
-
-LNS14000025
-
-3.3
-
-3.5
-
-3.2
-
-3.1
+| Series ID | Jan 2000 | Feb 2000 | Mar 2000 |
+| ----------- | -------- | ------ | ------ |
+| LNS11000000 | 142267(1) | 142456 | 142434 |
+| LNS11300000 | 67.3 | 67.3 | 67.3 |
+| LNS14000000 | 4 | 4.1 | 4 |
+| LNS14000012 | 12.7 | 13.8 | 13.3 |
+| LNS14000025 | 3.3 | 3.5 | 3.2 |
 
 to
 
-Series ID
-
-Labor force
-
-Participation rate
-
-Rate
-
-Rate - 16-19 yrs
-
-Rate - 20+ yrs (Men)
-
-Feb 2000
-
-142456
-
-67.3
-
-4.1
-
-13.8
-
-3.5
-
-Mar 2000
-
-142434
-
-67.3
-
-4.0
-
-13.3
-
-3.2
-
-Apr 2000
-
-142751
-
-67.3
-
-3.8
-
-12.6
-
-3.1
-
-May 2000
-
-142388
-
-67.1
-
-4.0
-
-12.8
-
-3.3
-
-Jun 2000
-
-142591
-
-67.1
-
-4.0
-
-12.3
-
-3.2
+| Series ID | Labor force | Part. rate | Rate | Rate – 16-19 yrs | Rate – 20+ yrs (Men) |
+| ----------- | -------- | ------ | ------ | ------ | ---- |
+| Feb 2000 | 142456 | 67.3 | 4.1 | 13.8 | 3.5 |
+| Mar 2000 | 142434 | 67.3 | 4 | 13.3 | 3.2 |
+| Apr 2000 | 142751 | 67.3 | 3.8 | 12.6 | 3.1 |
+| May 2000 | 142388 | 67.1 | 4 | 12.8 | 3.3 |
+| Jun 2000 | 142591 | 67.1 | 4 | 12.3 | 3.2 |
 
 ### Working with the data
 
 Now that we have the data in a nicely formatted within DataFrame, we can easily visualize it using the Pandas plot method. For example, to plot the general unemployment rate, we write
 
-```  
-df['Rate'].plot()  
-plt.ylabel('Unemployment Rate (%)')  
+```
+df['Rate'].plot()
+plt.ylabel('Unemployment Rate (%)')
 ```
 
 [![fig1]({static}/wp-content/uploads/2015/07/fig1.png)]({static}/wp-content/uploads/2015/07/fig1.png) Similarly, the following plots unemployment for each of the available different levels of education.
 
-```  
-df[['Rate', 'No High School Diploma', 'Bachelor degree and higher']].plot()  
-plt.ylabel('Unemployment Rate (%)')  
+```
+df[['Rate', 'No High School Diploma', 'Bachelor degree and higher']].plot()
+plt.ylabel('Unemployment Rate (%)')
 ```
 
-[![fig2]({static}/wp-content/uploads/2015/07/fig2.png)]({static}/wp-content/uploads/2015/07/fig2.png)  
+[![fig2]({static}/wp-content/uploads/2015/07/fig2.png)]({static}/wp-content/uploads/2015/07/fig2.png)
 Interestingly, these unemployment rates seem to evolve in a similar manner. Notice that both the green and the red curves seem to have doubled during the recent slow-down.
 
  
@@ -477,18 +250,18 @@ Interestingly, these unemployment rates seem to evolve in a similar manner. Noti
 
 You can also used Pandas GroupBy functionality to do analysis on subsets of the data.  For this example we [GroupBy](http://pandas.pydata.org/pandas-docs/stable/groupby.html) year, and then make a plot showing the mean unemployment per year. GroupBy allows one to easily split the data, apply a function to each group, and then combine the results. It is a very useful feature!
 
-```  
-df['Year']=(df.index.to_datetime()).year  
-years = df.groupby('Year')  
-years['Rate'].mean().plot(kind='bar')  
+```
+df['Year']=(df.index.to_datetime()).year
+years = df.groupby('Year')
+years['Rate'].mean().plot(kind='bar')
 ```
 
 ### [![fig3]({static}/wp-content/uploads/2015/07/fig3.png)]({static}/wp-content/uploads/2015/07/fig3.png)
 
 There are some functions like mean, and describe that can be run directly on a grouped object.
 
-```  
-years.get_group(2005)['Rate'].describe()  
+```
+years.get_group(2005)['Rate'].describe()
 ```
 
     >>>
@@ -504,179 +277,29 @@ years.get_group(2005)['Rate'].describe()
 
 It is possible to apply any function to the grouped function using [agg()](http://pandas.pydata.org/pandas-docs/stable/groupby.html#aggregation).
 
-```  
-years['Rate'].agg([np.mean, np.std, max, min])  
+```
+years['Rate'].agg([np.mean, np.std, max, min])
 ```
 
-mean
-
-std
-
-max
-
-min
-
-Year
-
-2000
-
-3.963636
-
-0.092442
-
-4.1
-
-3.8
-
-2001
-
-4.741667
-
-0.528219
-
-5.7
-
-4.2
-
-2002
-
-5.783333
-
-0.102986
-
-6.0
-
-5.7
-
-2003
-
-5.991667
-
-0.178164
-
-6.3
-
-5.7
-
-2004
-
-5.541667
-
-0.131137
-
-5.8
-
-5.4
-
-2005
-
-5.083333
-
-0.158592
-
-5.4
-
-4.9
-
-2006
-
-4.608333
-
-0.131137
-
-4.8
-
-4.4
-
-2007
-
-4.616667
-
-0.164225
-
-5.0
-
-4.4
-
-2008
-
-5.800000
-
-0.780443
-
-7.3
-
-4.9
-
-2009
-
-9.283333
-
-0.696528
-
-10.0
-
-7.8
-
-2010
-
-9.608333
-
-0.219331
-
-9.9
-
-9.3
-
-2011
-
-8.941667
-
-0.206522
-
-9.2
-
-8.5
-
-2012
-
-8.066667
-
-0.214617
-
-8.3
-
-7.7
-
-2013
-
-7.366667
-
-0.342008
-
-8.0
-
-6.7
-
-2014
-
-6.150000
-
-0.360555
-
-6.7
-
-5.6
-
-2015
-
-5.412500
-
-0.180772
-
-5.7
-
-5.1
+|  | mean | std | max | min |
+| ---- | -------- | -------- | -- | -- |
+| Year |  |  |  |  |
+| 2000 | 3.963636 | 0.092442 | 4.1 | 3.8 |
+| 2001 | 4.741667 | 0.528219 | 5.7 | 4.2 |
+| 2002 | 5.783333 | 0.102986 | 6 | 5.7 |
+| 2003 | 5.991667 | 0.178164 | 6.3 | 5.7 |
+| 2004 | 5.541667 | 0.131137 | 5.8 | 5.4 |
+| 2005 | 5.083333 | 0.158592 | 5.4 | 4.9 |
+| 2006 | 4.608333 | 0.131137 | 4.8 | 4.4 |
+| 2007 | 4.616667 | 0.164225 | 5 | 4.4 |
+| 2008 | 5.8 | 0.780443 | 7.3 | 4.9 |
+| 2009 | 9.283333 | 0.696528 | 10 | 7.8 |
+| 2010 | 9.608333 | 0.219331 | 9.9 | 9.3 |
+| 2011 | 8.941667 | 0.206522 | 9.2 | 8.5 |
+| 2012 | 8.066667 | 0.214617 | 8.3 | 7.7 |
+| 2013 | 7.366667 | 0.342008 | 8 | 6.7 |
+| 2014 | 6.15 | 0.360555 | 6.7 | 5.6 |
+| 2015 | 5.4125 | 0.180772 | 5.7 | 5.1 |
 
  
 
@@ -686,8 +309,8 @@ Year
 
 Another common operation is the use of boolean vectors to filter data. This allows one to easily select subsets of data. It also provides a quick method for counting -- this works because True and False are represented as 1 and 0, respectively, when adding.
 
-```  
-sum(df['Rate'] > 7)  
+```
+sum(df['Rate'] > 7)
 ```
 
     >>> 59
@@ -696,16 +319,16 @@ sum(df['Rate'] > 7)
 
 Pandas has very useful string methods which can be access via `str.` This makes it easy to look for patterns in the text, do filtering, replacements, and so on. I have a couple of examples below but I highly recommend taking a look at the documentation page for many [examples](http://pandas.pydata.org/pandas-docs/stable/text.html).
 
-```  
-s = pd.Series(['Dog', 'Bat', 'Coon', 'cAke', 'bAnk', 'CABA', 'dog', 'cat'])  
-s[s.str.contains('B')]  
+```
+s = pd.Series(['Dog', 'Bat', 'Coon', 'cAke', 'bAnk', 'CABA', 'dog', 'cat'])
+s[s.str.contains('B')]
 ```
 
     1 Bat
     5 CABA
 
-```  
-s.str.replace('dog|cat', 'nope ', case=False)  
+```
+s.str.replace('dog|cat', 'nope ', case=False)
 ```
 
     0 nope
@@ -717,7 +340,7 @@ s.str.replace('dog|cat', 'nope ', case=False)
     6 nope
     7 nope
 
-### 
+###
 
 ### Wrap Up
 
@@ -726,5 +349,3 @@ Pandas is a very useful library that I highly recommend. Although it can have a 
  
 
 [![Open GitHub Repo](http://efavdb.com/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/Pandas "GitHub Repo")
-
- 
