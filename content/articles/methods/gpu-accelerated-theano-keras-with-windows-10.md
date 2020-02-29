@@ -41,15 +41,14 @@ The last thing we need to do  GCC compiler, I recommend [TDM-gcc](http://tdm-gc
 To make sure that everything is working at this point, run the the following command on the command line (cmd.exe) . If if finds the path for everything you are good to go.
 
 ` where gcc where cl where nvcc where cudafe where cudafe++`
-
 ### Theano and Keras
 
 At this point it is easy to install Theano and Keras, just you pip (or conda and pip)!
 
 ```
 
-conda install mingw libpython  
-pip install theano  
+conda install mingw libpython
+pip install theano
 pip install keras
 
 ```
@@ -68,7 +67,7 @@ Lastly, set up the Keras config file ` ~/.keras/keras.json`.  If you haven't st
     {
      "image_dim_ordering": "tf",
      "epsilon": 1e-07,
-     "floatx": "float32", 
+     "floatx": "float32",
      "backend": "theano"
     }
 
@@ -77,28 +76,28 @@ Testing Theano with GPU
 
 Using the following python code,  check if your installation of Theano is using your GPU.
 
-```  
-from theano import function, config, shared, sandbox  
-import theano.tensor as T  
-import numpy  
+```
+from theano import function, config, shared, sandbox
+import theano.tensor as T
+import numpy
 import time
 
-vlen = 10 * 30 * 768 # 10 x #cores x # threads per core  
+vlen = 10 * 30 * 768 # 10 x #cores x # threads per core
 iters = 1000
 
-rng = numpy.random.RandomState(22)  
-x = shared(numpy.asarray(rng.rand(vlen), config.floatX))  
-f = function([], T.exp(x))  
-print(f.maker.fgraph.toposort())  
-t0 = time.time()  
-for i in range(iters):  
-r = f()  
-t1 = time.time()  
-print("Looping %d times took %f seconds" % (iters, t1 - t0))  
-print("Result is %s" % (r,))  
-if numpy.any([isinstance(x.op, T.Elemwise) for x in f.maker.fgraph.toposort()]):  
-print('Used the cpu')  
-else:  
+rng = numpy.random.RandomState(22)
+x = shared(numpy.asarray(rng.rand(vlen), config.floatX))
+f = function([], T.exp(x))
+print(f.maker.fgraph.toposort())
+t0 = time.time()
+for i in range(iters):
+r = f()
+t1 = time.time()
+print("Looping %d times took %f seconds" % (iters, t1 - t0))
+print("Result is %s" % (r,))
+if numpy.any([isinstance(x.op, T.Elemwise) for x in f.maker.fgraph.toposort()]):
+print('Used the cpu')
+else:
 print('Used the gpu')
 
 ```
@@ -110,25 +109,25 @@ This code will make sure that everything is working and train a model on some ra
 
 ```
 
-from keras.models import Sequential  
+from keras.models import Sequential
 from keras.layers import Dense, Activation
 
 # for a single-input model with 2 classes (binary):
 
-model = Sequential()  
-model.add(Dense(1, input_dim=784, activation='sigmoid'))  
-model.compile(optimizer='rmsprop',  
-loss='binary_crossentropy',  
+model = Sequential()
+model.add(Dense(1, input_dim=784, activation='sigmoid'))
+model.compile(optimizer='rmsprop',
+loss='binary_crossentropy',
 metrics=['accuracy'])
 
-# generate dummy data  
-import numpy as np  
-data = np.random.random((1000, 784))  
+# generate dummy data
+import numpy as np
+data = np.random.random((1000, 784))
 labels = np.random.randint(2, size=(1000, 1))
 
-# train the model, iterating on the data in batches  
-# of 32 samples  
-model.fit(data, labels, nb_epoch=10, batch_size=32)  
+# train the model, iterating on the data in batches
+# of 32 samples
+model.fit(data, labels, nb_epoch=10, batch_size=32)
 ```
 
 If everything works you will see something like this!

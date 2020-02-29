@@ -8,8 +8,8 @@ Attachments: wp-content/uploads/2017/03/spectrum.jpg, wp-content/uploads/2017/03
 
 The AUC score is a popular summary statistic that is often used to communicate the performance of a classifier. However, we illustrate here that this score depends not only on the quality of the model in question, but also on the difficulty of the test set considered: If samples are added to a test set that are easily classified, the AUC will go up -- even if the model studied has not improved. In general, this behavior implies that isolated, single AUC scores cannot be used to meaningfully qualify a model's performance. Instead, the AUC should be considered a score that is primarily useful for comparing and ranking multiple models -- each at a common test set difficulty.
 
-  
-  
+
+
 
 
 ### Introduction
@@ -27,10 +27,11 @@ We review the definition of the AUC below and then demonstrate the issues allude
 
 ### The AUC score, reviewed
 
-Here, we quickly review the definition of the AUC. This is a score that can be used to quantify the accuracy of a binary classification algorithm on a given test set $\mathcal{S}$. The test set consists of a set of feature vector-label pairs of the form  
-\begin{eqnarray}\tag{1}  
-\mathcal{S} = \{(\textbf{x}_i, y_i) \}.  
-\end{eqnarray}  
+Here, we quickly review the definition of the AUC. This is a score that can be used to quantify the accuracy of a binary classification algorithm on a given test set $\mathcal{S}$. The test set consists of a set of feature vector-label pairs of the form
+\begin{eqnarray}\tag{1}
+\mathcal{S} = \{(\textbf{x}_i, y_i) \}.
+\end{eqnarray}
+
 Here, $\textbf{x}_i$ is the set of features, or predictor variables, for example $i$ and $y_i \in \{0,1 \}$ is the label for example $i$. A classifier function $\hat{p}_1(\textbf{x})$ is one that attempts to guess the value of $y_i$ given only the feature vector $\textbf{x}_i$. In particular, the output of the function $\hat{p}_1(\textbf{x}_i)$ is an estimate for the probability that the label $y_i$ is equal to $1$. If the algorithm is confident that the class is $1$ ($0$), the probability returned will be large (small).
 
 To characterize model performance, we can set a threshold value of $p^*$ and mark all examples in the test set with $\hat{p}(\textbf{x}_i) > p^*$ as being candidates for class one. The fraction of the truly positive examples in $\mathcal{S}$ marked in this way is referred to as the true-positive rate (TPR) at threshold $p^*$. Similarly, the fraction of negative examples in $\mathcal{S}$ marked is referred to as the false-positive rate (FPR) at threshold $p^*$. Plotting the TPR against the FPR across all thresholds gives the model's so-called receiver operating characteristic (ROC) curve. A hypothetical example is shown at right in blue. The dashed line is just the $y=x$ line, which corresponds to the ROC curve of a random classifier (one returning a uniform random $p$ value each time).
@@ -43,9 +44,9 @@ Notice that if the threshold is set to $p^* = 1$, no positive or negative exampl
 
 To illustrate the sensitivity of the AUC score to test set difficulty, we now consider a toy classification problem: In particular, we consider a set of unit-variance normal distributions, each having a different mean $\mu_i$. From each distribution, we will take a single sample $x_i$. From this, we will attempt to estimate whether or not the corresponding mean satisfies $\mu_i > 0$. That is, our training set will take the form $\mathcal{S} = \{(x_i, \mu_i)\}$, where $x_i \sim N(\mu_i, 1)$. For different $\mathcal{S}$, we will study the AUC of the classifier function,
 
-\begin{eqnarray} \label{classifier} \tag{2}  
-\hat{p}(x) = \frac{1}{2} (1 + \text{tanh}(x))  
-\end{eqnarray}  
+\begin{eqnarray} \label{classifier} \tag{2}
+\hat{p}(x) = \frac{1}{2} (1 + \text{tanh}(x))
+\end{eqnarray}
 A plot of this function is shown below. You can see that if any test sample $x_i$ is far to the right (left) of $x=0$, the model will classify the sample as positive (negative) with high certainty. At intermediate values near the boundary, the estimated probability of being in the positive class lifts in a reasonable way.
 
 [![classifier]({static}/wp-content/uploads/2017/03/classifier-2.png)]({static}/wp-content/uploads/2017/03/classifier-2.png)
@@ -54,26 +55,26 @@ Notice that if a test example has a mean very close to zero, it will be difficul
 
 The impact of adding soft-balls to the test set on the AUC for model (\ref{classifier}) can be studied by changing the sampling distribution of $\mathcal{S}$. The following python snippet takes samples $\mu_i$ from three distributions -- one tight about $0$ (resulting in a very difficult test set), one that is very wide containing many soft-balls that are easily classified, and one that is intermediate. The ROC curves that result from these three cases are shown following the code. The three curves are very different, with the AUC of the soft-ball set very large and that of the tight set close to that of the random classifier. Yet, in each case the model considered was the same -- (\ref{classifier}). How could the AUC have improved?!
 
-```  
-import numpy as np  
+```
+import numpy as np
 from sklearn import metrics
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12,3.5))
 
-SAMPLES = 1000  
-means_std = 0.1  
-for means_std in [3, 0.5, .001]:  
-means = means_std * np.random.randn(SAMPLES)  
-x_set = np.random.randn(samples) + means  
-predictions = [classifier(item) for item in x_set]  
-fpr, tpr, thresholds = metrics.roc_curve(1 * (means>0), predictions)  
-ax1.plot(fpr, tpr, label=means_std)  
-ax1.plot(fpr, fpr, 'k--')  
-ax2.plot(means, 0 * means, '*', label=means_std)  
-ax1.legend(loc='lower right', shadow=True)  
-ax2.legend(loc='lower right', shadow=True)  
-ax1.set_title('TPR versus FPR -- The ROC curve')  
-ax2.set_title('Means sampled for each case')  
+SAMPLES = 1000
+means_std = 0.1
+for means_std in [3, 0.5, .001]:
+means = means_std * np.random.randn(SAMPLES)
+x_set = np.random.randn(samples) + means
+predictions = [classifier(item) for item in x_set]
+fpr, tpr, thresholds = metrics.roc_curve(1 * (means>0), predictions)
+ax1.plot(fpr, tpr, label=means_std)
+ax1.plot(fpr, fpr, 'k--')
+ax2.plot(means, 0 * means, '*', label=means_std)
+ax1.legend(loc='lower right', shadow=True)
+ax2.legend(loc='lower right', shadow=True)
+ax1.set_title('TPR versus FPR -- The ROC curve')
+ax2.set_title('Means sampled for each case')
 ```
 
 [![Examples]({static}/wp-content/uploads/2017/03/Examples.png)]({static}/wp-content/uploads/2017/03/Examples.png)

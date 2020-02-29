@@ -8,8 +8,8 @@ Attachments: wp-content/uploads/2016/10/trace.jpg, wp-content/uploads/2016/10/ba
 
 Here, we provide a brief introduction to reinforcement learning (RL) -- a general technique for training programs to play games efficiently. Our aim is to explain its practical implementation: We cover some basic theory and then walk through a minimal python program that trains a neural network to play the game battleship.
 
-  
-  
+
+
 
 
 ### Introduction
@@ -35,17 +35,17 @@ The policy for a given deep RL algorithm is a neural network that maps state val
 
 To illustrate the above, we present a diagram of the network used in our battleship program below. (For a review of the rules of battleship, see footnote [1].) For simplicity, we work with a 1-d battleship grid. We then encode our current knowledge of the environment using one input neuron for each of our opponent's grid positions. In particular, we use the following encoding for each neuron / index:
 
-\begin{eqnarray} \label{input} \tag{1}  
-x_{0,i} = \begin{cases}  
--1 & \text{Have not yet bombed $i$} \  
-\ 0 & \text{Have bombed $i$, no ship} \  
-+1 & \text{Have bombed $i$, ship present}.  
-\end{cases}  
-\end{eqnarray}  
+\begin{align} \label{input} \tag{1}
+x_{0,i} = \begin{cases}
+-1 & \text{Have not yet bombed $i$} \\
+\ 0 & \text{Have bombed $i$, no ship} \\
++1 & \text{Have bombed $i$, ship present}.
+\end{cases}
+\end{align}
 In our example figure below, we have five input neurons, so the board is of size five. The first three neurons have value $-1$ implying we have not yet bombed those grid points. Finally, the last two are $+1$ and $0$, respectively, implying that a ship does sit at the fourth site, but not at the fifth.
 
-  
-[caption width="482" caption="Our policy network: A function that maps an encoding of our knowledge of our opponent's board to optimal next action (site bombing) probabilities."][iframe src="{static}/wp-content/uploads/2016/10/nn.jpg" width="90%" height="235"][/caption]  
+
+[caption width="482" caption="Our policy network: A function that maps an encoding of our knowledge of our opponent's board to optimal next action (site bombing) probabilities."][iframe src="{static}/wp-content/uploads/2016/10/nn.jpg" width="90%" height="235"][/caption]
 
 Note that in the output layer of the policy network shown, the first three values are labeled with log probabilities. These values correspond to the probabilities that we should next bomb each of these indices, respectively. We cannot re-bomb the fourth and fifth grid points, so although the network may output some values to these neurons, we'll ignore them.
 
@@ -55,28 +55,28 @@ Before moving on, we note that the reason we use a neural network for our policy
 
 To train an RL algorithm, we must carry out an iterative game play / scoring process: We play games according to our current policy, selecting moves with frequencies proportional to the probabilities output by the network. If the actions taken resulted in good outcomes, we want to strengthen the probability of those actions going forward.
 
-The rewards function is the tool we use to formally score our outcomes in past games -- we will encourage our algorithm to try to maximize this quantity during game play. In effect, it is a hyper-parameter for the RL algorithm: many different functions could be used, each resulting in different learning characteristics. For our battleship program, we have used the function  
-\begin{eqnarray} \label{rewards} \tag{2}  
-r(a;t_0) = \sum_{t \geq t_0} \left ( h(t) - \overline{h(t)} \right) (0.5)^{t-t0}  
-\end{eqnarray}  
+The rewards function is the tool we use to formally score our outcomes in past games -- we will encourage our algorithm to try to maximize this quantity during game play. In effect, it is a hyper-parameter for the RL algorithm: many different functions could be used, each resulting in different learning characteristics. For our battleship program, we have used the function
+\begin{align} \label{rewards} \tag{2}
+r(a;t_0) = \sum_{t \geq t_0} \left ( h(t) - \overline{h(t)} \right) (0.5)^{t-t0}
+\end{align}
 Given a completed game log, this function looks at the action $a$ taken at time $t_0$ and returns a weighted sum of hit values $h(t)$ for this and all future steps in the game. Here, $h(t)$ is $1$ if we had a hit at step $t$ and is $0$ otherwise.
 
 In arriving at (\ref{rewards}), we admit that we did not carry out a careful search over the set of all possible rewards functions. However, we have confirmed that this choice results in good game play, and it is well-motivated: In particular, we note that the weighting term $(0.5)^{t-t0}$ serves to strongly incentivize a hit on the current move (we get a reward of $1$ for a hit at $t_0$), but a hit at $(t_0 + 1)$ also rewards the action at $t_0$ -- with value $0.5$. Similarly, a hit at $(t_0 + 2)$ rewards $0.25$, etc. This weighted look-ahead aspect of (\ref{rewards}) serves to encourage efficient exploration of the board: It forces the program to care about moves that will enable future hits. The other ingredient of note present in (\ref{rewards}) is the subtraction of $\overline{h(t)}$. This is the expected rewards that a random network would obtain. By pulling this out, we only reward our network if it is outperforming random choices -- this results in a net speed-up of the learning process.
 
 #### Stochastic gradient descent
 
-In order to train our algorithm to maximize captured rewards during game play, we apply gradient descent. To carry this out, we imagine allowing our network parameters $\theta$ to vary at some particular step in the game. Averaging over all possible actions, the gradient of the expected rewards is then formally,  
-\begin{eqnarray} \nonumber  
-\partial_{\theta} \langle r(a \vert s) \rangle &\equiv & \partial_{\theta} \int p(a \vert \theta, s) r(a \vert s) da \ \nonumber  
-&=& \int p(a \vert \theta, s) r(a \vert s) \partial_{\theta} \log \left ( p(a \vert \theta, s) \right) da \  
-&\equiv & \langle r(a \vert s) \partial_{\theta} \log \left ( p(a \vert \theta, s) \right) \rangle. \tag{3} \label{formal_ev}  
-\end{eqnarray}  
+In order to train our algorithm to maximize captured rewards during game play, we apply gradient descent. To carry this out, we imagine allowing our network parameters $\theta$ to vary at some particular step in the game. Averaging over all possible actions, the gradient of the expected rewards is then formally,
+\begin{align} \nonumber
+\partial_{\theta} \langle r(a \vert s) \rangle &\equiv & \partial_{\theta} \int p(a \vert \theta, s) r(a \vert s) da \\ \nonumber
+&=& \int p(a \vert \theta, s) r(a \vert s) \partial_{\theta} \log \left ( p(a \vert \theta, s) \right) da \\
+&\equiv & \langle r(a \vert s) \partial_{\theta} \log \left ( p(a \vert \theta, s) \right) \rangle. \tag{3} \label{formal_ev}
+\end{align}
 Here, the $p(a)$ values are the action probability outputs of our network.
 
-Unfortunately, we usually can't evaluate the last line above. However, what we can do is approximate it using a sampled value: We simply play a game with our current network, then replace the expected value above by the reward actually captured on the $i$-th move,  
-\begin{eqnarray}  
-\hat{g}_i = r(a_i) \nabla_{\theta} \log p(a_i \vert s_i, \theta). \tag{4} \label{estimator}  
-\end{eqnarray}  
+Unfortunately, we usually can't evaluate the last line above. However, what we can do is approximate it using a sampled value: We simply play a game with our current network, then replace the expected value above by the reward actually captured on the $i$-th move,
+\begin{align}
+\hat{g}_i = r(a_i) \nabla_{\theta} \log p(a_i \vert s_i, \theta). \tag{4} \label{estimator}
+\end{align}
 Here, $a_i$ is the action that was taken, $r(a_i)$ is reward that was captured, and the derivative of the logarithm shown can be evaluated via back-propagation (aside for those experienced with neural networks: this is the derivative of the cross-entropy loss function that would apply if you treated the event like a supervised-learning training example -- with the selected action $a_i$ taken as the label). The function $\hat{g}_i$ provides a noisy estimate of the desired gradient, but taking many steps will result in a "stochastic" gradient descent, on average pushing us towards correct rewards maximization.
 
 #### Summary of the training process
@@ -91,123 +91,123 @@ That's it for the basics of deep, policy-gradient RL. We now turn to our python 
 
 Load the needed packages.
 
-```  
-import tensorflow as tf  
-import numpy as np  
-%matplotlib inline  
-import pylab  
+```
+import tensorflow as tf
+import numpy as np
+%matplotlib inline
+import pylab
 ```
 
-Define our network -- a fully connected, three layer system. The code below is mostly tensorflow boilerplate that can be picked up by going through their first tutorials. The one unusual thing is that we have our learning rate in (26) set to the placeholder value (9). This will allow us to vary our step sizes with observed rewards captured below.  
-```  
-BOARD_SIZE = 10  
+Define our network -- a fully connected, three layer system. The code below is mostly tensorflow boilerplate that can be picked up by going through their first tutorials. The one unusual thing is that we have our learning rate in (26) set to the placeholder value (9). This will allow us to vary our step sizes with observed rewards captured below.
+```
+BOARD_SIZE = 10
 SHIP_SIZE = 3
 
-hidden_units = BOARD_SIZE  
+hidden_units = BOARD_SIZE
 output_units = BOARD_SIZE
 
-input_positions = tf.placeholder(tf.float32, shape=(1, BOARD_SIZE))  
-labels = tf.placeholder(tf.int64)  
-learning_rate = tf.placeholder(tf.float32, shape=[])  
-# Generate hidden layer  
-W1 = tf.Variable(tf.truncated_normal([BOARD_SIZE, hidden_units],  
-stddev=0.1 / np.sqrt(float(BOARD_SIZE))))  
-b1 = tf.Variable(tf.zeros([1, hidden_units]))  
-h1 = tf.tanh(tf.matmul(input_positions, W1) + b1)  
-# Second layer -- linear classifier for action logits  
-W2 = tf.Variable(tf.truncated_normal([hidden_units, output_units],  
-stddev=0.1 / np.sqrt(float(hidden_units))))  
-b2 = tf.Variable(tf.zeros([1, output_units]))  
-logits = tf.matmul(h1, W2) + b2  
+input_positions = tf.placeholder(tf.float32, shape=(1, BOARD_SIZE))
+labels = tf.placeholder(tf.int64)
+learning_rate = tf.placeholder(tf.float32, shape=[])
+# Generate hidden layer
+W1 = tf.Variable(tf.truncated_normal([BOARD_SIZE, hidden_units],
+stddev=0.1 / np.sqrt(float(BOARD_SIZE))))
+b1 = tf.Variable(tf.zeros([1, hidden_units]))
+h1 = tf.tanh(tf.matmul(input_positions, W1) + b1)
+# Second layer -- linear classifier for action logits
+W2 = tf.Variable(tf.truncated_normal([hidden_units, output_units],
+stddev=0.1 / np.sqrt(float(hidden_units))))
+b2 = tf.Variable(tf.zeros([1, output_units]))
+logits = tf.matmul(h1, W2) + b2
 probabilities = tf.nn.softmax(logits)
 
-init = tf.initialize_all_variables()  
-cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(  
-logits, labels, name='xentropy')  
-train_step = tf.train.GradientDescentOptimizer(  
-learning_rate=learning_rate).minimize(cross_entropy)  
-# Start TF session  
-sess = tf.Session()  
-sess.run(init)  
+init = tf.initialize_all_variables()
+cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
+logits, labels, name='xentropy')
+train_step = tf.train.GradientDescentOptimizer(
+learning_rate=learning_rate).minimize(cross_entropy)
+# Start TF session
+sess = tf.Session()
+sess.run(init)
 ```
 
 Next, we define a method that will allow us to play a game using our network. The TRAINING variable specifies whether or not to take the optimal moves or to select moves stochastically. Note that the method returns a set of logs that record the game proceedings. These are needed for training.
 
-```  
-TRAINING = True  
-def play_game(training=TRAINING):  
-""" Play game of battleship using network."""  
-# Select random location for ship  
-ship_left = np.random.randint(BOARD_SIZE - SHIP_SIZE + 1)  
-ship_positions = set(range(ship_left, ship_left + SHIP_SIZE))  
-# Initialize logs for game  
-board_position_log = []  
-action_log = []  
-hit_log = []  
-# Play through game  
-current_board = [[-1 for i in range(BOARD_SIZE)]]  
-while sum(hit_log) < SHIP_SIZE:  
-board_position_log.append([[i for i in current_board[0]]])  
-probs = sess.run([probabilities], feed_dict={input_positions:current_board})[0][0]  
-probs = [p * (index not in action_log) for index, p in enumerate(probs)]  
-probs = [p / sum(probs) for p in probs]  
-if training == True:  
-bomb_index = np.random.choice(BOARD_SIZE, p=probs)  
-else:  
-bomb_index = np.argmax(probs)  
-# update board, logs  
-hit_log.append(1 * (bomb_index in ship_positions))  
-current_board[0][bomb_index] = 1 * (bomb_index in ship_positions)  
-action_log.append(bomb_index)  
-return board_position_log, action_log, hit_log  
+```
+TRAINING = True
+def play_game(training=TRAINING):
+""" Play game of battleship using network."""
+# Select random location for ship
+ship_left = np.random.randint(BOARD_SIZE - SHIP_SIZE + 1)
+ship_positions = set(range(ship_left, ship_left + SHIP_SIZE))
+# Initialize logs for game
+board_position_log = []
+action_log = []
+hit_log = []
+# Play through game
+current_board = [[-1 for i in range(BOARD_SIZE)]]
+while sum(hit_log) < SHIP_SIZE:
+board_position_log.append([[i for i in current_board[0]]])
+probs = sess.run([probabilities], feed_dict={input_positions:current_board})[0][0]
+probs = [p * (index not in action_log) for index, p in enumerate(probs)]
+probs = [p / sum(probs) for p in probs]
+if training == True:
+bomb_index = np.random.choice(BOARD_SIZE, p=probs)
+else:
+bomb_index = np.argmax(probs)
+# update board, logs
+hit_log.append(1 * (bomb_index in ship_positions))
+current_board[0][bomb_index] = 1 * (bomb_index in ship_positions)
+action_log.append(bomb_index)
+return board_position_log, action_log, hit_log
 ```
 
 Our implementation of the rewards function (\ref{rewards}):
 
-```  
-def rewards_calculator(hit_log, gamma=0.5):  
-""" Discounted sum of future hits over trajectory"""  
-hit_log_weighted = [(item -  
-float(SHIP_SIZE - sum(hit_log[:index])) / float(BOARD_SIZE - index)) * (  
-gamma ** index) for index, item in enumerate(hit_log)]  
-return [((gamma) ** (-i)) * sum(hit_log_weighted[i:]) for i in range(len(hit_log))]  
+```
+def rewards_calculator(hit_log, gamma=0.5):
+""" Discounted sum of future hits over trajectory"""
+hit_log_weighted = [(item -
+float(SHIP_SIZE - sum(hit_log[:index])) / float(BOARD_SIZE - index)) * (
+gamma ** index) for index, item in enumerate(hit_log)]
+return [((gamma) ** (-i)) * sum(hit_log_weighted[i:]) for i in range(len(hit_log))]
 ```
 
 Finally, our training loop. Here, we iteratively play through many games, scoring after each game, then adjusting parameters -- setting the placeholder learning rate equal to ALPHA times the rewards captured.
 
-```  
-game_lengths = []  
-TRAINING = True # Boolean specifies training mode  
+```
+game_lengths = []
+TRAINING = True # Boolean specifies training mode
 ALPHA = 0.06 # step size
 
-for game in range(10000):  
-board_position_log, action_log, hit_log = play_game(training=TRAINING)  
-game_lengths.append(len(action_log))  
-rewards_log = rewards_calculator(hit_log)  
-for reward, current_board, action in zip(rewards_log, board_position_log, action_log):  
-# Take step along gradient  
-if TRAINING:  
-sess.run([train_step],  
-feed_dict={input_positions:current_board, labels:[action], learning_rate:ALPHA * reward})  
+for game in range(10000):
+board_position_log, action_log, hit_log = play_game(training=TRAINING)
+game_lengths.append(len(action_log))
+rewards_log = rewards_calculator(hit_log)
+for reward, current_board, action in zip(rewards_log, board_position_log, action_log):
+# Take step along gradient
+if TRAINING:
+sess.run([train_step],
+feed_dict={input_positions:current_board, labels:[action], learning_rate:ALPHA * reward})
 ```
 
-Running this last cell, we see that the training works! The following is an example trace from the play_game() method, with the variable TRAINING set to False. This illustrates an intelligent move selection process.  
-```  
-# Example game trace output  
-([[[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]],  
-[[-1, -1, 0, -1, -1, -1, -1, -1, -1, -1]],  
-[[-1, -1, 0, -1, -1, 0, -1, -1, -1, -1]],  
-[[-1, -1, 0, -1, -1, 0, 1, -1, -1, -1]],  
-[[-1, -1, 0, -1, -1, 0, 1, 1, -1, -1]]],  
-[2, 5, 6, 7, 8],  
-[0, 0, 1, 1, 1])  
-```  
+Running this last cell, we see that the training works! The following is an example trace from the play_game() method, with the variable TRAINING set to False. This illustrates an intelligent move selection process.
+```
+# Example game trace output
+([[[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]],
+[[-1, -1, 0, -1, -1, -1, -1, -1, -1, -1]],
+[[-1, -1, 0, -1, -1, 0, -1, -1, -1, -1]],
+[[-1, -1, 0, -1, -1, 0, 1, -1, -1, -1]],
+[[-1, -1, 0, -1, -1, 0, 1, 1, -1, -1]]],
+[2, 5, 6, 7, 8],
+[0, 0, 1, 1, 1])
+```
 Here, the first five lines are the board encodings that the network was fed each step -- using (\ref{input}). The second to last row presents the sequential grid selections that were chosen. Finally, the last row is the hit log. Notice that the first two moves nicely sample different regions of the board. After this, a hit was recorded at $6$. The algorithm then intelligently selects $7$ and $8$, which it can infer must be the final locations of the ship.
 
 The plot below provides further characterization of the learning process. This shows the running average game length (steps required to fully bomb ship) versus training epoch. The program learns the basics quite quickly, then continues to gradually improve over time [2].
 
-  
-[![trace]({static}/wp-content/uploads/2016/10/trace.jpg)]({static}/wp-content/uploads/2016/10/trace.jpg)  
+
+[![trace]({static}/wp-content/uploads/2016/10/trace.jpg)]({static}/wp-content/uploads/2016/10/trace.jpg)
 
 ### Summary
 
