@@ -9,7 +9,7 @@ Attachments: wp-content/uploads/2018/06/simple_line.jpg, wp-content/uploads/2018
 
 We illustrate the application of two linear compression algorithms in python: Principal component analysis (PCA) and least-squares feature selection. Both can be used to compress a passed array, and they both work by stripping out redundant columns from the array. The two differ in that PCA operates in a particular rotated frame, while the feature selection solution operates directly on the original columns. As we illustrate below, PCA always gives a stronger compression. However, the feature selection solution is often comparably strong, and its output has the benefit of being relatively easy to interpret -- a virtue that is important for many applications.
 
-  
+
 We use our python package `linselect` to carry out efficient feature selection-based compression below -- this is available on pypi (`pip install linselect`) and [GitHub](https://github.com/EFavDB/linselect).
 
 
@@ -25,7 +25,7 @@ In this post, we consider two automated linear compression algorithms: principal
 
 Our post proceeds as follows: In the next section, we consider two representative applications in python: (1) The compression of a data set of tech-sector stock price quotes, and (2) the visualization of some economic summary statistics on the G20 nations. Working through these applications, we are able to familiarize ourselves with the output of the two algorithms, and also through contrast to highlight their relative virtues. The discussion section summarizes what we learn. Finally, a short appendix covers some of the formal mathematics of compression. There, we prove that linear compression-decompression operators are always projections.
 
-[![pca_vs_linselect]({static}/wp-content/uploads/2018/06/pca_vs_linselect.jpg)]({static}/wp-content/uploads/2018/06/pca_vs_linselect.jpg)  
+[![pca_vs_linselect]({static}/wp-content/uploads/2018/06/pca_vs_linselect.jpg)]({static}/wp-content/uploads/2018/06/pca_vs_linselect.jpg)
 **Fig. 2**. A cartoon illustrating the projection that results when applying PCA (left) and unsupervised feature selection -- via `linselect` (right): The original 2-d big dots are replaced by their small dot, effectively-1-d approximations -- a projection.
 
 Applications
@@ -41,68 +41,68 @@ In this section, we apply our algorithms to a prepared data set of one year's wo
 
 The code below loads our data, smooths it over a running 30 day window (to remove idiosyncratic noise that is not of much interest), prints out the first three rows, compresses the data using our two methods, and then finally prints out the first five PCA components and the top five selected stocks.
 
-```  
-import pandas as pd  
-import numpy as np  
-from sklearn.decomposition import PCA  
-from sklearn.preprocessing import StandardScaler  
+```
+import pandas as pd
+import numpy as np
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 from linselect import FwdSelect
 
-# CONSTANTS  
-KEEP = 5 # compression dimension  
+# CONSTANTS
+KEEP = 5 # compression dimension
 WINDOW_SIZE = 30 # smoothing window size
 
-# LOAD AND SMOOTH THE DATA  
-df = pd.read_csv('stocks.csv')  
-df = df.rolling(WINDOW_SIZE).mean().iloc[WINDOW_SIZE:]  
-print df.iloc[:3]  
-TICKERS = df.iloc[:, 1:].columns.values  
+# LOAD AND SMOOTH THE DATA
+df = pd.read_csv('stocks.csv')
+df = df.rolling(WINDOW_SIZE).mean().iloc[WINDOW_SIZE:]
+print df.iloc[:3]
+TICKERS = df.iloc[:, 1:].columns.values
 X = df.iloc[:, 1:].values
 
-# PCA COMPRESSION  
-s = StandardScalar()  
-pca = PCA(n_components=KEEP)  
-pca.fit(s.fit_transform(X))  
+# PCA COMPRESSION
+s = StandardScalar()
+pca = PCA(n_components=KEEP)
+pca.fit(s.fit_transform(X))
 X_compressed_pca = pca.transform(s.fit_transform(X))
 
-# FEATURE SELECTION COMPRESSION  
-selector = FwdSelect()  
-selector.fit(X)  
+# FEATURE SELECTION COMPRESSION
+selector = FwdSelect()
+selector.fit(X)
 X_compressed_linselect = X[:, selector.ordered_features[:KEEP]]
 
-# PRINT OUT FIRST FIVE PCA COMPONENTs, TOP FIVE STOCKS  
-print pca.components_[:KEEP]  
-print TICKERS[selector.ordered_features][:KEEP]  
+# PRINT OUT FIRST FIVE PCA COMPONENTs, TOP FIVE STOCKS
+print pca.components_[:KEEP]
+print TICKERS[selector.ordered_features][:KEEP]
 ```
 
 The output of the above print statements:
 
-```  
-# The first three rows of the data frame:  
-date AAPL ADBE ADP ADSK AMAT AMZN \  
-30 2017-05-31 0.002821 0.002994 0.000248 0.009001 0.006451 0.003237  
-31 2017-06-01 0.003035 0.002776 0.000522 0.008790 0.005487 0.003450  
+```
+# The first three rows of the data frame:
+date AAPL ADBE ADP ADSK AMAT AMZN \
+30 2017-05-31 0.002821 0.002994 0.000248 0.009001 0.006451 0.003237
+31 2017-06-01 0.003035 0.002776 0.000522 0.008790 0.005487 0.003450
 32 2017-06-02 0.003112 0.002964 -0.000560 0.008573 0.005523 0.003705
 
-ASML ATVI AVGO ... T TSLA TSM \  
-30 0.000755 0.005933 0.003988 ... -0.001419 0.004500 0.003590  
-31 0.002174 0.006369 0.003225 ... -0.001125 0.003852 0.004279  
+ASML ATVI AVGO ... T TSLA TSM \
+30 0.000755 0.005933 0.003988 ... -0.001419 0.004500 0.003590
+31 0.002174 0.006369 0.003225 ... -0.001125 0.003852 0.004279
 32 0.001566 0.006014 0.005343 ... -0.001216 0.004130 0.004358
 
-TWTR TXN VMW VZ WDAY WDC ZNGA  
-30 0.008292 0.001467 0.001984 -0.001741 0.006103 0.002916 0.007811  
-31 0.008443 0.001164 0.002026 -0.001644 0.006303 0.003510 0.008379  
+TWTR TXN VMW VZ WDAY WDC ZNGA
+30 0.008292 0.001467 0.001984 -0.001741 0.006103 0.002916 0.007811
+31 0.008443 0.001164 0.002026 -0.001644 0.006303 0.003510 0.008379
 32 0.007796 0.000637 0.001310 -0.001333 0.006721 0.002836 0.008844
 
-# PCA top components:  
-[[ 0.10548148, 0.20601986, -0.0126039 , 0.20139121, ...],  
-[-0.11739195, 0.02536787, -0.2044143 , 0.08462741, ...],  
-[ 0.03251305, 0.10796197, -0.00463919, -0.17564998, ...],  
-[ 0.08678107, 0.1931497 , -0.16850867, 0.16260134, ...],  
+# PCA top components:
+[[ 0.10548148, 0.20601986, -0.0126039 , 0.20139121, ...],
+[-0.11739195, 0.02536787, -0.2044143 , 0.08462741, ...],
+[ 0.03251305, 0.10796197, -0.00463919, -0.17564998, ...],
+[ 0.08678107, 0.1931497 , -0.16850867, 0.16260134, ...],
 [-0.0174396 , 0.01174769, -0.11617622, -0.01036602, ...]]
 
-# Feature selector output:  
-['WDAY', 'PYPL', 'AMZN', 'LRCX', 'HPQ']  
+# Feature selector output:
+['WDAY', 'PYPL', 'AMZN', 'LRCX', 'HPQ']
 ```
 
 Lines 22 and 27 in the first code block above are the two compressed versions of the original data array, line 16. For each row, the first compression stores the amplitude of that date's stock changes along each of the first five PCA components (printed below line 17 of second code block), while the second compression is simply equal to the five columns of the original array corresponding to the stocks picked out by the selector (printed below line 24 of the second code block).
@@ -119,12 +119,12 @@ Whereas the PCA components directly encode the collective, correlated fluctuatio
 
 To decide how many compression components are needed for a given application, one need only consider the variance explained as a function of the compression dimension -- this is equal to one minus the average squared error of the projections that result from the compressions (see footnote [4] for a visualization of the error that results from compression here). In the two python packages we're using, one can access these values as follows:
 
-```  
->> print np.cumsum(pca.explained_variance_ratio_)  
+```
+>> print np.cumsum(pca.explained_variance_ratio_)
 [ 0.223 0.367 0.493 0.598 0.696]
 
->> print [var / 50.0 for var in selector.ordered_cods[:KEEP]]  
-[ 0.169 0.316 0.428 0.530 0.612]  
+>> print [var / 50.0 for var in selector.ordered_cods[:KEEP]]
+[ 0.169 0.316 0.428 0.530 0.612]
 ```
 
 The printed lines above show that both algorithms capture more than $50%$ of the variance exhibited in the data using only 4 of the 50 stocks. The PCA compressions are stronger in each dimension because PCA is unconstrained -- it can use any linear combination of the initial features for compression components, whereas the feature selector is constrained to use a subset of the original features.
@@ -141,49 +141,49 @@ In this section, we explore economic summary statistics on the 19 individual cou
 
 A sample row from our data set is given below -- the values for Argentina.
 
-[code language="text"]  
-GDP growth rate(annual %, const. 2005 prices) 2.40  
-GDP per capita(current US$) 14564  
-Economy: Agriculture(% of GVA) 6  
-Economy: Industry(% of GVA) 27.8  
-Economy: Services and other activity(% of GVA) 66.2  
-Employment: Agriculture(% of employed) 2  
-Employment: Industry(% of employed) 24.8  
-Employment: Services(% of employed) 73.1  
-Unemployment(% of labour force) 6.5  
-CPI: Consumer Price Index(2000=100) 332  
-Agricultural production index(2004-2006=100) 119  
-Food production index(2004-2006=100) 119  
-International trade: Exports(million US$) / GPV 0.091  
-International trade: Imports(million US$) / GPV 0.088  
-Balance of payments, current account / GPV -0.025  
-Labour force participation(female) pop. %) 48.6  
-Labour force participation(male) pop. %) 74.4  
+```text
+GDP growth rate(annual %, const. 2005 prices) 2.40
+GDP per capita(current US$) 14564
+Economy: Agriculture(% of GVA) 6
+Economy: Industry(% of GVA) 27.8
+Economy: Services and other activity(% of GVA) 66.2
+Employment: Agriculture(% of employed) 2
+Employment: Industry(% of employed) 24.8
+Employment: Services(% of employed) 73.1
+Unemployment(% of labour force) 6.5
+CPI: Consumer Price Index(2000=100) 332
+Agricultural production index(2004-2006=100) 119
+Food production index(2004-2006=100) 119
+International trade: Exports(million US$) / GPV 0.091
+International trade: Imports(million US$) / GPV 0.088
+Balance of payments, current account / GPV -0.025
+Labour force participation(female) pop. %) 48.6
+Labour force participation(male) pop. %) 74.4
 ```
 
 Comparing each of the 19 countries across these 17 fields would be a complicated task. However, by considering a plot like Fig. 3 for this data set, we learned that many of these fields are highly correlated (plot not shown). This means that we can indeed get a reasonable, approximate understanding of the relationship between these economies by compressing down to two dimensions and plotting the result. The code to obtain these compressions follows:
 
-```  
-from linselect import FwdSelect  
-from sklearn.decomposition import PCA  
-from sklearn.preprocessing import StandardScaler  
+```
+from linselect import FwdSelect
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
-# LOADING THE DATA  
-df = pd.read_csv('g20.csv', index_col=0)  
-X = df.values  
+# LOADING THE DATA
+df = pd.read_csv('g20.csv', index_col=0)
+X = df.values
 countries = df.index.values
 
-# FEATURE SELECTION  
-selector = FwdSelect()  
-selector.fit(X)  
+# FEATURE SELECTION
+selector = FwdSelect()
+selector.fit(X)
 x1, y1 = X[:, selector.ordered_features[:2]].T
 
-# PRINCIPAL COMPONENT ANALYSIS  
-pca = PCA()  
-s = StandardScaler()  
-x2, y2 = pca.fit_transform(s.fit_transform(X)).T[:2]  
-```  
+# PRINCIPAL COMPONENT ANALYSIS
+pca = PCA()
+s = StandardScaler()
+x2, y2 = pca.fit_transform(s.fit_transform(X)).T[:2]
+```
 The plots of the $(x_1, y_1)$ and $(x_2, y_2)$ compressions obtained above are given in Fig. 4.
 
 #### Visualizing and interpreting the compressed data
@@ -196,7 +196,7 @@ Examining the upper, feature selection plot of Fig. 4, a number of interesting i
 
 In this section, we illustrated a general analysis method that allows one to quickly gain insight into a data set: Visual study of the compressed data via a plot. Using this approach, we first found here that the G20 nations are best differentiated economically by considering how important international trade is to their economies and also the makeup of their economies (agricultural or other) -- i.e., these are the two features that best explain the full data set of 17 columns that we started with. Plotting the data across these two variables and considering the commonalities of neighboring countries, we were able to identify some natural hypotheses influencing the individual economies. Specifically, geography appears to inform at least one of their key characteristics: more isolated countries often trade less. This is an interesting insight, and one that is quickly arrived at through the compression / plotting strategy.
 
-[![pca_linselect_g20]({static}/wp-content/uploads/2018/06/pca_linselect_g20.jpg)]({static}/wp-content/uploads/2018/06/pca_linselect_g20.jpg)  
+[![pca_linselect_g20]({static}/wp-content/uploads/2018/06/pca_linselect_g20.jpg)]({static}/wp-content/uploads/2018/06/pca_linselect_g20.jpg)
 **Fig. 4**. Plots of the compressed economic summary statistics on the G20 nations, taken from data.un.org: `linselect` unsupervised feature selection (upper) and PCA (lower).
 
 Discussion
@@ -213,30 +213,30 @@ In summary, the two compression methods we have considered here are very similar
 Appendix: Compression as projection
 -----------------------------------
 
-We can see that the composite linear compression-decompression operator is a projection operator as follows: If $X$ is our data array, the general equations describing compression and decompression are,  
-\begin{eqnarray}  
-\label{A1} \tag{A1}  
-X_{compressed} &=& X \cdot M_{compression} \\  
-\label{A2} \tag{A2}  
-X_{approx} &=& X_{compressed} \cdot M_{decompression}.  
-\end{eqnarray}  
-Here, $M_{compression}$ is an $n \times k$ matrix and $M_{decompression}$ is a $k \times n$ matrix. The squared error of the approximation is,  
-\begin{eqnarray}  
-\Lambda &=& \sum_{i,j} \left (X_{ij} - X_{approx, ij}\right)^2 \\  
-&=& \sum_j \Vert X_j - X_{compressed} \cdot M_{decompression, j} \Vert^2. \label{A3} \tag{A3}  
-\end{eqnarray}  
-This second line here shows that we can minimize the entire squared error by minimizing each of the column squared errors independently. Further, each of the column level minimizations is equivalent to a least-squares linear regression problem: We treat the column vector $M_{compressions, j}$ as an unknown coefficient vector, and attempt to set these so that the squared error of the fit to $X_j$ -- using the columns of $X_{compressed}$ as features -- is minimized. We've worked out the least-squares linear fit solution in [another post](http://efavdb.com/linear-regression/) (it's also a well-known result). Plugging this result in, we get the optimal $M_{decompression}$,  
-\begin{eqnarray} \label{A4}  
-M_{decompression}^* &=& \left ( X_{compressed}^T X_{compressed} \right)^{-1} X_{compressed}^T X \tag{A4}  
-\\  
-&=& \left ( M_{compression}^T X^T X M_{compression} \right)^{-1} M_{compression}^T X^T X.  
-\end{eqnarray}  
+We can see that the composite linear compression-decompression operator is a projection operator as follows: If $X$ is our data array, the general equations describing compression and decompression are,
+\begin{eqnarray}
+\label{A1} \tag{A1}
+X_{compressed} &=& X \cdot M_{compression} \\
+\label{A2} \tag{A2}
+X_{approx} &=& X_{compressed} \cdot M_{decompression}.
+\end{eqnarray}
+Here, $M_{compression}$ is an $n \times k$ matrix and $M_{decompression}$ is a $k \times n$ matrix. The squared error of the approximation is,
+\begin{eqnarray}
+\Lambda &=& \sum_{i,j} \left (X_{ij} - X_{approx, ij}\right)^2 \\
+&=& \sum_j \Vert X_j - X_{compressed} \cdot M_{decompression, j} \Vert^2. \label{A3} \tag{A3}
+\end{eqnarray}
+This second line here shows that we can minimize the entire squared error by minimizing each of the column squared errors independently. Further, each of the column level minimizations is equivalent to a least-squares linear regression problem: We treat the column vector $M_{compressions, j}$ as an unknown coefficient vector, and attempt to set these so that the squared error of the fit to $X_j$ -- using the columns of $X_{compressed}$ as features -- is minimized. We've worked out the least-squares linear fit solution in [another post](http://efavdb.com/linear-regression/) (it's also a well-known result). Plugging this result in, we get the optimal $M_{decompression}$,
+\begin{eqnarray} \label{A4}
+M_{decompression}^* &=& \left ( X_{compressed}^T X_{compressed} \right)^{-1} X_{compressed}^T X \tag{A4}
+\\
+&=& \left ( M_{compression}^T X^T X M_{compression} \right)^{-1} M_{compression}^T X^T X.
+\end{eqnarray}
 To obtain the second line here, we have used (\ref{A1}), the definition of $X_{compressed}$.
 
-What happens if we try to compress our approximate matrix a second time? Nothing: The matrix product $M_{compression} M_{decompression}^*$ is a projection operator. That is, it satisfies the condition  
-\begin{eqnarray}  
-(M_{compression} M_{decompression}^*)^2 = M_{compression} M_{decompression}^*. \label{A5} \tag{A5}  
-\end{eqnarray}  
+What happens if we try to compress our approximate matrix a second time? Nothing: The matrix product $M_{compression} M_{decompression}^*$ is a projection operator. That is, it satisfies the condition
+\begin{eqnarray}
+(M_{compression} M_{decompression}^*)^2 = M_{compression} M_{decompression}^*. \label{A5} \tag{A5}
+\end{eqnarray}
 This result is easy enough to confirm using (\ref{A4}). What (\ref{A5}) means geometrically is that our compression operator projects a point in $n$-dimensional space onto a subspace of dimension $k$. Once a point sits in this subspace, hitting the point with the composite operator has no effect, as the new point already sits in the projected subspace. This is consistent with our 2-d cartoon depicting the effect of PCA and `linselect`, above. However, this is also true for general choices of $M_{compression}$, provided we use the optimal $M_{decompression}$ associated with it.
 
 Footnotes
