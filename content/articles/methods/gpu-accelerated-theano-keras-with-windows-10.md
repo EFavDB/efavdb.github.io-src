@@ -46,7 +46,6 @@ To make sure that everything is working at this point, run the the following c
 At this point it is easy to install Theano and Keras, just you pip (or conda and pip)!
 
 ```
-
 conda install mingw libpython
 pip install theano
 pip install keras
@@ -76,7 +75,7 @@ Testing Theano with GPU
 
 Using the following python code,  check if your installation of Theano is using your GPU.
 
-```
+```python
 from theano import function, config, shared, sandbox
 import theano.tensor as T
 import numpy
@@ -91,14 +90,14 @@ f = function([], T.exp(x))
 print(f.maker.fgraph.toposort())
 t0 = time.time()
 for i in range(iters):
-r = f()
-t1 = time.time()
-print("Looping %d times took %f seconds" % (iters, t1 - t0))
-print("Result is %s" % (r,))
-if numpy.any([isinstance(x.op, T.Elemwise) for x in f.maker.fgraph.toposort()]):
-print('Used the cpu')
-else:
-print('Used the gpu')
+    r = f()
+    t1 = time.time()
+    print("Looping %d times took %f seconds" % (iters, t1 - t0))
+    print("Result is %s" % (r,))
+    if numpy.any([isinstance(x.op, T.Elemwise) for x in f.maker.fgraph.toposort()]):
+        print('Used the cpu')
+    else:
+        print('Used the gpu')
 
 ```
 
@@ -107,7 +106,7 @@ Testing Keras with GPU
 
 This code will make sure that everything is working and train a model on some random data. The first time might take a little longer because it the software needs to do some compiling.
 
-```
+```python
 
 from keras.models import Sequential
 from keras.layers import Dense, Activation

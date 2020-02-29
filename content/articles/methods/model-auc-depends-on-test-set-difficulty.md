@@ -55,7 +55,7 @@ Notice that if a test example has a mean very close to zero, it will be difficul
 
 The impact of adding soft-balls to the test set on the AUC for model (\ref{classifier}) can be studied by changing the sampling distribution of $\mathcal{S}$. The following python snippet takes samples $\mu_i$ from three distributions -- one tight about $0$ (resulting in a very difficult test set), one that is very wide containing many soft-balls that are easily classified, and one that is intermediate. The ROC curves that result from these three cases are shown following the code. The three curves are very different, with the AUC of the soft-ball set very large and that of the tight set close to that of the random classifier. Yet, in each case the model considered was the same -- (\ref{classifier}). How could the AUC have improved?!
 
-```
+```python
 import numpy as np
 from sklearn import metrics
 
@@ -64,13 +64,13 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12,3.5))
 SAMPLES = 1000
 means_std = 0.1
 for means_std in [3, 0.5, .001]:
-means = means_std * np.random.randn(SAMPLES)
-x_set = np.random.randn(samples) + means
-predictions = [classifier(item) for item in x_set]
-fpr, tpr, thresholds = metrics.roc_curve(1 * (means>0), predictions)
-ax1.plot(fpr, tpr, label=means_std)
-ax1.plot(fpr, fpr, 'k--')
-ax2.plot(means, 0 * means, '*', label=means_std)
+	means = means_std * np.random.randn(SAMPLES)
+	x_set = np.random.randn(samples) + means
+	predictions = [classifier(item) for item in x_set]
+	fpr, tpr, thresholds = metrics.roc_curve(1 * (means>0), predictions)
+	ax1.plot(fpr, tpr, label=means_std)
+	ax1.plot(fpr, fpr, 'k--')
+	ax2.plot(means, 0 * means, '*', label=means_std)
 ax1.legend(loc='lower right', shadow=True)
 ax2.legend(loc='lower right', shadow=True)
 ax1.set_title('TPR versus FPR -- The ROC curve')
