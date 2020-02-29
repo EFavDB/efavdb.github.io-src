@@ -11,35 +11,8 @@ UPDATE: OKC BEATS ATLANTA!!!
 
 Point-spread details of the past week are given below.
 
-Point spread
-
-# games
-
-Accuracy
-
-< 6
-
-15
-
-67%
-
-5-10
-
-14
-
-71%
-
-11-15
-
-11
-
-73%
-
->15
-
-13
-
-85%
-
-  
-
+Point spread 	# games 	Accuracy
+< 6 	15 	67%
+5-10 	14 	71%
+11-15 	11 	73%
+>15 	13 	85%

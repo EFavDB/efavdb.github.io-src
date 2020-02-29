@@ -8,35 +8,9 @@ Attachments: wp-content/uploads/2015/05/baseballdiamond.png, wp-content/uploads/
 
 Super tough week this past week. We went 43/94, or 47% accuracy overall. Breakdown by point spread below. New predictions are [posted](http://efavdb.com/weekly-mlb-predictions/).
 
-Point spread
-
-# games
-
-Accuracy
-
-<= 1
-
-32
-
-53%
-
-<=2
-
-15
-
-33%
-
-<=5
-
-33
-
-45%
-
->5
-
-14
-
-43%
-
-  
-
+| Point spread | # games | Accuracy |
+| -- | -- | -- |
+| <= 1 | 32 | 53% |
+| <=2 | 15 | 33% |
+| <=5 | 33 | 45% |
+| >5 | 14 | 43% |

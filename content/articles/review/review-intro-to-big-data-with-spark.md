@@ -11,8 +11,10 @@ This is a review of [Introduction to Big Data with Apache Spark](https://www.edx
 
 The one month-long MOOC was offered on edX for the first time in June 2015, and its sequel, [Scalable Machine Learning](https://www.edx.org/course/scalable-machine-learning-uc-berkeleyx-cs190-1x) (CS190.1x) is currently under way.
 
-[caption id="attachment_2116" align="aligncenter" width="1020"][![lecture screenshot]({static}/wp-content/uploads/2015/07/IntroToSpark_screenshot.jpg)]({static}/wp-content/uploads/2015/07/IntroToSpark_screenshot.jpg) Still from a lecture in "Introduction to Big Data with Apache Spark"[/caption]  
-  
+[![lecture screenshot]({static}/wp-content/uploads/2015/07/IntroToSpark_screenshot.jpg)]({static}/wp-content/uploads/2015/07/IntroToSpark_screenshot.jpg)
+
+Still from a lecture in "Introduction to Big Data with Apache Spark"
+
 Learning a new syntax is an unavoidably dry exercise; despite that handicap, the course lectures are watchable and directly relevant to the labs.
 
 Of course, the fun is in applying that hard-earned knowledge...actually, the learning curve is quite shallow, since a dozen or so basic Spark commands are enough to get you started on a simple project, e.g. see an example on [github](https://github.com/EFavDB/Spark-example/blob/master/explore_model_bills.ipynb).

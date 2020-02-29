@@ -11,35 +11,9 @@ In other news: This week, efavdb.com welcomes a new, official member to our team
 
 Details of our perfect week:
 
-Point spread
-
-# games
-
-Accuracy
-
-< 5
-
-1
-
-100%
-
-5-9
-
-0
-
-NA
-
-10-14
-
-0
-
-NA
-
->14
-
-1
-
-100%
-
-  
-
+| Point spread | # games | Accuracy |
+| -- | -- | -- |
+| < 5 | 1 | 100% |
+| 5-9 | 0 | NA |
+| 10-14 | 0 | NA |
+| >14 | 1 | 100% |
