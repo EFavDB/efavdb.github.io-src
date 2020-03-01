@@ -10,7 +10,7 @@ In today's post, we document our efforts at applying a gradient boosted trees m
 
 Our work here was inspired by a [post](http://blog.dato.com/using-gradient-boosted-trees-to-predict-bike-sharing-demand) by the people at [Dato.com](http://blog.dato.com/), who used the bike sharing competition as an opportunity to demonstrate their software. Here, we go through a similar, but more detailed discussion using the python package [SKlearn](http://scikit-learn.org/stable/).
 
-  
+
 
 
 Introduction
@@ -27,29 +27,29 @@ Below, we show the relevant commands needed to load all the packages and trainin
 
 ```
 
-import numpy as np  
-import matplotlib.pyplot as plt  
-import pandas as pd  
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
 import math
 
-from sklearn import ensemble  
-from sklearn.cross_validation import train_test_split  
-from sklearn.metrics import mean_absolute_error  
-from sklearn.grid_search import GridSearchCV  
+from sklearn import ensemble
+from sklearn.cross_validation import train_test_split
+from sklearn.metrics import mean_absolute_error
+from sklearn.grid_search import GridSearchCV
 from datetime import datetime
 
-#Load Data with pandas, and parse the  
-#first column into datetime  
-train = pd.read_csv('train.csv', parse_dates=[0])  
-test = pd.read_csv('test.csv', parse_dates=[0])  
+#Load Data with pandas, and parse the
+#first column into datetime
+train = pd.read_csv('train.csv', parse_dates=[0])
+test = pd.read_csv('test.csv', parse_dates=[0])
 ```
 
 The training data provided contains the following fields:
 
-***datetime*** - hourly date + timestamp  
-***season*** -  1 = spring, 2 = summer, 3 = fall, 4 = winter  
-***holiday*** - whether the day is considered a holiday  
-***workingday*** - whether the day is neither a weekend nor holiday  
+***datetime*** - hourly date + timestamp
+***season*** -  1 = spring, 2 = summer, 3 = fall, 4 = winter
+***holiday*** - whether the day is considered a holiday
+***workingday*** - whether the day is neither a weekend nor holiday
 ***weather***:
 
 1.  Clear, Few clouds, Partly cloudy, Partly cloudy
@@ -57,35 +57,35 @@ The training data provided contains the following fields:
 3.  Light Snow, Light Rain + Thunderstorm + Scattered clouds, Light Rain + Scattered clouds
 4.  Heavy Rain + Ice Pallets + Thunderstorm + Mist, Snow + Fog
 
-***temp*** - temperature in Celsius  
-***atemp*** - "feels like" temperature in Celsius  
-***humidity*** - relative humidity  
-***windspeed*** - wind speed  
-***casual*** - number of non-registered user rentals initiated  
-***registered*** - number of registered user rentals initiated  
+***temp*** - temperature in Celsius
+***atemp*** - "feels like" temperature in Celsius
+***humidity*** - relative humidity
+***windspeed*** - wind speed
+***casual*** - number of non-registered user rentals initiated
+***registered*** - number of registered user rentals initiated
 ***count*** - number of total rentals
 
 The data provided spans two years. The training set contains the first 19 days of each month considered, while the test set data corresponds to the remaining days in each month.
 
 Looking ahead, we anticipate that the year, month, day of week, and hour will serve as important features for characterizing the bike demand at any given moment.  These features are easily extracted from the datetime formatted-values loaded above. In the following lines, we add these features to our DataFrames.
 
-```  
-#Feature engineering  
-temp = pd.DatetimeIndex(train['datetime'])  
-train['year'] = temp.year  
-train['month'] = temp.month  
-train['hour'] = temp.hour  
+```
+#Feature engineering
+temp = pd.DatetimeIndex(train['datetime'])
+train['year'] = temp.year
+train['month'] = temp.month
+train['hour'] = temp.hour
 train['weekday'] = temp.weekday
 
-temp = pd.DatetimeIndex(test['datetime'])  
-test['year'] = temp.year  
-test['month'] = temp.month  
-test['hour'] = temp.hour  
+temp = pd.DatetimeIndex(test['datetime'])
+test['year'] = temp.year
+test['month'] = temp.month
+test['hour'] = temp.hour
 test['weekday'] = temp.weekday
 
-#Define features vector  
-features = ['season', 'holiday', 'workingday', 'weather',  
-'temp', 'atemp', 'humidity', 'windspeed', 'year',  
+#Define features vector
+features = ['season', 'holiday', 'workingday', 'weather',
+'temp', 'atemp', 'humidity', 'windspeed', 'year',
 'month', 'weekday', 'hour']
 
 ```
@@ -95,9 +95,9 @@ features = ['season', 'holiday', 'workingday', 'weather',
 
 The evaluation metric that Kaggle uses to rank competing algorithms is the Root Mean Squared Logarithmic Error (RMSLE).
 
-\begin{eqnarray}  
-J = \sqrt{\frac{1}{n} \sum_{i=1}^n [\ln(p_i + 1) - \ln(a_i+1)]^2 }  
-\end{eqnarray}  
+\begin{eqnarray}
+J = \sqrt{\frac{1}{n} \sum_{i=1}^n [\ln(p_i + 1) - \ln(a_i+1)]^2 }
+\end{eqnarray}
 Here,
 
 -   $n$ is the number of hours in the test set
@@ -107,11 +107,11 @@ Here,
 
 With ranking determined as above, our aim becomes to accurately guess the natural logarithm of bike demand at different times (actually demand count plus one, in order to avoid infinities associated with times where demand is nil). To facilitate this, we add the logarithm of the casual, registered, and total counts to our training DataFrame below.
 
-```  
-#the evaluation metric is the RMSE in the log domain,  
-#so we should transform the target columns into log domain as well.  
-for col in ['casual', 'registered', 'count']:  
-train['log-' + col] = train[col].apply(lambda x: np.log1p(x))
+```python
+#the evaluation metric is the RMSE in the log domain,
+#so we should transform the target columns into log domain as well.
+for col in ['casual', 'registered', 'count']:
+  train['log-' + col] = train[col].apply(lambda x: np.log1p(x))
 
 ```
 
@@ -135,26 +135,24 @@ However, in order to get our feet wet, we'll begin by just picking some ad hoc v
 
 ```
 
-clf = ensemble.GradientBoostingRegressor(  
-n_estimators=200, max_depth=3)  
-clf.fit(train[features], train['log-count'])  
-result = clf.predict(test[features])  
+clf = ensemble.GradientBoostingRegressor(
+n_estimators=200, max_depth=3)
+clf.fit(train[features], train['log-count'])
+result = clf.predict(test[features])
 result = np.expm1(result)
 
-df=pd.DataFrame({'datetime':test['datetime'], 'count':result})  
+df=pd.DataFrame({'datetime':test['datetime'], 'count':result})
 df.to_csv('results1.csv', index = False, columns=['datetime','count'])
 
 ```
 
 In the last lines above, we have used the DataFrames to_csv() method in order to output results for competition submission. Example output is shown below. Without a hitch, we successfully submitted the results of this preliminary analysis to Kaggle. The only bad news was that our model scored in the bottom 10%. Fortunately, some simple optimizations that follow led to significant improvements in our standing.
 
-  --------------------- -------
-  datetime              count
-  2011-01-20 00:00:00   0
-  2011-01-20 01:00:00   0
-  2011-01-20 02:00:00   0
-  ...                   
-  --------------------- -------
+| datetime | count |
+| -- | -- |
+| 2011-01-20 0:00:00 | 0 |
+| 2011-01-20 0:01:00 | 0 |
+| 2011-01-20 0:02:00 | 0 |
 
 #### **Hyperparameter tuning**
 
@@ -162,43 +160,42 @@ We now turn to the challenge of tuning our GBM's hyperparameters. In order to ca
 
 As mentioned earlier, the training data provided covers the first 19 days of each month. In segmenting this data, we opted to use days 17-19 for validation. We then used this validation set to optimize the model's hyperparameters. As a first-pass at this, we again chose an ad hoc value for n_estimators, but optimized over the remaining degrees of freedom. The code follows, where we make use of GridSearchCV() to perform our parameter sweep.
 
-```  
-#Split data into training and validation sets  
-temp = pd.DatetimeIndex(train['datetime'])  
-training = train[temp.day <= 16]  
+```python
+#Split data into training and validation sets
+temp = pd.DatetimeIndex(train['datetime'])
+training = train[temp.day <= 16]
 validation = train[temp.day > 16]
 
-param_grid = {'learning_rate': [0.1, 0.05, 0.01],  
-'max_depth': [10, 15, 20],  
-'min_samples_leaf': [3, 5, 10, 20],  
+param_grid = {'learning_rate': [0.1, 0.05, 0.01],
+              'max_depth': [10, 15, 20],
+              'min_samples_leaf': [3, 5, 10, 20],
 }
 
-est = ensemble.GradientBoostingRegressor(n_estimators=500)  
-# this may take awhile  
-gs_cv = GridSearchCV(  
-est, param_grid, n_jobs=4).fit(  
+est = ensemble.GradientBoostingRegressor(n_estimators=500)
+# this may take awhile
+gs_cv = GridSearchCV(
+est, param_grid, n_jobs=4).fit(
 training[features], training['log-count'])
 
-# best hyperparameter setting  
+# best hyperparameter setting
 gs_cv.best_params_
 
-#Baseline error  
+#Baseline error
 error_count = mean_absolute_error(validation['log-count'], gs_cv.predict(validation[features]))
 
-result = gs_cv.predict(test[features])  
-result = np.expm1(result)  
-df=pd.DataFrame({'datetime':test['datetime'], 'count':result})  
-df.to_csv('results2.csv', index = False, columns=['datetime','count'])  
+result = gs_cv.predict(test[features])
+result = np.expm1(result)
+df = pd.DataFrame({'datetime':test['datetime'], 'count':result})
+df.to_csv('results2.csv', index = False, columns=['datetime','count'])
 ```
 
 -   Note: If you want to run n_jobs > 1 on a Windows machine, the script needs to be in an "if __name__ == '__main__':" block. Otherwise the script will fail.
 
-  -------------------- -------
-  Best Parameters      Value
-  learning_rate       0.05
-  max_depth           10
-  min_samples_leaf   20
-  -------------------- -------
+| day | Best Parms |
+| -- | -- |
+| 1 | learning_rate |
+| 2 | max_depth |
+| 2 | min_samples_leaf |
 
 The optimized parameters are shown above. Submitting the resulting model to Kaggle, we found that we had moved from the bottom 10% of models to the top 20%!  An awesome improvement, but we still have one final hyperparameter to optimize.
 
@@ -206,32 +203,32 @@ The optimized parameters are shown above. Submitting the resulting model to Kagg
 
 In boosted models, training set performance will always improve as the number of estimators is increased. However, at large estimator number, overfitting can start to become an issue. Learning curves provide a method for optimization. These are constructed by plotting the error on both the training and validation sets as a function of the number of estimators used. The code below generates such a curve for our model.
 
-```  
-error_train=[]  
-error_validation=[]  
-for k in range(10, 501, 10):  
-clf = ensemble.GradientBoostingRegressor(  
-n_estimators=k, learning_rate = .05, max_depth = 10,  
-min_samples_leaf = 20)
+```python
+error_train=[]
+error_validation=[]
+for k in range(10, 501, 10):
+  clf = ensemble.GradientBoostingRegressor(
+  n_estimators=k, learning_rate = .05, max_depth = 10,
+  min_samples_leaf = 20)
 
-clf.fit(training[features], training['log-count'])  
-result = clf.predict(training[features])  
-error_train.append(  
-mean_absolute_error(result, training['log-count']))
+  clf.fit(training[features], training['log-count'])
+  result = clf.predict(training[features])
+  error_train.append(
+  mean_absolute_error(result, training['log-count']))
 
-result = clf.predict(validation[features])  
-error_validation.append(  
-mean_absolute_error(result, validation['log-count']))
+  result = clf.predict(validation[features])
+  error_validation.append(
+  mean_absolute_error(result, validation['log-count']))
 
-#Plot the data  
-x=range(10,501, 10)  
-plt.style.use('ggplot')  
-plt.plot(x, error_train, 'k')  
-plt.plot(x, error_validation, 'b')  
-plt.xlabel('Number of Estimators', fontsize=18)  
-plt.ylabel('Error', fontsize=18)  
-plt.legend(['Train', 'Validation'], fontsize=18)  
-plt.title('Error vs. Number of Estimators', fontsize=20)  
+#Plot the data
+x=range(10,501, 10)
+plt.style.use('ggplot')
+plt.plot(x, error_train, 'k')
+plt.plot(x, error_validation, 'b')
+plt.xlabel('Number of Estimators', fontsize=18)
+plt.ylabel('Error', fontsize=18)
+plt.legend(['Train', 'Validation'], fontsize=18)
+plt.title('Error vs. Number of Estimators', fontsize=20)
 ```
 
 ![Error vs Number of Estimators](http://efavdb.com/wp-content/uploads/2015/03/figure_1-e1427234375629-1024x845.png)
@@ -243,26 +240,26 @@ Notice in the plot that by the time the number estimators in our GBM reaches abo
 
 Reviewing the data, we see that we have info regarding two types of riders: casual and registered riders. It is plausible that each group's behavior differs, and that we might be able to improve our performance by modeling each separately. Below, we carry this out, and then also merge the two group's predicted values to obtain a net predicted demand. We also repeat the hyperparameter sweep steps covered above -- this returned similar values. Resubmitting the resulting model, we found we had increased our standing in the competition by a few percent.
 
-```  
-def merge_predict(model1, model2, test_data):  
-# Combine the predictions of two separately trained models.  
-# The input models are in the log domain and returns the predictions  
-# in original domain.  
-p1 = np.expm1(model1.predict(test_data))  
-p2 = np.expm1(model2.predict(test_data))  
-p_total = (p1+p2)  
-return(p_total)  
-est_casual = ensemble.GradientBoostingRegressor(n_estimators=80, learning_rate = .05)  
-est_registered = ensemble.GradientBoostingRegressor(n_estimators=80, learning_rate = .05)  
-param_grid2 = {'max_depth': [10, 15, 20],  
-'min_samples_leaf': [3, 5, 10, 20],  
+```python
+def merge_predict(model1, model2, test_data):
+  # Combine the predictions of two separately trained models.
+  # The input models are in the log domain and returns the predictions
+  # in original domain.
+  p1 = np.expm1(model1.predict(test_data))
+  p2 = np.expm1(model2.predict(test_data))
+  p_total = (p1+p2)
+  return(p_total)
+est_casual = ensemble.GradientBoostingRegressor(n_estimators=80, learning_rate = .05)
+est_registered = ensemble.GradientBoostingRegressor(n_estimators=80, learning_rate = .05)
+param_grid2 = {'max_depth': [10, 15, 20],
+               '_samples_leaf': [3, 5, 10, 20],
 }
 
-gs_casual = GridSearchCV(est_casual, param_grid2, n_jobs=4).fit(training[features], training['log-casual'])  
+gs_casual = GridSearchCV(est_casual, param_grid2, n_jobs=4).fit(training[features], training['log-casual'])
 gs_registered = GridSearchCV(est_registered, param_grid2, n_jobs=4).fit(training[features], training['log-registered'])
 
-result3 = merge_predict(gs_casual, gs_registered, test[features])  
-df=pd.DataFrame({'datetime':test['datetime'], 'count':result3})  
+result3 = merge_predict(gs_casual, gs_registered, test[features])
+df = pd.DataFrame({'datetime':test['datetime'], 'count':result3})
 df.to_csv('results3.csv', index = False, columns=['datetime','count'])
 
 ```
@@ -273,18 +270,18 @@ The last step is to submit a final set of model predictions, this time training 
 
  
 
-```  
-<pre>  
-est_casual = ensemble.GradientBoostingRegressor(  
-n_estimators=80, learning_rate = .05, max_depth = 10,min_samples_leaf = 20)  
-est_registered = ensemble.GradientBoostingRegressor(  
+```python
+<pre>
+est_casual = ensemble.GradientBoostingRegressor(
+n_estimators=80, learning_rate = .05, max_depth = 10,min_samples_leaf = 20)
+est_registered = ensemble.GradientBoostingRegressor(
 n_estimators=80, learning_rate = .05, max_depth = 10,min_samples_leaf = 20)
 
-est_casual.fit(train[features].values, train['log-casual'].values)  
-est_registered.fit(train[features].values, train['log-registered'].values)  
+est_casual.fit(train[features].values, train['log-casual'].values)
+est_registered.fit(train[features].values, train['log-registered'].values)
 result4 = merge_predict(est_casual, est_registered, test[features])
 
-df=pd.DataFrame({'datetime':test['datetime'], 'count':result4})  
+df=pd.DataFrame({'datetime':test['datetime'], 'count':result4})
 df.to_csv('results4.csv', index = False, columns=['datetime','count'])
 
 ```
@@ -293,10 +290,7 @@ df.to_csv('results4.csv', index = False, columns=['datetime','count'])
 
 By iteratively tuning a GBM, we were able to quickly climb the leaderboard for this particular Kaggle competition. With further feature extraction work, we believe further improvements could readily be made. However, our goal here was only to practice our rapid development skills, so we won't be spending much time on further fine-tuning. At any rate, our results have convinced us that simple boosted models can often provide excellent results.
 
-[caption id="attachment_1522" align="alignleft" width="96"][![Open GitHub Repo]({static}/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/bike-forecast "GitHub Repo") Open GitHub Repo[/caption]
+[![Open GitHub Repo]({static}/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/bike-forecast "GitHub Repo")
+Open GitHub Repo
 
 Note: With this post, we have begun to post our python scripts and data at GitHub. Clicking on the icon at left will take you to our repository. Feel free to stop by and take a look!
-
- 
-
-featured image credit: [Siren-Com](http://commons.wikimedia.org/wiki/User:Siren-Com)
