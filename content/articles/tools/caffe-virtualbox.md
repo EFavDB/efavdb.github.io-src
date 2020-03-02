@@ -6,7 +6,7 @@ Tags: Caffe, deep learning, Jupyter, cloud
 Slug: caffe-virtualbox
 Status: published
 
-A previous [post](http://efavdb.com/deep-learning-with-jupyter-on-aws/) showed beginners how to try out deep learning libraries by
+A previous [post](http://efavdb.github.io/deep-learning-with-jupyter-on-aws) showed beginners how to try out deep learning libraries by
 
 1.  using an Amazon Machine Image (AMI) pre-installed with deep learning libraries
 2.  setting up a Jupyter notebook server to play with said libraries

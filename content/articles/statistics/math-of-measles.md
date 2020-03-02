@@ -5,7 +5,7 @@ Category: Statistics
 Slug: math-of-measles
 Status: published
 
-Here, we introduce -- and outline a solution to -- a generalized SIR model for infectious disease. This is referenced in our [following post](http://efavdb.com/vaccination-rates/) on measles and vaccination rates. Our generalized SIR model differs from the [original SIR model](http://en.wikipedia.org/wiki/Epidemic_model#The_SIR_model) of Kermack and McKendrick in that we allow for two susceptible sub-populations, one vaccinated against disease and one not. We conclude by presenting some python code that integrates the equations numerically. An example solution obtained using this code is given below.
+Here, we introduce -- and outline a solution to -- a generalized SIR model for infectious disease. This is referenced in our [following post](http://efavdb.github.io/vaccination-rates) on measles and vaccination rates. Our generalized SIR model differs from the [original SIR model](http://en.wikipedia.org/wiki/Epidemic_model#The_SIR_model) of Kermack and McKendrick in that we allow for two susceptible sub-populations, one vaccinated against disease and one not. We conclude by presenting some python code that integrates the equations numerically. An example solution obtained using this code is given below.
 
 
 
@@ -90,7 +90,7 @@ The total number of people infected in an outbreak can be obtained by evaluating
 \begin{align}
 S_{U0} e^{- \frac{b_{U} R}{k}}+ S_{V0} e^{ - \frac{b_{V} R}{k}}+ R = 1.
 \end{align}
-This equation can be solved numerically to obtain the total contraction count as a function of the model parameters and initial conditions. A plot against $S_{U0}$ of such a solution for our measles-appropriate parameter estimates is given in our [next post](http://efavdb.com/vaccination-rates/).
+This equation can be solved numerically to obtain the total contraction count as a function of the model parameters and initial conditions. A plot against $S_{U0}$ of such a solution for our measles-appropriate parameter estimates is given in our [next post](http://efavdb.github.io/vaccination-rates).
 
 #### **Numerical integration in python**
 

@@ -5,7 +5,7 @@ Category: NBA prediction project
 Slug: nba-week-15-summary-week-16-predictions
 Status: published
 
-Not a terribly impressive week for the NBA algorithm. We went 31/53, equating to 58% accuracy. New predictions [are up](http://efavdb.com/weekly-nba-predictions/) -- lots of predicted upsets this week, including two tonight. As usual, I've found checking the [dashboard](http://efavdb.com/nba-dash/) to be a great way to gain insight into such picks. Details of past week by point spread below.
+Not a terribly impressive week for the NBA algorithm. We went 31/53, equating to 58% accuracy. New predictions [are up](http://efavdb.github.io/weekly-nba-predictions) -- lots of predicted upsets this week, including two tonight. As usual, I've found checking the [dashboard](http://efavdb.github.io/nba-dash) to be a great way to gain insight into such picks. Details of past week by point spread below.
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |

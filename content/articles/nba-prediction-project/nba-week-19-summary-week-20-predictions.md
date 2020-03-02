@@ -5,7 +5,7 @@ Category: NBA prediction project
 Slug: nba-week-19-summary-week-20-predictions
 Status: published
 
-Sadly lackluster week: 28 for 54, or 51.9% accuracy. The new predictions are now [posted](http://efavdb.com/weekly-nba-predictions/), which will hopefully bring us better luck. Details by point-spread for previous week below.
+Sadly lackluster week: 28 for 54, or 51.9% accuracy. The new predictions are now [posted](http://efavdb.github.io/weekly-nba-predictions), which will hopefully bring us better luck. Details by point-spread for previous week below.
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |

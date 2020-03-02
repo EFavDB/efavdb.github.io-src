@@ -5,7 +5,7 @@ Category: MLB prediction project
 Slug: mlb-week-7-overview-week-8-posted
 Status: published
 
-52/99 this past week, or 53% accuracy overall. Breakdown by point spread follows, and new predictions are [posted](http://efavdb.com/weekly-mlb-predictions/).
+52/99 this past week, or 53% accuracy overall. Breakdown by point spread follows, and new predictions are [posted](http://efavdb.github.io/weekly-mlb-predictions).
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |

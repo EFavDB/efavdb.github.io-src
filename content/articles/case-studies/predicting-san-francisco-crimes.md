@@ -8,8 +8,8 @@ Attachments: wp-content/uploads/2015/07/Insel_Alcatraz.jpg
 
 In today's post, we document our submission to the recent [Kaggle](https://www.kaggle.com/c/sf-crime) competition aimed at predicting the category of San Francisco crimes, given only their time and location of occurrence. As a reminder, Kaggle is a site where one can compete with other data scientists on various data challenges.  We took this competition as an opportunity to explore the Naive Bayes algorithm. With the few steps discussed below, we were able to quickly move from the middle of the pack to the top 33% on the competition leader board, all the while continuing with this simple model!
 
-  
-  
+
+
 
 
 Introduction
@@ -26,29 +26,29 @@ Here, we outline our approach to tackling this problem, using the Naive Bayes cl
 
 Below, we show the relevant commands needed to load all the packages and training/test data we will be using. As in previous posts, we will work with [Pandas](http://pandas.pydata.org/) for quick and easy data loading and wrangling. We will be having a post dedicated to Pandas in the near future, so stay tuned! We start off with using the parse_dates method to convert the Dates column of our provided data -- which can be downloaded [here](https://www.kaggle.com/c/sf-crime/data)-- from string to datetime format.
 
-```  
-import pandas as pd  
-from sklearn.cross_validation import train_test_split  
-from sklearn import preprocessing  
-from sklearn.metrics import log_loss  
-from sklearn.naive_bayes import BernoulliNB  
-from sklearn.linear_model import LogisticRegression  
+```
+import pandas as pd
+from sklearn.cross_validation import train_test_split
+from sklearn import preprocessing
+from sklearn.metrics import log_loss
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.linear_model import LogisticRegression
 import numpy as np
 
-#Load Data with pandas, and parse the first column into datetime  
-train=pd.read_csv('train.csv', parse_dates = ['Dates'])  
-test=pd.read_csv('test.csv', parse_dates = ['Dates'])  
+#Load Data with pandas, and parse the first column into datetime
+train=pd.read_csv('train.csv', parse_dates = ['Dates'])
+test=pd.read_csv('test.csv', parse_dates = ['Dates'])
 ```
 
 The training data provided contains the following fields:
 
-***Date*** -  date + timestamp  
-***Category*** - The type of crime, Larceny, etc.  
-***Descript*** - A more detailed description of the crime.  
-***DayOfWeek*** - Day of crime: Monday, Tuesday, etc.  
-***PdDistrict ***- Police department district.  
-***Resolution***- What was the outcome, Arrest, Unfounded, None, etc.  
-***Address*** - Street address of crime.  
+***Date*** -  date + timestamp
+***Category*** - The type of crime, Larceny, etc.
+***Descript*** - A more detailed description of the crime.
+***DayOfWeek*** - Day of crime: Monday, Tuesday, etc.
+***PdDistrict ***- Police department district.
+***Resolution***- What was the outcome, Arrest, Unfounded, None, etc.
+***Address*** - Street address of crime.
 ***X and Y*** - GPS coordinates of crime.
 
 As we mentioned earlier, the provided data spans almost 12 years, and both the training data set and the testing data set each have about 900k records. At this point we have all the data in memory. However, the majority of this data is categorical in nature, and so will require some more preprocessing.
@@ -71,31 +71,31 @@ There are a variety of methods to do this encoding, but Pandas has a particularl
 
  
 
-```  
-#Convert crime labels to numbers  
-le_crime = preprocessing.LabelEncoder()  
+```
+#Convert crime labels to numbers
+le_crime = preprocessing.LabelEncoder()
 crime = le_crime.fit_transform(train.Category)
 
-#Get binarized weekdays, districts, and hours.  
-days = pd.get_dummies(train.DayOfWeek)  
-district = pd.get_dummies(train.PdDistrict)  
-hour = train.Dates.dt.hour  
+#Get binarized weekdays, districts, and hours.
+days = pd.get_dummies(train.DayOfWeek)
+district = pd.get_dummies(train.PdDistrict)
+hour = train.Dates.dt.hour
 hour = pd.get_dummies(hour)
 
-#Build new array  
-train_data = pd.concat([hour, days, district], axis=1)  
+#Build new array
+train_data = pd.concat([hour, days, district], axis=1)
 train_data['crime']=crime
 
-#Repeat for test data  
-days = pd.get_dummies(test.DayOfWeek)  
+#Repeat for test data
+days = pd.get_dummies(test.DayOfWeek)
 district = pd.get_dummies(test.PdDistrict)
 
-hour = test.Dates.dt.hour  
+hour = test.Dates.dt.hour
 hour = pd.get_dummies(hour)
 
 test_data = pd.concat([hour, days, district], axis=1)
 
-training, validation = train_test_split(train_data, train_size=.60)  
+training, validation = train_test_split(train_data, train_size=.60)
 ```
 
  
@@ -109,21 +109,21 @@ For this competition the metric used to rate the performance of the model is the
 
 For our first quick pass, we used just the day of the week and district for features in our classifier training. We also carried out a Logistic Regression (LR) on the data in order to get a feel for how the Naive Bayes (NB) model was performing. The results from the NB model gave us a log-loss of 2.62, while LR after tuning was able to give 2.62. However, LR took 60 seconds to run, while NB took only 1.5 seconds! As a reference, the current top score on the leader board is about 2.27, while the worst is around 35. Not bad performance!
 
-```  
-features = ['Friday', 'Monday', 'Saturday', 'Sunday', 'Thursday', 'Tuesday',  
-'Wednesday', 'BAYVIEW', 'CENTRAL', 'INGLESIDE', 'MISSION',  
+```
+features = ['Friday', 'Monday', 'Saturday', 'Sunday', 'Thursday', 'Tuesday',
+'Wednesday', 'BAYVIEW', 'CENTRAL', 'INGLESIDE', 'MISSION',
 'NORTHERN', 'PARK', 'RICHMOND', 'SOUTHERN', 'TARAVAL', 'TENDERLOIN']
 
-training, validation = train_test_split(train_data, train_size=.60)  
-model = BernoulliNB()  
-model.fit(training[features], training['crime'])  
-predicted = np.array(model.predict_proba(validation[features]))  
+training, validation = train_test_split(train_data, train_size=.60)
+model = BernoulliNB()
+model.fit(training[features], training['crime'])
+predicted = np.array(model.predict_proba(validation[features]))
 log_loss(validation['crime'], predicted)
 
-#Logistic Regression for comparison  
-model = LogisticRegression(C=.01)  
-model.fit(training[features], training['crime'])  
-predicted = np.array(model.predict_proba(validation[features]))  
+#Logistic Regression for comparison
+model = LogisticRegression(C=.01)
+model.fit(training[features], training['crime'])
+predicted = np.array(model.predict_proba(validation[features]))
 log_loss(validation['crime'], predicted)
 
 ```
@@ -132,14 +132,14 @@ log_loss(validation['crime'], predicted)
 
 #### Submission code
 
-```  
-model = BernoulliNB()  
-model.fit(train_data[features], train_data['crime'])  
+```
+model = BernoulliNB()
+model.fit(train_data[features], train_data['crime'])
 predicted = model.predict_proba(test_data[features])
 
-#Write results  
-result=pd.DataFrame(predicted, columns=le_crime.classes_)  
-result.to_csv('testResult.csv', index = True, index_label = 'Id' )  
+#Write results
+result=pd.DataFrame(predicted, columns=le_crime.classes_)
+result.to_csv('testResult.csv', index = True, index_label = 'Id' )
 ```
 
 With the above model performing well, we used our code to write out our predictions on the test set to csv format, and submitted this to Kaggle. It turns out we got a score of 2.61 which is slightly better than our validation set estimate. The was a good enough score to put us in the to 50%. Pretty good for a first try!
@@ -148,17 +148,17 @@ With the above model performing well, we used our code to write out our predicti
 
 To improve the model further, we next added the time to the feature list used in training. This clearly provides some relevant information, as some types of crime happen more during the day than the night. For example, we expect public drunkenness to probably go up in the late evening.  Adding this feature we were able to push our log-loss score down to 2.58 -- quick and easy progress!  As a side note, we also tried leaving the hours as a continuous variable, but this did not lead to any score improvements.  After training on the whole data set again, we also get 2.58 on the test date. This moved us up another 32 spots, giving a final placement of 76/226!
 
-```  
-features = ['Friday', 'Monday', 'Saturday', 'Sunday', 'Thursday', 'Tuesday',  
-'Wednesday', 'BAYVIEW', 'CENTRAL', 'INGLESIDE', 'MISSION',  
+```
+features = ['Friday', 'Monday', 'Saturday', 'Sunday', 'Thursday', 'Tuesday',
+'Wednesday', 'BAYVIEW', 'CENTRAL', 'INGLESIDE', 'MISSION',
 'NORTHERN', 'PARK', 'RICHMOND', 'SOUTHERN', 'TARAVAL', 'TENDERLOIN']
 
-features2 = [x for x in range(0,24)]  
-features = features + features2  
+features2 = [x for x in range(0,24)]
+features = features + features2
 ```
 
 Discussion
 ----------
 
-Although Naive Bayes is a fairly simple model, properly wielded it can give great results.  In fact, in this competition our results were competitive with teams who were using much more complicated models, e.g. neural nets. We also learned a few other interesting things here: For example, Pandas' get_dummies() method looks like it will be a huge timesaver when dealing with categorical data. Till next time -- keep your Prius safe!  
-[![Open GitHub Repo](http://efavdb.com/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/SF-Crime "GitHub Repo")
+Although Naive Bayes is a fairly simple model, properly wielded it can give great results.  In fact, in this competition our results were competitive with teams who were using much more complicated models, e.g. neural nets. We also learned a few other interesting things here: For example, Pandas' get_dummies() method looks like it will be a huge timesaver when dealing with categorical data. Till next time -- keep your Prius safe!
+[![Open GitHub Repo]({static}/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/SF-Crime "GitHub Repo")

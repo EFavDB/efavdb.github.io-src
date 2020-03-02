@@ -5,7 +5,7 @@ Category: Statistics
 Slug: maximum-likelihood-asymptotics
 Status: published
 
-In this post, we review two facts about maximum-likelihood estimators: 1) They are consistent, meaning that they converge to the correct values given a large number of samples, $N$, and 2) They satisfy the [Cramer-Rao](http://efavdb.com/multivariate-cramer-rao-bound/) lower bound for unbiased parameter estimates in this same limit -- that is, they have the lowest possible variance of any unbiased estimator, in the $N\gg 1$ limit.
+In this post, we review two facts about maximum-likelihood estimators: 1) They are consistent, meaning that they converge to the correct values given a large number of samples, $N$, and 2) They satisfy the [Cramer-Rao](http://efavdb.github.io/multivariate-cramer-rao-bound) lower bound for unbiased parameter estimates in this same limit -- that is, they have the lowest possible variance of any unbiased estimator, in the $N\gg 1$ limit.
 
 
 
@@ -24,7 +24,7 @@ To obtain the maximum-likelihood estimates, we maximize (\ref{1}): Setting its d
 \end{align}
 These are mean and variance values that would be most likely to generate our observation set $\{x_i\}$. Our solutions show that they are both functions of the random observation set. Because of this, $\hat{\mu}$ and $\hat{\sigma}^2$ are themselves random variables, changing with each sample set that happens to be observed. Their distributions can be characterized by their mean values, variances, etc.
 
-The average squared error of a parameter estimator is determined entirely by its bias and variance -- see eq (2) of [prior post](http://efavdb.com/bayesian-linear-regression/). Now, one can show that the $\hat{\mu}$ estimate of (\ref{mean}) is unbiased, but this is not the case for the variance estimator (\ref{varhat}) -- one should (famously) divide by $N-1$ instead of $N$ here to obtain an unbiased estimator$^1$. This shows that maximum-likelihood estimators need not be unbiased. Why then are they so popular? One reason is that these estimators are guaranteed to be unbiased when $N$, the sample size, is large. Further, in this same limit, these estimators achieve the minimum possible variance for any unbiased parameter estimate -- as set by the fundamental [Cramer-Rao](http://efavdb.com/multivariate-cramer-rao-bound/) bound. The purpose of this post is to review simple proofs of these latter two facts about maximum-likelihood estimators$^2$.
+The average squared error of a parameter estimator is determined entirely by its bias and variance -- see eq (2) of [prior post](http://efavdb.github.io/bayesian-linear-regression). Now, one can show that the $\hat{\mu}$ estimate of (\ref{mean}) is unbiased, but this is not the case for the variance estimator (\ref{varhat}) -- one should (famously) divide by $N-1$ instead of $N$ here to obtain an unbiased estimator$^1$. This shows that maximum-likelihood estimators need not be unbiased. Why then are they so popular? One reason is that these estimators are guaranteed to be unbiased when $N$, the sample size, is large. Further, in this same limit, these estimators achieve the minimum possible variance for any unbiased parameter estimate -- as set by the fundamental [Cramer-Rao](http://efavdb.github.io/multivariate-cramer-rao-bound) bound. The purpose of this post is to review simple proofs of these latter two facts about maximum-likelihood estimators$^2$.
 
 ### Consistency
 
@@ -80,7 +80,7 @@ Using this Gaussian approximation$^4$, we can now read off the large $N$ varianc
 $$\tag{14} \label{14}
 var(\hat{\theta}) = - \frac{1}{N} \times \frac{1}{\langle \partial_{\theta}^2 \left . \log P(x, \theta) \right \vert_{\theta^*} \rangle }.
 $$
-This is the lowest possible value for any unbiased estimator, as set by the Cramer-Rao bound. The proof shows that maximum-likelihood estimators always saturate this bound, in the large $N$ limit -- a remarkable result. We discuss the intuitive meaning of the Cramer-Rao bound in a [prior post](http://efavdb.com/multivariate-cramer-rao-bound/).
+This is the lowest possible value for any unbiased estimator, as set by the Cramer-Rao bound. The proof shows that maximum-likelihood estimators always saturate this bound, in the large $N$ limit -- a remarkable result. We discuss the intuitive meaning of the Cramer-Rao bound in a [prior post](http://efavdb.github.io/multivariate-cramer-rao-bound).
 
 ### Footnotes
 

@@ -18,7 +18,7 @@ Introduction
 
 Bike sharing systems are gaining popularity around the world -- there are over 500 different programs currently operating in various cities, and counting!  These programs are generally funded through rider membership fees, or through pay-to-ride one time rental fees. Key to the convenience of these programs is the fact that riders who pick up a bicycle from one station can return the bicycle to any other in the network.  These systems generate a great deal of data relating to various ride details, including travel time, departure location, arrival location, and so on.  This data has the potential to be very useful for studying city mobility. The data we look at today comes from Washington D. C.'s [Capital Bikeshare](https://www.capitalbikeshare.com/) program. The goal of the Kaggle competition is to leverage the historical data provided in order to forecast future bike rental demand within the city.
 
-As we detailed in an earlier [post](http://efavdb.com/notes-on-trees/#boosting), boosting provides a general method for increasing a machine learning algorithm's performance. Here, in order to model the Capital Bikeshare program's demand curves, we'll be applying a gradient boosted trees model (GBM).  Simply put, GBM's are constructed by iteratively fitting a series of simple trees to a training set, where each new tree attempts to fit the residuals, or errors, of the trees that came before it. With the addition of each new tree the training error is further reduced, typically asymptoting to a reasonably accurate model -- but one must watch out for overfitting -- see below!
+As we detailed in an earlier [post](http://efavdb.github.io/notes-on-trees), boosting provides a general method for increasing a machine learning algorithm's performance. Here, in order to model the Capital Bikeshare program's demand curves, we'll be applying a gradient boosted trees model (GBM).  Simply put, GBM's are constructed by iteratively fitting a series of simple trees to a training set, where each new tree attempts to fit the residuals, or errors, of the trees that came before it. With the addition of each new tree the training error is further reduced, typically asymptoting to a reasonably accurate model -- but one must watch out for overfitting -- see below!
 
 **Loading package and data**
 ----------------------------
@@ -231,7 +231,7 @@ plt.legend(['Train', 'Validation'], fontsize=18)
 plt.title('Error vs. Number of Estimators', fontsize=20)
 ```
 
-![Error vs Number of Estimators](http://efavdb.com/wp-content/uploads/2015/03/figure_1-e1427234375629-1024x845.png)
+![Error vs Number of Estimators]({static}/wp-content/uploads/2015/03/figure_1-e1427234375629.png)
 
 Notice in the plot that by the time the number estimators in our GBM reaches about 80, the error of our model as applied to the validation set starts to slowly increase, though the error on the training set continues to decrease steadily. The diagnosis is that the model begins to overfit at this point. Moving forward, we will set n_estimators to 80, rather than 500, the value we were using above. Reducing the number of estimators reduced the calculated error and moved us to a higher position on the leaderboard.
 

@@ -6,7 +6,7 @@ Tags: NBA
 Slug: nba-week-2-summary-week-3-predictions
 Status: published
 
-[![week2Table](http://efavdb.com/wp-content/uploads/2014/11/week2Table.png)](http://efavdb.com/wp-content/uploads/2014/11/week2Table.png)
+[![week2Table]({static}/wp-content/uploads/2014/11/week2Table.png)]({static}/wp-content/uploads/2014/11/week2Table.png)
 
 This was an odd week in the NBA - plenty of upsets to go around.  You’re right, we’re making excuses - our NBA predictor had a tough week this round.  We had a total accuracy of 27/50 = 54%.  The summary by point spread is at right.  But seriously, who would have predicted results like back-to-back Laker victories over Atlanta and Houston (aside from die-hard Kobe fans)?  Well, we certainly didn’t.
 

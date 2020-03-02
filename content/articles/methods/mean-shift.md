@@ -152,7 +152,9 @@ The first requirement is needed to ensure that our estimate is normalized, and t
 
 Below we plot an example in 1-d using the gaussian kernel to estimate the density of some population along the x-axis. You can see that each sample point adds a small Gaussian to our estimate, centered about it: The equations above may look a bit intimidating, but the graphic here should clarify that the concept is pretty straightforward.
 
-[caption id="attachment_1563" align="aligncenter" width="765"]![KDE plot](http://efavdb.com/wp-content/uploads/2015/03/KDE-plot-1024x675.png) Example of a kernel density estimation using a gaussian kernel for each data point: Adding up small Gaussians about each example returns our net estimate for the total density, the black curve.[/caption]
+
+[![]({static}/wp-content/uploads/2015/03/KDE-plot.png)]({static}/wp-content/uploads/2015/03/KDE-plot.png)
+Example of a kernel density estimation using a gaussian kernel for each data point: Adding up small Gaussians about each example returns our net estimate for the total density, the black curve.
 
 #### Mean shift algorithm
 

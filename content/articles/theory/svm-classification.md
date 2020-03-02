@@ -18,7 +18,7 @@ Professor Ng covers SVMs in his excellent [Machine Learning MOOC](https://www.co
 "What are the *support vectors* in support vector machines?"
 
 
-We also provide python ```(https://github.com/EFavDB/svm-classification/blob/master/svm.ipynb) using scikit-learn's svm module to fit a binary classification problem using a custom kernel, along with code to generate the (awesome!) interactive [plots](#3dfig) in Part 3.
+We also provide python (https://github.com/EFavDB/svm-classification/blob/master/svm.ipynb) using scikit-learn's svm module to fit a binary classification problem using a custom kernel, along with code to generate the (awesome!) interactive plots in Part 3.
 
 This post consists of three sections:
 
@@ -35,7 +35,7 @@ Part 1: Defining the margin
 
 The figure below is a binary classification problem (points labeled $y_i = \pm 1$) that is linearly separable.
 
-[![binary classes in 2d](http://efavdb.com/wp-content/uploads/2015/05/binaryclass_2d-300x284.png)]({static}/wp-content/uploads/2015/05/binaryclass_2d.png)
+[![]({static}/wp-content/uploads/2015/05/binaryclass_2d.png)]({static}/wp-content/uploads/2015/05/binaryclass_2d.png)
 
 There are many possible decision boundaries that would perfectly separate the two classes, but an SVM will choose the line in 2-d (or “hyperplane”, more generally) that maximizes the margin around the boundary.
 
@@ -49,7 +49,7 @@ Any point $\boldsymbol{x}$ lying on the separating hyperplane satisfies:
 $\boldsymbol{w} \cdot \boldsymbol{x} + b = 0$
 $\boldsymbol{w}$ is the vector normal to the plane, and $b$ is a constant that describes how much the plane is shifted relative to the origin.  The distance of the plane from the origin is $b / \| \boldsymbol{w} \|$.
 
-[![margin around decision boundary](http://efavdb.com/wp-content/uploads/2015/05/binaryclass_margin-300x266.png)]({static}/wp-content/uploads/2015/05/binaryclass_margin.png)
+[![]({static}/wp-content/uploads/2015/05/binaryclass_margin.png)]({static}/wp-content/uploads/2015/05/binaryclass_margin.png)
 
 Now draw parallel planes on either side of the decision boundary, so we have what looks like a road, with the decision boundary as the median, and the additional planes as gutters.  The margin, i.e. the width of the road, is ($d_+ + d_-$) and is restricted by the data points closest to the boundary, which lie on the gutters.
 
@@ -86,7 +86,7 @@ Before we address how to solve this optimization problem in Part 2, let's first 
 
 ### Soft margin SVM: the non-separable problem and regularization
 
-[![softmargin](http://efavdb.com/wp-content/uploads/2015/05/softmargin-300x266.png)]({static}/wp-content/uploads/2015/05/softmargin.png)
+[![]({static}/wp-content/uploads/2015/05/softmargin.png)]({static}/wp-content/uploads/2015/05/softmargin.png)
 
 For non-separable data, we relax the constraints in (\ref{problem}) while penalizing misclassified points via a cost parameter $C$ and slack variables $\xi_i$ that define the amount by which data points are on the wrong side of the margin.
 

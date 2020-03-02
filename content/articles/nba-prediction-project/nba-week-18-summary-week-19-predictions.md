@@ -5,7 +5,7 @@ Category: NBA prediction project
 Slug: nba-week-18-summary-week-19-predictions
 Status: published
 
-Excellent week: 39 for 53, or 73.6% accuracy! New predictions are [up](http://efavdb.com/weekly-nba-predictions/). This week, the algorithm continues to surprise, with lots of upset predictions. This includes a predicted OKC defeat of Atlanta tonight. Checking the [dashboard](http://efavdb.com/nba-dash/) for potential insight, we think this might be reasonable, given OKC's excellent home record coupled with Atlanta's relatively poor away record. You heard it here first folks.
+Excellent week: 39 for 53, or 73.6% accuracy! New predictions are [up](http://efavdb.github.io/weekly-nba-predictions). This week, the algorithm continues to surprise, with lots of upset predictions. This includes a predicted OKC defeat of Atlanta tonight. Checking the [dashboard](http://efavdb.github.io/nba-dash) for potential insight, we think this might be reasonable, given OKC's excellent home record coupled with Atlanta's relatively poor away record. You heard it here first folks.
 
 UPDATE: OKC BEATS ATLANTA!!!
 
