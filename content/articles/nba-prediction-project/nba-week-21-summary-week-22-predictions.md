@@ -5,7 +5,7 @@ Category: NBA prediction project
 Slug: nba-week-21-summary-week-22-predictions
 Status: published
 
-Another great week for the algorithm, going 35 for 49, or 71.4% accuracy! The coming week's predictions are now [up](http://efavdb.com/weekly-nba-predictions/). Again, apologies for the delayed post this week. Automation should be coming soon.
+Another great week for the algorithm, going 35 for 49, or 71.4% accuracy! The coming week's predictions are now [up](http://efavdb.github.io/weekly-nba-predictions). Again, apologies for the delayed post this week. Automation should be coming soon.
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |

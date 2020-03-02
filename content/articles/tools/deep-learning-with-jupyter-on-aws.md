@@ -9,7 +9,7 @@ Attachments: wp-content/uploads/2016/03/jupyter-login.png, wp-content/uploads/20
 
 Want a quick and easy way to play around with deep learning libraries? Puny GPU got you down? Thanks to Amazon Web Services (AWS) -- specifically, AWS Elastic Compute Cloud (EC2) -- no data scientist need be left behind.
 
-Jupyter/IPython notebooks are indispensable tools for learning and tinkering. This post shows how to set up a public Jupyter notebook server in EC2 and then access it remotely through your web browser, just as you would if you were using a notebook launched from your own laptop.  
+Jupyter/IPython notebooks are indispensable tools for learning and tinkering. This post shows how to set up a public Jupyter notebook server in EC2 and then access it remotely through your web browser, just as you would if you were using a notebook launched from your own laptop.
 
 For a beginner, having to both set up deep learning libraries and navigate the AWS menagerie feels like getting thrown into the deep end when you just want to stick a toe in. You can skip the hassle of setting up deep learning frameworks from scratch by choosing an Amazon Machine Image (AMI) that comes pre-installed with the libraries and their dependencies. (Concerned about costs? -- see the note[*](#note1) at the bottom of this post.)
 
@@ -28,13 +28,13 @@ We've written a little bash script `jupyter_userdata.sh` to execute Jupyter's [i
 
 For the script to work, Jupyter itself should already be installed -- which it is in the CS231n AMI.
 
-You just have to edit the password in the script. To generate a hashed password, use IPython:  
-```  
-In [1]: from notebook.auth import passwd  
-In [2]: passwd()  
-Enter password:  
-Verify password:  
-Out[2]: 'sha1:bcd259ccf...<your hashed password here>'  
+You just have to edit the password in the script. To generate a hashed password, use IPython:
+```
+In [1]: from notebook.auth import passwd
+In [2]: passwd()
+Enter password:
+Verify password:
+Out[2]: 'sha1:bcd259ccf...<your hashed password here>'
 ```
 
 Replace the right hand side of line 24 in the script with the hashed password you just generated.
@@ -55,13 +55,13 @@ In the next page, click on the arrowhead next to "Advanced Details" to expand it
 
 Warning: if you click on "As file" instead and browse to wherever you saved `jupyter_userdata.sh`, the file must first be [base64-encoded](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
 
-[![Step3_Configure-Instance-Details](http://efavdb.com/wp-content/uploads/2016/03/Step3_Configure-Instance-Details-1024x426.png)]({static}/wp-content/uploads/2016/03/Step3_Configure-Instance-Details.png)
+[![]({static}/wp-content/uploads/2016/03/Step3_Configure-Instance-Details.png)]({static}/wp-content/uploads/2016/03/Step3_Configure-Instance-Details.png)
 
 **3.** Next, (skipping steps 4. and 5.) click on the link to "6. Configure Security Group" near the top of the page. By default, SSH is enabled, but we need to enable access to the notebook server, whose port we've set as 8888 in the bash script.
 
 Click on the grey button "Add Rule", then for the new rule, choose Type: Custom TCP Rule; Protocol: TCP; Port Range: 8888; Source: Anywhere.
 
-[![Step6_Configure-Security-Group](http://efavdb.com/wp-content/uploads/2016/03/Step6_Configure-Security-Group-1024x434.png)]({static}/wp-content/uploads/2016/03/Step6_Configure-Security-Group.png)
+[![]({static}/wp-content/uploads/2016/03/Step6_Configure-Security-Group.png)]({static}/wp-content/uploads/2016/03/Step6_Configure-Security-Group.png)
 
 **4.** Now, pick up where you left off in the CS231n tutorial ("*... click on "Review and Launch*".), which takes you to "Step 7. Review Instance Launch". Complete the tutorial.
 
@@ -74,14 +74,14 @@ Check that the Jupyter notebook server was set up correctly:
 3.  Start the notebook server using the `jupyter notebook` command.
 4.  In your web browser, access the notebook server with https://PUBLIC_IP:8888, where PUBLIC_IP is the public IP of your instance, displayed from the instance description on your AWS dashboard. Your browser will warn that your self-signed certificate is insecure or unrecognized.
 
-    [![scary-browser-warning](http://efavdb.com/wp-content/uploads/2016/03/scary-browser-warning-1024x556.png)]({static}/wp-content/uploads/2016/03/scary-browser-warning.png)
+    [![]({static}/wp-content/uploads/2016/03/scary-browser-warning.png)]({static}/wp-content/uploads/2016/03/scary-browser-warning.png)
 
     That's ok -- click past the warnings, and you should get a sign-in page. Type in your password.
 
 5.  Next, you should see the files and directories in `/home/ubuntu/caffe/examples`
 6.  Open one of the example notebooks, e.g. `00-classification.ipynb`, and try running some cells to make sure everything is working.
 
-     
+   
 Voila! We hope this guide removes some obstacles to getting started. Happy learning!
 
 * * * * *

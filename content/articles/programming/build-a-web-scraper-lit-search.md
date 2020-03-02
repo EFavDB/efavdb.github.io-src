@@ -34,7 +34,7 @@ The task is to capture plots of tumor growth inhibition (TGI), i.e. tumor growth
 
 An example of a TGI plot is provided below (source: [Qi 2011](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3792566/ "PMC3792566")) for TGI in mice treated with the cancer drug, Docetaxel.
 
-[![http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3792566/figure/F5/](http://efavdb.com/wp-content/uploads/2015/07/TGIplot-300x217.png)](http://efavdb.com/wp-content/uploads/2015/07/TGIplot.png)
+[![]({static}/wp-content/uploads/2015/07/TGIplot-300x217.png)]({static}/wp-content/uploads/2015/07/TGIplot.png)
 
 TGI plots for several drugs (image credit: Qi 2011)
 
@@ -133,7 +133,7 @@ table: figure_text
 | img_url | fig_name | caption |
 | -- | -- | -- |
 
-[![cartoon hanging](http://efavdb.com/wp-content/uploads/2015/07/a_hanging-263x300.jpg)](http://efavdb.com/wp-content/uploads/2015/07/a_hanging.jpg)
+[![]({static}/wp-content/uploads/2015/07/a_hanging-263x300.jpg)]({static}/wp-content/uploads/2015/07/a_hanging.jpg)
 
 Their tables were not in 1NF.
 
@@ -249,7 +249,7 @@ The explicit URL constructed from the above example user input is:
 
 Try copying and pasting the above URL in your browser to see a sample of the xml file returned by E-utilities. Here's an excerpt of the XML document from a query to ESearch on August 25, 2015:
 
-[![ESearch XML file](http://efavdb.com/wp-content/uploads/2015/08/esearchXML-164x300.jpg)]({static}/wp-content/uploads/2015/08/esearchXML.jpg)
+[![]({static}/wp-content/uploads/2015/08/esearchXML-164x300.jpg)]({static}/wp-content/uploads/2015/08/esearchXML.jpg)
 
 XML output from a query to PMC via the ESearch API.
 

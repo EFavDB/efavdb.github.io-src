@@ -66,9 +66,9 @@ To get a feel for the significance of (\ref{cov}), it is helpful to consider the
 \begin{align}
 \left( X^T X \right)_{i,j} &\equiv& \sum_k \delta X_{k,i} \delta X_{k,j} \equiv N \times \langle x_i, x_j\rangle. \tag{8} \label{corr_mat}
 \end{align}
-[![margin around decision boundary]({static}/wp-content/uploads/2016/05/scatter.jpg)]({static}/wp-content/uploads/2016/05/scatter.jpg) That is, $X^T X$ is proportional to the correlation matrix of our $x$ values. This correlation matrix is real and symmetric, and thus has an orthonormal set of eigenvectors. The eigenvalue corresponding to the $k$-th eigenvector gives the variance of our data set's $k$-th component values in this basis -- details can be found in our [article on PCA](http://efavdb.com/principal-component-analysis/). This implies a simple interpretation of (\ref{cov}): The variance in the $\vec{\beta}$ coefficients will be lowest for predictors parallel to the highest variance PCA components (eg $x_1$ in the figure shown) and highest for predictors parallel to the lowest variance PCA components ($x_2$ in the figure). This observation can often be exploited during an experiment's design: If a particular coefficient is desired to high accuracy, one should make sure to sample the corresponding predictor over a wide range.
+[![margin around decision boundary]({static}/wp-content/uploads/2016/05/scatter.jpg)]({static}/wp-content/uploads/2016/05/scatter.jpg) That is, $X^T X$ is proportional to the correlation matrix of our $x$ values. This correlation matrix is real and symmetric, and thus has an orthonormal set of eigenvectors. The eigenvalue corresponding to the $k$-th eigenvector gives the variance of our data set's $k$-th component values in this basis -- details can be found in our [article on PCA](http://efavdb.github.io/principal-component-analysis). This implies a simple interpretation of (\ref{cov}): The variance in the $\vec{\beta}$ coefficients will be lowest for predictors parallel to the highest variance PCA components (eg $x_1$ in the figure shown) and highest for predictors parallel to the lowest variance PCA components ($x_2$ in the figure). This observation can often be exploited during an experiment's design: If a particular coefficient is desired to high accuracy, one should make sure to sample the corresponding predictor over a wide range.
 
-[Note: Cathy gives an interesting, alternative interpretation for the parameter estimate variances in a follow-up post, [here](http://efavdb.com/interpret-linear-regression/).]
+[Note: Cathy gives an interesting, alternative interpretation for the parameter estimate variances in a follow-up post, [here](http://efavdb.github.io/interpret-linear-regression).]
 
 ### Unbiased estimator for $\sigma^2$
 
@@ -118,7 +118,7 @@ $$
 $$
 where $\beta_i$ is obtained from the solution (\ref{optimal}). The interval above can be inverted to generate level $\alpha$ hypothesis tests. In particular, we note that a test of the null -- that a particular coefficient is actually zero -- would not be rejected if (\ref{interval}) contains the origin. This approach is often used to test whether some data is consistent with the assertion that a predictor is linearly related to the response.
 
-[Again, see Cathy's follow-up post [here](http://efavdb.com/interpret-linear-regression/) for an alternate take on these results.]
+[Again, see Cathy's follow-up post [here](http://efavdb.github.io/interpret-linear-regression) for an alternate take on these results.]
 
 ### Bayesian analysis
 

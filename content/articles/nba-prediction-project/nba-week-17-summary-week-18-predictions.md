@@ -5,7 +5,7 @@ Category: NBA prediction project
 Slug: nba-week-17-summary-week-18-predictions
 Status: published
 
-We went 35 for 56 this past week, 62.5% accuracy. Just one fewer correct game than last week. New predictions [are up](http://efavdb.com/weekly-nba-predictions/), and point-spread details of the past week are given below.
+We went 35 for 56 this past week, 62.5% accuracy. Just one fewer correct game than last week. New predictions [are up](http://efavdb.github.io/weekly-nba-predictions), and point-spread details of the past week are given below.
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |

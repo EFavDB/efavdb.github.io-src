@@ -7,7 +7,7 @@ Slug: interpret-linear-regression
 Status: published
 Attachments: wp-content/uploads/2016/06/scatter_height_weight_shoesize_cropped.png
 
-Our [last post](http://efavdb.com/linear-regression/) showed how to obtain the least-squares solution for linear regression and discussed the idea of sampling variability in the best estimates for the coefficients. In this post, we continue the discussion about uncertainty in linear regression -- both in the estimates of individual linear regression coefficients and the quality of the overall fit.
+Our [last post](http://efavdb.github.io/linear-regression) showed how to obtain the least-squares solution for linear regression and discussed the idea of sampling variability in the best estimates for the coefficients. In this post, we continue the discussion about uncertainty in linear regression -- both in the estimates of individual linear regression coefficients and the quality of the overall fit.
 
 Specifically, we'll discuss how to calculate the 95% confidence intervals and p-values from hypothesis tests that are output by many statistical packages like python's statsmodels or R. An example with code is provided at the end.
 
@@ -19,12 +19,12 @@ We wish to predict a scalar response variable $y_i$ given a vector of predictors
 y = X\beta + \epsilon.
 \end{align}The dimensions of each component are: dim($X$) = ($N$,$K$), dim($\beta$) = ($K$,1), dim($y$) = dim($\epsilon$) = ($N$,1), where $N$ = # of examples, $K$ = # of regressors / predictors, counting an optional intercept/constant term.
 
-The ordinary least-squares best estimator of the coefficients, $\hat{\beta}$, was [derived last time](http://efavdb.com/linear-regression/#mjx-eqn-optimal):
+The ordinary least-squares best estimator of the coefficients, $\hat{\beta}$, was [derived last time](http://efavdb.github.io/linear-regression):
 \begin{align}\tag{2}\label{optimal}
 \hat{\beta} = (X'X)^{-1}X'y,
 \end{align}where the hat "^" denotes an estimator, not a true population parameter.
 
-(\ref{optimal}) is a point estimate, but fitting different samples of data from the population will cause the best estimators to shift around. The amount of shifting can be explained by the variance-covariance matrix of $\hat{\beta}$, [also derived](http://efavdb.com/linear-regression/#mjx-eqn-cov) last time (independent of assumptions of normality):
+(\ref{optimal}) is a point estimate, but fitting different samples of data from the population will cause the best estimators to shift around. The amount of shifting can be explained by the variance-covariance matrix of $\hat{\beta}$, [also derived](http://efavdb.github.io/linear-regression) last time (independent of assumptions of normality):
 \begin{align}\tag{3}\label{cov}
 cov(\hat{\beta}, \hat{\beta}) = \sigma^2 (X'X)^{-1}.
 \end{align}

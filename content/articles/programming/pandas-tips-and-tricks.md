@@ -348,4 +348,4 @@ Pandas is a very useful library that I highly recommend. Although it can have a 
 
  
 
-[![Open GitHub Repo](http://efavdb.com/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/Pandas "GitHub Repo")
+[![Open GitHub Repo]({static}/wp-content/uploads/2015/03/GitHub_Logo.png)](https://github.com/EFavDB/Pandas "GitHub Repo")

@@ -7,7 +7,7 @@ Status: published
 
 Here, we review parameter regularization, which is a method for improving regression models through the penalization of non-zero parameter estimates. Why is this effective? Biasing parameters towards zero will (of course!) unfavorably bias a model, but it will also reduce its variance. At times the latter effect can win out, resulting in a net reduction in generalization error. We also review Bayesian regressions -- in effect, these generalize the regularization approach, biasing model parameters to any specified prior estimates, not necessarily zero.
 
-This is the second of a series of posts expounding on topics discussed in the text, ["An Introduction to Statistical Learning"](http://www-bcf.usc.edu/~gareth/ISL/). Here, we cover material from its Chapters 2 and 6. See prior post [here](http://efavdb.com/leave-one-out-cross-validation/).
+This is the second of a series of posts expounding on topics discussed in the text, ["An Introduction to Statistical Learning"](http://www-bcf.usc.edu/~gareth/ISL/). Here, we cover material from its Chapters 2 and 6. See prior post [here](http://efavdb.github.io/leave-one-out-cross-validation).
 
 
 

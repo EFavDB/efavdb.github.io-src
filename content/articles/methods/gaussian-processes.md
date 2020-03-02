@@ -33,7 +33,7 @@ In this post, we (i) review the math needed to calculate the posterior above, (i
 
 Our minimal python class SimpleGP used below is available on our GitHub, [here](https://github.com/EFavDB/gaussian_processes).
 
-Note: To understand the mathematical details covered in this post, one should be familiar with multivariate normal distributions -- these are reviewed in our prior post, [here](http://efavdb.com/normal-distributions/). These details can be skipped by those primarily interested in applications.
+Note: To understand the mathematical details covered in this post, one should be familiar with multivariate normal distributions -- these are reviewed in our prior post, [here](http://efavdb.github.io/normal-distributions). These details can be skipped by those primarily interested in applications.
 
 ### Analytic evaluation of the posterior
 
@@ -345,7 +345,7 @@ The starting point is to write down a form for the probability of seeing a given
 \begin{align} \tag{A8} \label{classifier}
 p(y \vert f(x)) = \frac{1}{1 + \exp\left (- y \times f(x)\right)}.
 \end{align}
-This form is a natural non-linear generalization of logistic regression -- see our post on this topic, [here](http://efavdb.com/logistic-regression/).
+This form is a natural non-linear generalization of logistic regression -- see our post on this topic, [here](http://efavdb.github.io/logistic-regression).
 
 To proceed, the prior for $f$ is taken to once again have form (\ref{prior}). Using this and (\ref{classifier}), we obtain the posterior for $f$
 \begin{align}
@@ -367,9 +367,9 @@ Now, by assumption, $p(\{y\} \vert f)$ depends only on $f(x_1),\ldots, f(x_n)$ -
 &p(f(x_1), \ldots, f(x_{n+1}) \vert \{y\}) =\\
 & \frac{p(\{y\} \vert f(x_1),\ldots,f(x_n))}{p(\{y\})} \int p(f) \prod_{i \not \in \{x_1, \ldots, x_N\}} df_i
 \end{align}
-The result of the integral above is a Normal distribution -- one with covariance given by the original covariance function evaluated only at the points $\{x_1, \ldots, x_{N} \}$. This fact is proven in our post on Normal distributions -- see equation (22) of that post, [here](http://efavdb.com/normal-distributions/). The result implies that we can get the correct sampling statistics on any set of test points, simply by analyzing these alongside the sampled points. This fact is what allows us to tractably treat the formally-infinite number of degrees of freedom associated with GPs.
+The result of the integral above is a Normal distribution -- one with covariance given by the original covariance function evaluated only at the points $\{x_1, \ldots, x_{N} \}$. This fact is proven in our post on Normal distributions -- see equation (22) of that post, [here](http://efavdb.github.io/normal-distributions). The result implies that we can get the correct sampling statistics on any set of test points, simply by analyzing these alongside the sampled points. This fact is what allows us to tractably treat the formally-infinite number of degrees of freedom associated with GPs.
 
-[3] We have a prior post illustrating this point -- see [here](http://efavdb.com/model-selection/).
+[3] We have a prior post illustrating this point -- see [here](http://efavdb.github.io/model-selection).
 
 [4] The marginal likelihood is equal to the denominator of (\ref{Bayes}), which we previously ignored.
 

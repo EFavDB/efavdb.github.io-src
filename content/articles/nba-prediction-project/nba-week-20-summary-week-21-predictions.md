@@ -5,7 +5,7 @@ Category: NBA prediction project
 Slug: nba-week-20-summary-week-21-predictions
 Status: published
 
-Excellent bounce-back from last week: 41 for 53, or 77.4% accuracy! The new predictions are [posted](http://efavdb.com/weekly-nba-predictions/). Apologies for the delay, which was due to our new-found employment. We hope to automate the posting and accuracy checks soon.
+Excellent bounce-back from last week: 41 for 53, or 77.4% accuracy! The new predictions are [posted](http://efavdb.github.io/weekly-nba-predictions). Apologies for the delay, which was due to our new-found employment. We hope to automate the posting and accuracy checks soon.
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |

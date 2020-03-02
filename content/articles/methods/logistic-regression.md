@@ -122,12 +122,12 @@ Confidence intervals are typically not available for many out-of-the-box machine
 
 ### Footnotes
 
-[$1$] Our notes on the maximum-likelihood estimators can be found [here](http://efavdb.com/maximum-likelihood-asymptotics/).
+[$1$] Our notes on the maximum-likelihood estimators can be found [here](http://efavdb.github.io/maximum-likelihood-asymptotics).
 
-[$2$] Our notes on covariance matrices and the multivariate Cramer-Rao theorem can be found [here](http://efavdb.com/multivariate-cramer-rao-bound/).
+[$2$] Our notes on covariance matrices and the multivariate Cramer-Rao theorem can be found [here](http://efavdb.github.io/multivariate-cramer-rao-bound).
 
 [$3$] The Cramer-Rao identity [$2$] states that covariance matrix of the maximum-likelihood estimators approaches the Hessian matrix of the log-likelihood, evaluated at their true values. Here, we approximate this by evaluating the Hessian at the maximum-likelihood point estimate.
 
-[$4$] Our notes on linear regression can be found [here](http://efavdb.com/linear-regression/).
+[$4$] Our notes on linear regression can be found [here](http://efavdb.github.io/linear-regression).
 
-[$5$] Our notes on Normal distributions can be found [here](http://efavdb.com/normal-distributions/).
+[$5$] Our notes on Normal distributions can be found [here](http://efavdb.github.io/normal-distributions).

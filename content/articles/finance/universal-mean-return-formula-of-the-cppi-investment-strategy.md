@@ -22,8 +22,6 @@ the formula's accuracy with a simulation in python.
 *CPPI = "Constant Proportion Portfolio Insurance"
 
 
-
-
 Introduction
 ------------
 
@@ -31,7 +29,7 @@ The drawdown of an investment portfolio at a given date is equal to
 the amount of money lost relative to its maximum held capital up to
 that date. This is illustrated in the figure at right -- a portfolio
 that once held $100 now holds only $90, so the drawdown is currently
-$10. [![dd](http://efavdb.com/wp-content/uploads/2019/12/dd.png)](http://efavdb.com/wp-content/uploads/2019/12/dd.png)
+$10. [![dd]({static}/wp-content/uploads/2019/12/dd.png)]({static}/wp-content/uploads/2019/12/dd.png)
 
 CPPI is a method that can be applied to guarantee that the maximum
 fractional drawdown is never more than some predetermined value -- the
@@ -44,7 +42,7 @@ reached.
 
 According to Wikipedia, the first person to study CPPI was Perold, who derived the statistical properties of a CPPI portfolio's value at time $t$, assuming the underlying stochastic investment follows a Wiener process. I was introduced to the CPPI concept by the book "Algorithmic Trading" by Ernest Chan. This book implicitly poses the question of what the mean return is for general, discrete investment strategies. Here, I show that a universal formula applies in this case, valid at low to modest leverages and small unit investment Sharpe ratios -- this result is given in equation (\ref{cppi_asymptotic_growth}) below.
 
-The post proceeds as follows: In the next section, I define some notation and then write down the limiting result. In the following section, I give a numerical example in python. Finally, an appendix contains a derivation of the main result. This makes use of the universal limiting drawdown distribution result from my [prior post](http://efavdb.com/universal-drawdown-statistics-in-investing/).
+The post proceeds as follows: In the next section, I define some notation and then write down the limiting result. In the following section, I give a numerical example in python. Finally, an appendix contains a derivation of the main result. This makes use of the universal limiting drawdown distribution result from my [prior post](http://efavdb.github.io/universal-drawdown-statistics-in-investing).
 
 CPPI formulation and universal mean growth rate
 -----------------------------------------------

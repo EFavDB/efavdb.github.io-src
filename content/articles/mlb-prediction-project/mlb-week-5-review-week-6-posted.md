@@ -5,7 +5,7 @@ Category: MLB prediction project
 Slug: mlb-week-5-review-week-6-posted
 Status: published
 
-Back on track: 52/96, or 54% accuracy overall this past week. We've now made a number of improvements to the algorithm, and we're excited to see how our performance continues from here on out. New predictions are [posted](http://efavdb.com/weekly-nba-predictions/).
+Back on track: 52/96, or 54% accuracy overall this past week. We've now made a number of improvements to the algorithm, and we're excited to see how our performance continues from here on out. New predictions are [posted](http://efavdb.github.io/weekly-nba-predictions).
 
 | Point spread | # games | Accuracy |
 | -- | -- | -- |
