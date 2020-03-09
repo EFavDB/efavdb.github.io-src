@@ -25,52 +25,54 @@ In order to derive the average wait time for queues of different sorts, one ofte
 Suppose the $N$-th customer arrives at time $0$, and let $P(t)$ be the probability that this customer has to wait a time $t\geq 0$ before being served. This wait time can be written in terms of the arrival and wait times of the previous customer: If this previous customer arrived at time $t^{\prime}$ and has to wait a time $w$ before being served, his service will conclude at time $t = t^{\prime} + w + 1$. If this is greater than $0$, the $N$-th customer will have to wait before being served. In particular, he will wait $t$ if the previous customer waited $w = t - t^{\prime} - 1$.
 
 The above considerations allow us to write down an equation satisfied by the wait time distribution. If we let the probability that the previous customer arrived at $t^{\prime}$ be $A(t^{\prime})$, we have (for $t > 0$)
-$$
+\begin{eqnarray}
 \tag{1} \label{int_eqn}
-P(t) = \int_{-\infty}^{0^-} A(t^{\prime}) P(t - t^{\prime} - 1) d t^{\prime}  \\
-= \int_{-\infty}^{0^-} \lambda e^{\lambda t^{\prime}} P(t - t^{\prime} - 1) d t^{\prime}
-$$
+P(t) &=& \int_{-\infty}^{0^-} A(t^{\prime}) P(t - t^{\prime} - 1) d t^{\prime}  \\
+&=& \int_{-\infty}^{0^-} \lambda e^{\lambda t^{\prime}} P(t - t^{\prime} - 1) d t^{\prime}
+\end{eqnarray}
 Here, in the first equality we're simply averaging over the possible arrival times of the previous customer (which had to occur before the $N$-th, at $0$), multiplying by the probability $P(t - t^{\prime} - 1)$ that this customer had to wait the amount of time $w$ needed so that the $N$-th customer will wait $t$. We also use the symmetry that each customer has the same wait time distribution at steady state. In the second equality, we have plugged in the arrival time distribution appropriate for our Poisson model.
 
 To proceed, we differentiate both sides of (\ref{int_eqn}) with respect to $t$,
-$$ \tag{2} \label{int2}
-P^{\prime}(t) = \int_{-\infty}^{0^-} \lambda e^{\lambda t^{\prime}} \frac{d}{dt}P(t - t^{\prime} - 1) d t^{\prime} \\= - \int_{-\infty}^{0^-} \lambda e^{\lambda t^{\prime}} \frac{d}{dt^{\prime}}P(t - t^{\prime} - 1) d t^{\prime}.
-$$
+\begin{eqnarray}\tag{2} \label{int2}
+P^{\prime}(t) &=& \int_{-\infty}^{0^-} \lambda e^{\lambda t^{\prime}} \frac{d}{dt}P(t - t^{\prime} - 1) d t^{\prime} \\
+&=& - \int_{-\infty}^{0^-} \lambda e^{\lambda t^{\prime}} \frac{d}{dt^{\prime}}P(t - t^{\prime} - 1) d t^{\prime}.
+\end{eqnarray}
 The second equality follows after noticing that we can switch the parameter being differentiated in the first. Integrating by parts, we obtain
-$$
+\begin{eqnarray}
 P^{\prime}(t) = \lambda \left [P(t) - P(t-1) \right], \tag{3} \label{sol}
-$$
+\end{eqnarray}
 a delay differential equation for the wait time distribution. This could be integrated numerically to get the full solution. However, our interest here is primarily the mean waiting time -- as we show next, it's easy to extract this part of the solution analytically.
 
 ### Probability of no wait and the mean wait time
 
 We can obtain a series of useful relations by multiplying (\ref{sol}) by powers of $t$ and integrating. The first such expression is obtained by multiplying by $t^1$. Doing this and integrating its left side, we obtain
-$$\tag{4} \label{int3}
+\begin{eqnarray} \tag{4} \label{int3}
 \int_{0^{+}}^{\infty} P^{\prime}(t) t dt = \left . P(t) t \right |_{0^{+}}^{\infty} - \int_{0^+}^{\infty} P(t) dt = 1 - P(0).
-$$
+\end{eqnarray}
 Similarly integrating its right side, we obtain
 
-$$\tag{5} \label{int4}
+\begin{eqnarray}\tag{5} \label{int4}
 \lambda \int_{0^{+}}^{\infty} t \left [P(t) - P(t-1) \right] = \lambda [ \overline{t} - \overline{(t + 1)} ] = - \lambda.
-$$
+\end{eqnarray}
 Equating the last two lines, we obtain the probability of no wait,
-$$ \tag{6} \label{int5}
+\begin{eqnarray} \tag{6} \label{int5}
 P(0) = 1 - \lambda.
-$$
+\end{eqnarray}
 This shows that when the arrival rate is low, the probability of no wait goes to one -- an intuitively reasonable result. On the other hand, as $\lambda \to 1$, the probability of no wait approaches zero. In between, the idle time fraction of our staffer (which is equal to the probability of no wait, given a random arrival time) grows linearly, connecting these two limits.
 
 To obtain an expression for the average wait time, we carry out a similar analysis to that above, but multiply (\ref{sol}) by $t^2$ instead. The integral on left is then
-$$ \tag{7} \label{int6}
+\begin{eqnarray} \tag{7} \label{int6}
 \int_{0^{+}}^{\infty} P^{\prime}(t) t^2 dt = \left . P(t) t^2 \right |_{0^{+}}^{\infty} - 2\int_{0^+}^{\infty} P(t) t dt = - 2 \overline{t}.
-$$
+\end{eqnarray}
 Similarly, the integral at right is
-$$ \tag{8} \label{fin_int}
-\lambda \int_{0^{+}}^{\infty} t^2 \left [P(t) - P(t-1) \right] = \lambda \overline{ t^2} - \overline{ (t + 1)^2} \\= - \lambda (2 \overline{t} +1).
-$$
+\begin{eqnarray} \tag{8} \label{fin_int}
+\lambda \int_{0^{+}}^{\infty} t^2 \left [P(t) - P(t-1) \right] &=& \lambda \overline{ t^2} - \overline{ (t + 1)^2} \\
+&=& - \lambda (2 \overline{t} +1).
+\end{eqnarray}
 Equating the last two lines and rearranging gives our solution for the average wait,
-$$ \tag{9} \label{fin}
+\begin{eqnarray} \tag{9} \label{fin}
 \overline{t} = \frac{\lambda}{2 (1 - \lambda)}.
-$$
+\end{eqnarray}
 As advertised, this diverges as $\lambda \to 1$, see illustration in the plot below. It's very interesting that even as $\lambda$ approaches this extreme limit, the line is still empty a finite fraction of the time -- see (\ref{int5}). Evidently a finite idle time fraction can't be avoided, even as one approaches the divergent $\lambda = 1$ limit.
 
 ![average wait time]({static}/wp-content/uploads/2016/04/Screen-Shot-2016-04-23-at-5.02.38-PM.png)

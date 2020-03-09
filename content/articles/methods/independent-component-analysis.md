@@ -39,13 +39,13 @@ where brackets represent an average over time (or index). It turns out that the 
 
 With (\ref{2}) chosen as our score function, we can now jump right into applying ICA. The code snippet below considers all possible mixtures of two mixed signals $m_1$ and $m_2$, obtains the resulting signal kurtosis values, and plots the result.
 
-```
+```python
 def kurtosis_of_mixture(c1):
-c2 = np.sqrt(1 - c1 ** 2)
-s = c1 * m1 + c2 * m2
-s = s / np.std(s)
-k = mean([item ** 4 for item in s]) - 3
-return k
+    c2 = np.sqrt(1 - c1 ** 2)
+    s = c1 * m1 + c2 * m2
+    s = s / np.std(s)
+    k = mean([item ** 4 for item in s]) - 3
+    return k
 
 c_array = np.arange(-1,1,0.001)
 k_array = [kurtosis_of_mixture(item) for item in c_array]
@@ -58,7 +58,7 @@ In line $(3)$ of the code here, we define the "remixed" signal $s$, which is a l
 
 When we applied the code above to the two signals shown in the introduction, we obtained the top plot at right. This shows the kurtosis of $s$ as a function of $c_1$, the weight applied to signal $m_1$. Notice that there are two internal extrema in this plot: a peak near $-0.9$ and a local minimum near $-0.7$. These are the two $c_1$ weight choices that ICA suggests may relate to the pure, underlying signals we seek. To plot each of these signals, we used code similar to the following (the code shown is just for the maximum)
 
-```
+```python
 index1 = k_array.index(max(k_array))
 c1 = c_array[index1]
 c2 = np.sqrt(1 - c1 ** 2)

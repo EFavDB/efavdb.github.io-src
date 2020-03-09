@@ -51,16 +51,16 @@ Fig. 2. (Left) A plot of the empirical integral of the data used to generate Fig
 
 The code snippet below carries out the procedure described above on a simple example. One example output is shown in Fig. 3 at the bottom of the section. Running the code multiple times gives one a sense of the error that is present in the predictions. In practical applications, this can't be done so carrying out the error analysis procedure suggested above should be done to get a better sense of the error involved.
 
-```  
+```python 
 %pylab inline  
 import numpy as np  
 from scipy.optimize import curve_fit
 
 def p_given_x(x):  
-return x ** 2
+    return x ** 2
 
 def outcome_given_p(p):  
-return np.random.binomial(1, p)
+    return np.random.binomial(1, p)
 
 # Generate some random data  
 x = np.sort(np.random.rand(200))  
@@ -75,7 +75,7 @@ weighted_y = y[:-1] * delta_x
 j = np.cumsum(weighted_y)
 
 def fit_func(x, a, b, c, d):  
-return a * x ** 3 + b * x ** 2
+    return a * x ** 3 + b * x ** 2
 
 popt, pcov = curve_fit(fit_func, x[:-1], j)  
 j_fit = fit_func(x[:-1], *popt)

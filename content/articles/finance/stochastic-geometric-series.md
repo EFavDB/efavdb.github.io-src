@@ -74,9 +74,11 @@ Like the integer moment expressions above, the right side here is finite up to t
 ### Integral equation for the distribution $P(S)$
 
 We have also found that one can sometimes go beyond solving for the moments of $S$, and instead solve directly for its full distribution: Integrating (\ref{trick}) over $a$ gives
-$$\tag{10} \label{int}
-P(S_0) = \int da P_0(a) \int dS P(S) \delta(1+ a S - S_0) \\= \int \frac{da}{a} P_0(a) P \left (\frac{S_0 -1}{a} \right).
-$$
+\begin{eqnarray}
+\tag{10} \label{int}
+P(S_0) &=& \int da P_0(a) \int dS P(S) \delta(1+ a S - S_0) \\
+&=& \int \frac{da}{a} P_0(a) P \left (\frac{S_0 -1}{a} \right).
+\end{eqnarray}
 This is a general, linear integral equation for $P(S)$. At least in some cases, it can solved in closed-form. An example follows.
 
 **Uniformly distributed $a_i$**

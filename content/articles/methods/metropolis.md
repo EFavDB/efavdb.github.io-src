@@ -80,28 +80,28 @@ total_samples = 200000
 
 # Function used to decide move acceptance
 def posterior_numerator(mu):
-	prod = 1
-		for x in X:
-		prod *= np.exp(-(x - mu) ** 2 / 2)
-		return prod
+    prod = 1
+    for x in X:
+        prod *= np.exp(-(x - mu) ** 2 / 2)
+    return prod
 
 # Initialize MCMC, then iterate
 z1 = 0
 posterior_samples = [z1]
 
 while len(posterior_samples) < total_samples:
-	z_current = posterior_samples[-1]
-	z_candidate = z_current + np.random.rand() - 0.5
-	rel_prob = posterior_numerator(
-	z_candidate) / posterior_numerator(z_current)
-	if rel_prob > 1:
-		posterior_samples.append(z_candidate)
-	else:
-		trial_toss = np.random.rand()
-	if trial_toss < rel_prob:
-		posterior_samples.append(z_candidate)
-	else:
-		posterior_samples.append(z_current)
+    z_current = posterior_samples[-1]
+    z_candidate = z_current + np.random.rand() - 0.5
+    rel_prob = posterior_numerator(
+        z_candidate) / posterior_numerator(z_current)
+    if rel_prob > 1:
+        posterior_samples.append(z_candidate)
+    else:
+        trial_toss = np.random.rand()
+        if trial_toss < rel_prob:
+            posterior_samples.append(z_candidate)
+        else:
+            posterior_samples.append(z_current)
 
 # Drop some initial samples and thin
 thinned_samples = posterior_samples[2000:]

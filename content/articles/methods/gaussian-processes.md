@@ -67,9 +67,9 @@ Here,
 \begin{eqnarray} \tag{6} \label{sigma_mat}
 \sigma^2 I_{00} \equiv
 \left( \begin{array}{cccc}
-\sigma_1^2 & 0 & \ldots &0 \
-0 & \sigma_2^2 & \ldots &0 \
-\ldots & & & \
+\sigma_1^2 & 0 & \ldots &0 \\
+0 & \sigma_2^2 & \ldots &0 \\
+\ldots & & & \\
 0 & 0 & \ldots & \sigma_n^2
 \end{array} \right),
 \end{eqnarray}
@@ -90,7 +90,7 @@ The code for our `SimpleGP` fitter class is available on our [GitHub](https://gi
 
 The code snippet below initializes our `SimpleGP` class, defines some sample locations, values, and uncertainties, then evaluates the mean and standard deviation of the posterior at a set of test points. Briefly, this carried out as follows: The `fit` method evaluates the inverse matrix $\left [ \sigma^2 I_{00} + \Sigma_{00} \right]^{-1}$ that appears in (\ref{posterior}) and saves the result for later use -- this allows us to avoid reevaluation of this inverse at each test point. Next, (\ref{posterior}) is evaluated once for each test point through the call to the `interval` method.
 
-```
+```python
 # Initialize fitter -- set covariance parameters
 WIDTH_SCALE = 1.0
 LENGTH_SCALE = 1.0
@@ -114,7 +114,7 @@ In the above, `WIDTH_SCALE` and `LENGTH_SCALE` are needed to specify the covaria
 
 To sample actual functions from the posterior, we will simply evaluate the mean and covariance matrix in (\ref{posterior}) again, this time passing in the multiple test point locations at which we would like to know the resulting sampled functions. Once we have the mean and covariance matrix of the posterior at these test points, we can pull samples from (\ref{posterior}) using an external library for multivariate normal sampling -- for this purpose, we used the python package numpy. The last step in the code snippet below carries out these steps.
 
-```
+```python
 # Insert observed sample data here.
 sample_x = [-1.5, -0.5, 0.7, 1.4, 2.5, 3.0]
 sample_y = [1, 2, 2, .5, 0, 0.5]
@@ -305,7 +305,7 @@ SKLearn provides contains the `GaussianProcessRegressor` class. This allows one 
 
 The code snippet below carries out a simple fit. The result is the plot shown at the top of this section.
 
-```
+```python
 from sklearn.gaussian_process.kernels import RBF, ConstantKernel as C
 from sklearn.gaussian_process import GaussianProcessRegressor
 import numpy as np
@@ -331,8 +331,8 @@ plt.errorbar(x_set, means, yerr=sigmas, alpha=0.5)
 plt.plot(x_set, means, 'g', linewidth=4)
 colors = ['g', 'r', 'b', 'k']
 for c in colors:
-y_set = gp.sample_y(x_set, random_state=np.random.randint(1000))
-plt.plot(x_set, y_set, c + '--', alpha=0.5)
+    y_set = gp.sample_y(x_set, random_state=np.random.randint(1000))
+    plt.plot(x_set, y_set, c + '--', alpha=0.5)
 ```
 
 More details on the sklearn implementation can be found [here](http://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html).

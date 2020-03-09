@@ -38,7 +38,7 @@ In this tutorial, we will explore using `linselect` to carry out various feature
 
 The code snippet below loads the data and shows a small sample.
 
-```  
+```python  
 # load packages  
 from linselect import FwdSelect, RevSelect, GenSelect  
 import matplotlib.pyplot as plt  
@@ -80,11 +80,11 @@ Goal: Demonstrate how to identify subsets of the stocks that can be used to fit 
 
 The code snippet below uses our forward selection class, `FwdSelect` to seek the best feature subsets to fit AAPL's performance.
 
-```  
+```python  
 # Define X, y variables  
 def get_feature_tickers(targets):  
-all_tickers = df.iloc[:, 1:].columns  
-return list(c for c in all_tickers if c not in targets)
+    all_tickers = df.iloc[:, 1:].columns  
+    return list(c for c in all_tickers if c not in targets)
 
 TARGET_TICKERS = ['AAPL']  
 FEATURE_TICKERS = get_feature_tickers(TARGET_TICKERS)
@@ -106,7 +106,7 @@ print selector.ordered_cods[:3]
 The last two lines above print out the main outputs of `FwdSelect`:
 
 -   The `ordered_features` list provides the indices of the features, ranked by the algorithm. The first index shown provides the best possible single feature fit to AAPL, the second index provides the next best addition, etc. Note that we can get the tickers corresponding to these indices using:  
-    ```  
+    ```python  
     print [FEATURE_TICKERS[i] for i in selector.ordered_features[:3]]  
     # ['MSFT' 'AVGO' 'TSM']  
     ```  
@@ -127,7 +127,7 @@ The code snippet below applies both `FwdSelect` and `RevSelect` to seek minimal 
 
 **Lesson**: In general, we expect forward selection to work better when looking for small subsets and reverse selection to perform better at large subsets.
 
-```  
+```python  
 # Define X, y variables  
 TARGET_TICKERS = ['TSLA']  
 FEATURE_TICKERS = get_feature_tickers(TARGET_TICKERS)
@@ -153,7 +153,7 @@ In the code below, we seek feature subsets that perform well when fitting multip
 
 **Lesson**: `linselect` can be used to find minimal feature subsets useful for fitting multiple targets. The optimal, "perfect score" COD in this case is equal to number of targets (three in our example).
 
-```  
+```python 
 # Define X, y variables  
 TARGET_TICKERS = ['TSLA', 'ADP', 'NFLX']  
 FEATURE_TICKERS = get_feature_tickers(TARGET_TICKERS)
@@ -183,7 +183,7 @@ Here, we seek those features that give us a best fit to / linear representation 
 
 **Lesson**: Again, a perfect COD score is equal to the number of targets. In the unsupervised case, this is also the number of features (50 in our example).
 
-```  
+```python  
 # Set X equal to full data set.  
 ALL_TICKERS = list(df.iloc[:, 1:].columns)  
 X = df[ALL_TICKERS].values
@@ -225,7 +225,7 @@ The code below carries out a single forward sweep for TSLA. Note that the `proto
 
 **Lesson**: Setting up a basic `GenSelect` call requires defining a few input parameters.
 
-```  
+```python  
 # Define X  
 X = df[ALL_TICKERS].values
 
@@ -252,7 +252,7 @@ A `GenSelect` instance always retains a summary of the best results it has seen 
 
 **Lesson**: We can carry out general search protocols using `GenSelect`'s `position` and `search` methods.
 
-```  
+```python  
 # Reposition back to the best fit of size 3 seen above.  
 s = selector.best_results[3]['s']  
 selector.position(s=s)
@@ -276,13 +276,13 @@ Below, we compare the COD values of our three classes.
 
 **Lesson**: `GenSelect` can be used to do a more thorough search than `FwdSelect` and `RevSelect`, and so can sometimes find better feature subsets.
 
-```  
+```python  
 # Get the best COD values seen for each feature set size from GenSelect search  
 gen_select_cods = []  
 for i in range(1, X.shape[1]):  
-if i not in selector.best_results:  
-break  
-gen_select_cods.append(selector.best_results[i]['cod'])
+    if i not in selector.best_results:  
+        break  
+    gen_select_cods.append(selector.best_results[i]['cod'])
 
 # Plot cod versus feature set size.  
 fig, ax = plt.subplots(figsize=(10,5))  
@@ -311,7 +311,7 @@ Below, we reposition to the best feature set of size 10 seen so far. We then app
 
 **Lesson**: We can easily access the costs associated with removing individual features from our current location. We can also access the COD gains associated with adding in new features by calling the `forward_cods` method.
 
-```  
+```python  
 # Reposition  
 s = selector.best_results[10]['s']  
 selector.position(s=s)

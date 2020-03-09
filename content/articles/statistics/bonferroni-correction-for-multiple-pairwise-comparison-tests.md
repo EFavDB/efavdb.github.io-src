@@ -8,9 +8,9 @@ Attachments: wp-content/uploads/2016/03/Untitled-2.jpg, wp-content/uploads/2016/
 
 A common task in applied statistics is the pairwise comparison of the responses of $N$ treatment groups in some statistical test -- the goal being to decide which pairs exhibit differences that are statistically significant. Now, because there is one comparison being made for each pairing, a naive application of the Bonferroni correction analysis suggests that one should set the individual pairwise test sizes to $\alpha_i \to \alpha_f/{N \choose 2}$ in order to obtain a desired family-wise type 1 error rate of $\alpha_f$. Indeed, this solution is suggested by many texts. However, implicit in the Bonferroni analysis is the assumption that the comparisons being made are each mutually independent. This is not the case here, and we show that as a consequence the naive approach often returns type 1 error rates far from those desired. We provide adjusted formulas that allow for error-free Bonferroni-like corrections to be made.
 
-[edit (7/4/2016): After posting this article, I've since found that the method we suggest here is related to / is a generalization of Tukey's range test -- see [here](https://en.wikipedia.org/wiki/Tukey%27s_range_test).]
+(edit (7/4/2016): After posting this article, I've since found that the method we suggest here is related to / is a generalization of Tukey's range test -- see [here](https://en.wikipedia.org/wiki/Tukey%27s_range_test).)
 
-[edit (6/11/2018): I've added the notebook used below to our Github, [here](https://github.com/EFavDB/improved_bonferroni)]
+(edit (6/11/2018): I've added the notebook used below to our Github, [here](https://github.com/EFavDB/improved_bonferroni))
 
 
 

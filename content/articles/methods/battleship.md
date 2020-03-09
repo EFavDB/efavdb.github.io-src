@@ -45,7 +45,9 @@ x_{0,i} = \begin{cases}
 In our example figure below, we have five input neurons, so the board is of size five. The first three neurons have value $-1$ implying we have not yet bombed those grid points. Finally, the last two are $+1$ and $0$, respectively, implying that a ship does sit at the fourth site, but not at the fifth.
 
 
-[caption width="482" caption="Our policy network: A function that maps an encoding of our knowledge of our opponent's board to optimal next action (site bombing) probabilities."][iframe src="{static}/wp-content/uploads/2016/10/nn.jpg" width="90%" height="235"][/caption]
+
+[![network]({static}/wp-content/uploads/2016/10/nn.jpg)]({static}/wp-content/uploads/2016/10/nn.jpg)
+
 
 Note that in the output layer of the policy network shown, the first three values are labeled with log probabilities. These values correspond to the probabilities that we should next bomb each of these indices, respectively. We cannot re-bomb the fourth and fifth grid points, so although the network may output some values to these neurons, we'll ignore them.
 
@@ -91,7 +93,7 @@ That's it for the basics of deep, policy-gradient RL. We now turn to our python 
 
 Load the needed packages.
 
-```
+```python
 import tensorflow as tf
 import numpy as np
 %matplotlib inline
@@ -99,7 +101,7 @@ import pylab
 ```
 
 Define our network -- a fully connected, three layer system. The code below is mostly tensorflow boilerplate that can be picked up by going through their first tutorials. The one unusual thing is that we have our learning rate in (26) set to the placeholder value (9). This will allow us to vary our step sizes with observed rewards captured below.
-```
+```python
 BOARD_SIZE = 10
 SHIP_SIZE = 3
 
@@ -111,19 +113,19 @@ labels = tf.placeholder(tf.int64)
 learning_rate = tf.placeholder(tf.float32, shape=[])
 # Generate hidden layer
 W1 = tf.Variable(tf.truncated_normal([BOARD_SIZE, hidden_units],
-stddev=0.1 / np.sqrt(float(BOARD_SIZE))))
+    stddev=0.1 / np.sqrt(float(BOARD_SIZE))))
 b1 = tf.Variable(tf.zeros([1, hidden_units]))
 h1 = tf.tanh(tf.matmul(input_positions, W1) + b1)
 # Second layer -- linear classifier for action logits
 W2 = tf.Variable(tf.truncated_normal([hidden_units, output_units],
-stddev=0.1 / np.sqrt(float(hidden_units))))
+    stddev=0.1 / np.sqrt(float(hidden_units))))
 b2 = tf.Variable(tf.zeros([1, output_units]))
 logits = tf.matmul(h1, W2) + b2
 probabilities = tf.nn.softmax(logits)
 
 init = tf.initialize_all_variables()
 cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
-logits, labels, name='xentropy')
+    logits, labels, name='xentropy')
 train_step = tf.train.GradientDescentOptimizer(
 learning_rate=learning_rate).minimize(cross_entropy)
 # Start TF session
@@ -133,66 +135,66 @@ sess.run(init)
 
 Next, we define a method that will allow us to play a game using our network. The TRAINING variable specifies whether or not to take the optimal moves or to select moves stochastically. Note that the method returns a set of logs that record the game proceedings. These are needed for training.
 
-```
+```python
 TRAINING = True
 def play_game(training=TRAINING):
-""" Play game of battleship using network."""
-# Select random location for ship
-ship_left = np.random.randint(BOARD_SIZE - SHIP_SIZE + 1)
-ship_positions = set(range(ship_left, ship_left + SHIP_SIZE))
-# Initialize logs for game
-board_position_log = []
-action_log = []
-hit_log = []
-# Play through game
-current_board = [[-1 for i in range(BOARD_SIZE)]]
-while sum(hit_log) < SHIP_SIZE:
-board_position_log.append([[i for i in current_board[0]]])
-probs = sess.run([probabilities], feed_dict={input_positions:current_board})[0][0]
-probs = [p * (index not in action_log) for index, p in enumerate(probs)]
-probs = [p / sum(probs) for p in probs]
-if training == True:
-bomb_index = np.random.choice(BOARD_SIZE, p=probs)
-else:
-bomb_index = np.argmax(probs)
-# update board, logs
-hit_log.append(1 * (bomb_index in ship_positions))
-current_board[0][bomb_index] = 1 * (bomb_index in ship_positions)
-action_log.append(bomb_index)
-return board_position_log, action_log, hit_log
+    """ Play game of battleship using network."""
+    # Select random location for ship
+    ship_left = np.random.randint(BOARD_SIZE - SHIP_SIZE + 1)
+    ship_positions = set(range(ship_left, ship_left + SHIP_SIZE))
+    # Initialize logs for game
+    board_position_log = []
+    action_log = []
+    hit_log = []
+    # Play through game
+    current_board = [[-1 for i in range(BOARD_SIZE)]]
+    while sum(hit_log) < SHIP_SIZE:
+        board_position_log.append([[i for i in current_board[0]]])
+        probs = sess.run([probabilities], feed_dict={input_positions:current_board})[0][0]
+        probs = [p * (index not in action_log) for index, p in enumerate(probs)]
+        probs = [p / sum(probs) for p in probs]
+        if training == True:
+            bomb_index = np.random.choice(BOARD_SIZE, p=probs)
+        else:
+            bomb_index = np.argmax(probs)
+        # update board, logs
+        hit_log.append(1 * (bomb_index in ship_positions))
+        current_board[0][bomb_index] = 1 * (bomb_index in ship_positions)
+        action_log.append(bomb_index)
+    return board_position_log, action_log, hit_log
 ```
 
 Our implementation of the rewards function (\ref{rewards}):
 
-```
+```python
 def rewards_calculator(hit_log, gamma=0.5):
-""" Discounted sum of future hits over trajectory"""
-hit_log_weighted = [(item -
-float(SHIP_SIZE - sum(hit_log[:index])) / float(BOARD_SIZE - index)) * (
-gamma ** index) for index, item in enumerate(hit_log)]
-return [((gamma) ** (-i)) * sum(hit_log_weighted[i:]) for i in range(len(hit_log))]
+    """ Discounted sum of future hits over trajectory"""
+    hit_log_weighted = [(item -
+    float(SHIP_SIZE - sum(hit_log[:index])) / float(BOARD_SIZE - index)) * (
+        gamma ** index) for index, item in enumerate(hit_log)]
+    return [((gamma) ** (-i)) * sum(hit_log_weighted[i:]) for i in range(len(hit_log))]
 ```
 
 Finally, our training loop. Here, we iteratively play through many games, scoring after each game, then adjusting parameters -- setting the placeholder learning rate equal to ALPHA times the rewards captured.
 
-```
+```python
 game_lengths = []
 TRAINING = True # Boolean specifies training mode
 ALPHA = 0.06 # step size
 
 for game in range(10000):
-board_position_log, action_log, hit_log = play_game(training=TRAINING)
-game_lengths.append(len(action_log))
-rewards_log = rewards_calculator(hit_log)
-for reward, current_board, action in zip(rewards_log, board_position_log, action_log):
-# Take step along gradient
-if TRAINING:
-sess.run([train_step],
-feed_dict={input_positions:current_board, labels:[action], learning_rate:ALPHA * reward})
+    board_position_log, action_log, hit_log = play_game(training=TRAINING)
+    game_lengths.append(len(action_log))
+    rewards_log = rewards_calculator(hit_log)
+    for reward, current_board, action in zip(rewards_log, board_position_log, action_log):
+        # Take step along gradient
+        if TRAINING:
+            sess.run([train_step],
+                feed_dict={input_positions:current_board, labels:[action], learning_rate:ALPHA * reward})
 ```
 
 Running this last cell, we see that the training works! The following is an example trace from the play_game() method, with the variable TRAINING set to False. This illustrates an intelligent move selection process.
-```
+```python
 # Example game trace output
 ([[[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]],
 [[-1, -1, 0, -1, -1, -1, -1, -1, -1, -1]],

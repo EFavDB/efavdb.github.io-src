@@ -16,26 +16,15 @@ Here, we introduce -- and outline a solution to -- a generalized SIR model for i
 #### **The model**
 
 The equations describing our generalized SIR model are
-$$\tag{1} \label{eq1}
-\begin{equation}
-\dot{S}_{U} = - b_{U} S_{U} I
-\end{equation}
-$$
-$$\tag{2} \label{eq2}
-\begin{equation}
-\dot{S}_{U} = - b_{U} S_{U} I
-\end{equation}
-$$
-$$\tag{3} \label{eq3}
-\begin{equation}
-\dot{R} = k I
-\end{equation}
-$$
-$$\tag{4} \label{eq4}
-\begin{equation}
-1 = I + R + S_U + S_V
-\end{equation}
-$$
+\begin{eqnarray}\tag{1} \label{eq1}
+\dot{S}_{U} &=& - b_{U} S_{U} I \\
+\tag{2} \label{eq2}
+\dot{S}_{U} &=& - b_{U} S_{U} I \\
+\tag{3} \label{eq3}
+\dot{R} &=& k I \\
+\tag{4} \label{eq4}
+1 &=& I + R + S_U + S_V
+\end{eqnarray}
 
 Here, $S_{U}$, $S_{V}$, $I$, and $R$ are population fractions corresponding to those unvaccinated and as yet uninfected, vaccinated and as yet uninfected, currently infected and contagious, and once contagious but no longer (recovered, perhaps), respectively. The first two equations above are instances of the [law of mass action](http://en.wikipedia.org/wiki/Law_of_mass_action). They approximate the infection rates as being proportional to the rates of susceptible-infected individual encounters. We refer to $b_{U}$ and $b_{V}$ here as the *infection rate parameters* of the two subpopulations. The third equation above approximates the dynamics of recovery: The form chosen supposes that an infected individual has a fixed probability of returning to health each day. We will refer to $k$ as the *recovery rate parameter*. The final equation above simply states that the subpopulation fractions have to always sum to one.
 
@@ -100,21 +89,21 @@ Below, we provide code that can be used to integrate (\ref{eq1}-\ref{eq4}). The 
 #Solving the SIR model for infectious disease. JSL 2/18/2015
 import math
 
-ccn = 3 #\`\`close contact number" = people per day
+ccn = 3 # "close contact number" = people per day
 #interacting closely with typical infected person
 
-k = 1./5 #Rate of 'recovery' [1].
-b1 = ccn*0.9 #Approximate infection rate un-vaccinated [3].
-b2 = ccn*0.01 #Approximate infection rate un-vaccinated [4].
+k = 1./5       # Rate of 'recovery' [1].
+b1 = ccn*0.9   # Approximate infection rate un-vaccinated [3].
+b2 = ccn*0.01  # Approximate infection rate un-vaccinated [4].
 
 #Initial conditions (fraction of people in each category)
-I0 = 0.001 #initial population fraction infected.
-S10 = 0.2 #population fraction unvaccinated.
-S20 = 1 - I0 - S10 #population fraction vacccinated.
-R0 = 0.0 #intial recovered fraction.
+I0 = 0.001          # initial population fraction infected.
+S10 = 0.2           # population fraction unvaccinated.
+S20 = 1 - I0 - S10  # population fraction vacccinated.
+R0 = 0.0            # intial recovered fraction.
 
-dt = 0.01 #integration time step
-days = 100 #total days considered
+dt = 0.01           # integration time step
+days = 100          # total days considered
 
 I = [I0 for i in range(int(days/dt))]
 S1 = [S10 for i in range(int(days/dt))]
@@ -122,12 +111,11 @@ S2 = [S20 for i in range(int(days/dt))]
 R = [R0 for i in range(int(days/dt))]
 
 for i in range(1,int(days/dt)):
-
-	S1[i] = S1[i-1] - b1 * S1[i-1] * I[i-1] * dt
-	S2[i] = S2[i-1] - b2 * S2[i-1] * I[i-1] * dt
-	I[i] = I[i-1] + (b1 * S1[i-1] * I[i-1] + \
-	b2 * S2[i-1] * I[i-1] - k*I[i-1] ) * dt
-	R[i] = R[i-1] + k * I[i-1] * dt
+    S1[i] = S1[i-1] - b1 * S1[i-1] * I[i-1] * dt
+    S2[i] = S2[i-1] - b2 * S2[i-1] * I[i-1] * dt
+    I[i] = I[i-1] + (b1 * S1[i-1] * I[i-1] + \
+    b2 * S2[i-1] * I[i-1] - k*I[i-1] ) * dt
+    R[i] = R[i-1] + k * I[i-1] * dt
 
 time = [dt * i for i in range(0, int(days/dt))]
 
@@ -136,21 +124,22 @@ plt.plot(time, I, color = 'red')
 plt.plot(time, S1, color = 'blue')
 plt.plot(time, S2, color = 'green')
 plt.plot(time, R, color = 'black')
-plt.plot(time[:1400],[I0* math.exp((b1 *S10 + b2* S20 - k)*t) \
-for t in time[:1400]],color = 'purple')
+plt.plot(
+    time[:1400],
+    [I0* math.exp((b1 *S10 + b2* S20 - k)*t) for t in time[:1400]],
+    color='purple')
 plt.axis([0, 100, 10**(-4),1])
 plt.yscale('log')
 plt.xlabel('time [days]')
 plt.ylabel('population %\'s')
 plt.show()
 
-#[1] Measles patients are contagious for eight days
+# [1] Measles patients are contagious for eight days
 # four of which are before symptoms appear. [2]
-#[2] http://www.cdc.gov/measles/about/transmission.html
-#[3] Assume infected have close contact with five people/day.
+# [2] http://www.cdc.gov/measles/about/transmission.html
+# [3] Assume infected have close contact with five people/day.
 # 90% of the un-vaccinated get sick in such situations.
-#[4] Single vaccination gives ~95% immunity rate [5]. Many
+# [4] Single vaccination gives ~95% immunity rate [5]. Many
 # have two doses, which drops rate to very low.
-#[5] http://www.cdc.gov/mmwr/preview/mmwrhtml/00053391.htm
-
+# [5] http://www.cdc.gov/mmwr/preview/mmwrhtml/00053391.htm
 ```
