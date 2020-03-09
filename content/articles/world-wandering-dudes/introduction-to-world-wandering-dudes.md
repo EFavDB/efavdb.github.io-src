@@ -49,7 +49,7 @@ More to come on extensions of this project and understanding the math behind it 
 
 The github repository is [here](https://github.com/dustinmcintosh/world_wandering_dudes).
 
-You’ll need git and a github account, python 3, and a bunch of the usual python packages for data science.
+You’ll need a bunch of the usual python packages for data science.
 
 ```bash
 git clone https://github.com/dustinmcintosh/world_wandering_dudes
