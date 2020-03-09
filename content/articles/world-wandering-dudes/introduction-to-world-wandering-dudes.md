@@ -45,7 +45,7 @@ Some phenomenological notes on this particular case (more details on the math be
 
 More to come on extensions of this project and understanding the math behind it in the future.
 
-# Check it out yourself
+###Check it out yourself
 
 The github repository is [here](https://github.com/dustinmcintosh/world_wandering_dudes).
 
