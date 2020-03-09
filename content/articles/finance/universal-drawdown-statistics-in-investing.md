@@ -44,22 +44,22 @@ Numerical examples in python
 
 Here, we will consider two different kinds of random walk -- one where the steps are always the same size, but there is bias in the forward direction, and the other where the steps are taken from a Gaussian or normal distribution. The code below carries out a simulated investing scenario over one million steps.
 
-```
+```python
 
 import numpy as np
 
 def binary(mu):
-"""
-Return either mu - 1 or mu + 1 with equal probability.
-Note unit std.
-"""
-return np.random.choice([-1, 1]) + mu
+    """
+    Return either mu - 1 or mu + 1 with equal probability.
+    Note unit std.
+    """
+    return np.random.choice([-1, 1]) + mu
 
 def normal_random_step(mu):
-"""
-Return a random unit normal with unit std.
-"""
-return np.random.randn() + mu
+    """
+    Return a random unit normal with unit std.
+    """
+    return np.random.randn() + mu
 
 # CONSTANTS
 TIME_STEPS = 10 ** 6
@@ -70,9 +70,9 @@ position = 0
 max_position_to_date = 0
 drawdowns_binary = []
 for time in range(TIME_STEPS):
-position += STEP_FUNC(MU)
-max_position_to_date = max(max_position_to_date, position)
-drawdowns_binary.append(max_position_to_date - position)
+    position += STEP_FUNC(MU)
+    max_position_to_date = max(max_position_to_date, position)
+    drawdowns_binary.append(max_position_to_date - position)
 
 # GAUSSIAN / NORMAL WALK
 STEP_FUNC = normal_random_step
@@ -80,9 +80,9 @@ position = 0
 max_position_to_date = 0
 drawdowns_normal = []
 for time in range(TIME_STEPS):
-position += STEP_FUNC(MU)
-max_position_to_date = max(max_position_to_date, position)
-drawdowns_normal.append(max_position_to_date - position)
+    position += STEP_FUNC(MU)
+    max_position_to_date = max(max_position_to_date, position)
+    drawdowns_normal.append(max_position_to_date - position)
 
 ```
 [![dd_normal]({static}/wp-content/uploads/2019/12/dd_normal.png)]({static}/wp-content/uploads/2019/12/dd_normal.png)
@@ -91,7 +91,7 @@ You can see in the code that we have a loop over steps. At each step, we append 
 
 To check whether our theoretical forms are accurate, it is useful to plot the cumulative distribution functions vs the theoretical forms -- the latter will again be exponential with the same $\alpha$ values as the probability distribution functions. It turns out that the exponent $\alpha$ that solves (\ref{dd_decay_eqn}) is always given by the universal form for a Gaussian. However, for the binary walker, we need to solve for this numerically in general. The following code snippet does this.
 
-```
+```python
 from scipy.optimize import fsolve
 
 # Solving numerically for binary case.

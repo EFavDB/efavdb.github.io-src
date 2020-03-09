@@ -15,24 +15,24 @@ The TimeMarker class
 
 In the past, whenever I needed to speed up a block of python code, the first thing I would do was import the time package, then manually insert a set of lines of the form `t1 = time.time() `, `t2 = time.time() `, etc. Then at the end, `print t2 - t1, t3 -t2, ... `, etc. This works reasonably well, but I found it annoying and time consuming to have to save each time point to a different variable name. In particular, this prevented quick copy and paste of the time marker line. I finally thought to fix it this evening: Behold the `TimeMarker` class, which solves this problem for me:
 
-```  
+```python  
 import time
 
 class TimeMarker():
 
 def __init__(self):  
-self.markers = []
+    self.markers = []
 
 def mark(self):  
-self.markers.append(time.time())
+    self.markers.append(time.time())
 
 def print_markers(self):  
-for pair in zip(self.markers, self.markers[1:]):  
-print pair[1] - pair[0]  
+    for pair in zip(self.markers, self.markers[1:]):  
+    print pair[1] - pair[0]  
 ```
 
 Here is a simple code example:  
-```  
+```python  
 tm = TimeMarker()
 
 tm.mark()  

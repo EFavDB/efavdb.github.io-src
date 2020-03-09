@@ -48,11 +48,11 @@ $$\tag{3}\label{beta}
 P(p) = \tilde{\mathcal{N}} p^a (1-p)^b.
 $$
 Here, $\tilde{\mathcal{N}}$ is a normalization factor and $a$ and $b$ are some constants (we suggest methods for choosing their values in the discussion section). The function $P(p)$ specifies an initial guess -- in the absence of any reviews for an item -- for what we think the probability is that it will have up-vote rate $p$. If item $i$ actually has been reviewed, we can update our guess for its distribution using [Bayes' rule](https://en.wikipedia.org/wiki/Bayes'_theorem):
-$$\begin{align} \tag{4} \label{BR}
+$$\begin{align} \tag{4} \label{bayes_rule}
 P(p \vert n_i(1), n_i(0)) =\frac{ P( n_i(1), n_i(0) \vert p ) P(p)}{P(n_i(1), n_i(0))} = \mathcal{N} p^{n_i(1)+a}(1-p)^{n_i(0)+b}.
 \end{align}
 $$
-Here, we have evaluated $ P( n(1), n(0) \vert p )$ using the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution), we've plugged in (\ref{beta}) for $P(p)$, and we've collected all $p$-independent factors into the new normalization factor $\mathcal{N}$. The formula (\ref{BR}) provides the basis for the three ranking methods discussed below.
+Here, we have evaluated $ P( n(1), n(0) \vert p )$ using the [binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution), we've plugged in (\ref{beta}) for $P(p)$, and we've collected all $p$-independent factors into the new normalization factor $\mathcal{N}$. The formula (\ref{bayes_rule}) provides the basis for the three ranking methods discussed below.
 
 ### Three Bayesian ranking systems
 
@@ -64,7 +64,7 @@ It is a simple matter to write down a formal expression for the probability of a
 $$
 P(p_1 > p_2) = \int_0^1 dp_1 \int_0^{p_1} dp_2 P(p_1) P(p_2). \tag{5} \label{int}
 $$
-Plugging in (\ref{BR}) for the $P(p_i)$'s, this can be evaluated numerically. Evaluating the probability for the opposite ordering, we can then choose that which is most likely to be correct.
+Plugging in (\ref{bayes_rule}) for the $P(p_i)$'s, this can be evaluated numerically. Evaluating the probability for the opposite ordering, we can then choose that which is most likely to be correct.
 
 *$\bullet$ Pros:* Approach directly optimizes for the object we're interested in, the ranking -- very appealing!
 
@@ -74,7 +74,7 @@ Plugging in (\ref{BR}) for the $P(p_i)$'s, this can be evaluated numerically. Ev
 
 **Bayesian method 2:** Rank item $i$ by its median $p$-value.
 
-Sorting by an item score provides an approach that will scale well even at large $N$. A natural score to consider is an item's median $p$-value: that which it has a $50/50$ shot of being larger (or smaller) than. Using (\ref{BR}), this satisfies
+Sorting by an item score provides an approach that will scale well even at large $N$. A natural score to consider is an item's median $p$-value: that which it has a $50/50$ shot of being larger (or smaller) than. Using (\ref{bayes_rule}), this satisfies
 $$\tag{6}\label{m2}
 \frac{\int_0^{p_{med}} p^{n_i(1)+a}(1-p)^{n_i(0)+b} dp}{\int_0^{1} p^{n_i(1)+a}(1-p)^{n_i(0)+b} dp} = 1/2.
 $$
@@ -88,7 +88,7 @@ The integral at left actually has a name -- it's called the [incomplete beta fun
 
 **Bayesian method 3:** Rank item $i$ by its most likely (aka [MAP](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation)) $p$-value.
 
-The most likely $p$-value for each item provides another natural score function. To find this, we simply set the derivative of (\ref{BR}) to zero,
+The most likely $p$-value for each item provides another natural score function. To find this, we simply set the derivative of (\ref{bayes_rule}) to zero,
 $$
 \begin{align}
 \partial_p p^{n_i(1)+a}(1-p)^{n_i(0)+b} &= \left (\frac{n_i(1)+a}{p} + \frac{n_i(0)+b}{1-p} \right ) p^{n_i(1)+a}(1-p)^{n_i(0)+b} = 0 \\
@@ -105,7 +105,7 @@ This form $\tilde{p}$ is interesting because it resembles the sample mean $\hat{
 
 We consider each of the four ranking methods we've discussed here to be interesting and useful -- the three Bayesian ranking systems, as well as [EM's original system](http://www.evanmiller.org/how-not-to-sort-by-average-rating.html), which works well when one only needs to protect against false positives (again, we note that Bayesian method 2 was also considered by EM in a [follow-up](http://www.evanmiller.org/bayesian-average-ratings.html) to his original post). In practice, the three Bayesian approaches will each tend to return similar, but sometimes slightly different rankings. With regards to "correctness", the essential point is that each method is well-motivated and avoids the common pitfalls. However, the final method is the easiest to apply, so it might be the most practical.
 
-To apply the Bayesian methods, one must specify the $a$ and $b$ values defining the prior, (\ref{BR}). We suggest three methods for choosing these: 1) Choose these values to provide a good approximation to your actual distribution, fitting only to items for which you have good statistics. 2) A/B test to get the ranking that optimizes some quantity you are interested in, e.g. clicks. 3) Heuristics: For example, if simplicity is key, choose $a= b =1$, which biases towards an up-vote rate of $0.5$. If a conservative estimate is desired for new items, one can set $b$ larger than $a$. Finally, if you want to raise the number of actual votes required before the sample rates dominate, simply increase the values of $a$ and $b$ accordingly.
+To apply the Bayesian methods, one must specify the $a$ and $b$ values defining the prior, (\ref{bayes_rule}). We suggest three methods for choosing these: 1) Choose these values to provide a good approximation to your actual distribution, fitting only to items for which you have good statistics. 2) A/B test to get the ranking that optimizes some quantity you are interested in, e.g. clicks. 3) Heuristics: For example, if simplicity is key, choose $a= b =1$, which biases towards an up-vote rate of $0.5$. If a conservative estimate is desired for new items, one can set $b$ larger than $a$. Finally, if you want to raise the number of actual votes required before the sample rates dominate, simply increase the values of $a$ and $b$ accordingly.
 
 To conclude, we present some example output in the table below. We show values for the Wilson score $p_W$, with $z_{\alpha/2}$ set to $1.281$ in (\ref{emsol}) (the value [reddit uses](https://github.com/reddit/reddit/blob/62db2373f2555df17ebeb13968e243fccfbeff5f/r2/r2/lib/db/_sorts.pyx)), and the seed score $\tilde{p}$, with $a$ and $b$ set to $1$ in (\ref{final}). Notice that the two scores are in near-agreement for the last item shown, which has already accumulated a fair number of votes. However, $p_W$ is significantly lower than $\tilde{p}$ for each of the first three items. For example, the third has an up-vote rate of $66%$, but is only given a Wilson score of $0.32$: This means that it would be ranked below any mature item having an up-vote rate at least this high -- including fairly unpopular items liked by only one in three! This observation explains why it is nearly impossible to have new comments noticed on a reddit thread that has already hit the front page. Were reddit to move to a ranking system that were less pessimistic of new comments, its mature threads might remain dynamic.
 

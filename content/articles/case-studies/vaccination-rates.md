@@ -144,40 +144,39 @@ MMR child house measles state stratum weights weights_v
 
 We now have our data cleaned and ready to go. However, some additional work needs to be done before we can evaluate various statistics of interest. This is because the CDC data set is not a random sample, but instead a [stratified sample](http://en.wikipedia.org/wiki/Stratified_sampling) -- i.e. one geared towards obtaining reasonable accuracy among many minority groups, and not simply among the averaged population. The weight factors are the key to extracting averaged statistics from this data, as explained in the user guide. For example, the average is essentially just a weighted average, and the standard error can be calculated using a Taylor-Series approach. The easiest way to apply this to our data is to make use of custom functions. Once constructed, these can then be easily applied to different DataFrame groupings.
 
-```
-#Lets define a function to caluclate the vaccination rate
-#for the group we are looking at, and the standard error
+```python
+# Lets define a function to caluclate the vaccination rate
+# for the group we are looking at, and the standard error
 def calculate_rate_and_error(data):
-#The rate is calucated useing a weighted average
-rate = (data.MMR * data.weights_v).sum() / data.weights_v.sum()
-
-#The error is calculated using the formula from the data sheet
-data['Z'] = data.weights_v*(data.MMR-rate) / data.weights_v.sum()
-zhi = data.groupby(['stratum','house']).agg(np.sum).Z
-zh = zhi.groupby(level='stratum').sum()
-#Number of households per stratum
-nk = zhi.groupby(level='stratum').count()
-zh = zh/nk
-
-stratum_labels = zh.index.values
-var=np.zeros(len(nk))
-ind = 0
-for a in stratum_labels:
-delta2 = (zhi.loc[a] - zh[a])**2
-delta2 = delta2.sum()
-var[ind]=(nk[a]/(nk[a]-1.)) * delta2
-ind += 1
-
-standard_error = np.sqrt(sum(var))
-return rate, standard_error
-
+    # The rate is calucated useing a weighted average
+    rate = (data.MMR * data.weights_v).sum() / data.weights_v.sum()
+    
+    # The error is calculated using the formula from the data sheet
+    data['Z'] = data.weights_v*(data.MMR-rate) / data.weights_v.sum()
+    zhi = data.groupby(['stratum','house']).agg(np.sum).Z
+    zh = zhi.groupby(level='stratum').sum()
+    # Number of households per stratum
+    nk = zhi.groupby(level='stratum').count()
+    zh = zh/nk
+    
+    stratum_labels = zh.index.values
+    var=np.zeros(len(nk))
+    ind = 0
+    for a in stratum_labels:
+        delta2 = (zhi.loc[a] - zh[a])**2
+        delta2 = delta2.sum()
+        var[ind]=(nk[a]/(nk[a]-1.)) * delta2
+        ind += 1
+    
+    standard_error = np.sqrt(sum(var))
+    return rate, standard_error
 ```
 
 If we apply this function to our whole DataFrame, we will get the national MMR vaccination rate and standard error.
 
 ```
 calculate_rate_and_error(data)
-&gt;&gt;(0.90767842904073048, 0.0043003916851249895)
+# output: (0.90767842904073048, 0.0043003916851249895)
 ```
 
 ##### **Data segmentation -- stats by group**
@@ -185,40 +184,40 @@ calculate_rate_and_error(data)
 But we can also do more! If we first apply the DateFrame's groupby method, we can split the data along any feature of interest. For example, below we split the data along the state column. This generates subgroups for each state. Next, we use the apply method to run our custom function on all the different groups of data. We then clean up the output, unzip the tuple and generate a graph showing the MMR vaccination rate by state. It should be evident that with only modest effort, one can modify this code to group the data in many varying ways -- all that needs to be done is to adjust the arguments of the groupby command.
 
 ```python
-#Now that we have our function it is easy to calculate values
-#for any group.
+# Now that we have our function it is easy to calculate values
+# for any group.
 
-#To examine rates by state, we will group by state
+# To examine rates by state, we will group by state
 grouped=data.groupby('state')
 
-#We then apply our function to the grouped data, and save
-#it as a data frame
+# We then apply our function to the grouped data, and save
+# it as a data frame
 result = pd.DataFrame(grouped.apply(calculate_rate_and_error))
 
-#To conver the results from:
-#state
-#Alabama (0.931323319509, 0.017837146103)
-#Alaska (0.862202058663, 0.0257844894834)
-#to
+# To conver the results from:
+# state
+# Alabama (0.931323319509, 0.017837146103)
+# Alaska (0.862202058663, 0.0257844894834)
+# to
 # Rate Standard Error
-#state
-#Alabama 0.931323 0.017837
-#Alaska 0.862202 0.025784
-#We use the following code
+# state
+# Alabama 0.931323 0.017837
+# Alaska 0.862202 0.025784
+# We use the following code
 
 new_col_list = ['Rate','Standard Error']
 for n,col in enumerate(new_col_list):
 	result[col] = result[0].apply(lambda x: x[n])
 	result.drop(0, axis=1, inplace=True)
 
-#Make a sorted copy of the data
+# Make a sorted copy of the data
 sorted = result.sort_index(by='Rate', ascending=True)
 result['Rate']=result['Rate']*100
 
-#Save a csv file if wanted
+# Save a csv file if wanted
 result.to_csv('Rate 2012.csv', float_format='%5.2f')
 
-#Generate an online plot
+# Generate an online plot
 data = Data([
 	Bar(
 		y=sorted.index.values ,

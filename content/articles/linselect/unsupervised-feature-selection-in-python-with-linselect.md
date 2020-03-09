@@ -41,7 +41,7 @@ In this section, we apply our algorithms to a prepared data set of one year's wo
 
 The code below loads our data, smooths it over a running 30 day window (to remove idiosyncratic noise that is not of much interest), prints out the first three rows, compresses the data using our two methods, and then finally prints out the first five PCA components and the top five selected stocks.
 
-```
+```python
 import pandas as pd
 import numpy as np
 from sklearn.decomposition import PCA
@@ -77,7 +77,7 @@ print TICKERS[selector.ordered_features][:KEEP]
 
 The output of the above print statements:
 
-```
+```python
 # The first three rows of the data frame:
 date AAPL ADBE ADP ADSK AMAT AMZN \
 30 2017-05-31 0.002821 0.002994 0.000248 0.009001 0.006451 0.003237
@@ -119,7 +119,7 @@ Whereas the PCA components directly encode the collective, correlated fluctuatio
 
 To decide how many compression components are needed for a given application, one need only consider the variance explained as a function of the compression dimension -- this is equal to one minus the average squared error of the projections that result from the compressions (see footnote [4] for a visualization of the error that results from compression here). In the two python packages we're using, one can access these values as follows:
 
-```
+```python
 >> print np.cumsum(pca.explained_variance_ratio_)
 [ 0.223 0.367 0.493 0.598 0.696]
 
@@ -163,7 +163,7 @@ Labour force participation(male) pop. %) 74.4
 
 Comparing each of the 19 countries across these 17 fields would be a complicated task. However, by considering a plot like Fig. 3 for this data set, we learned that many of these fields are highly correlated (plot not shown). This means that we can indeed get a reasonable, approximate understanding of the relationship between these economies by compressing down to two dimensions and plotting the result. The code to obtain these compressions follows:
 
-```
+```python
 from linselect import FwdSelect
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler

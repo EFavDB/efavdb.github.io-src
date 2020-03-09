@@ -43,7 +43,7 @@ Next for $\lambda$, note that a typical car is about 10 feet long and a mile is 
 \lambda \approx 50 \ [cars / mile].  
 \end{eqnarray}  
 Plugging (\ref{4}) and (\ref{5}) into (\ref{3}), we obtain  
-\begin{eqnarray}  
+\begin{eqnarray}  \tag{6}
 v \lesssim \frac{1}{0.00028 * 50} \approx 70\ [mile / hour],  
 \end{eqnarray}  
 quite close to our typical highway traffic speeds (and speed limits).

@@ -31,7 +31,7 @@ Individual trees have the important benefit of being easy to interpret and visua
 #### **Regression**
 
 Regression tree construction typically proceeds by attempting to minimize a squared error cost function: Given a training set $T \equiv \{t_j = (\textbf{f}_j, y_j) \}$ of feature vectors and corresponding real-valued labels, this is given by  
-\begin{eqnarray}\label{treecost}  
+\begin{eqnarray}\label{treecost} \tag{1} 
 J = \sum_{R_i} \sum_{t_j \in R_i } \left ( \overline{y}_{R_i} - y_j \right)^2,  
 \end{eqnarray}  
 where $\overline{y}_{R_i}$ is the mean training label in region $R_i$. This mean training label is the hypothesis returned by the tree for all points in $R_i$, including its training examples. Therefore, (\ref{treecost}) is a measure of the accuracy of the tree as applied to the training set.
@@ -46,9 +46,9 @@ Unfortunately, actually minimizing (\ref{treecost}) over any large subset of tre
 #### **Classification**
 
 In classification problems, the training labels take on a discrete set of values, often having no numerical significance. This means that a squared-error cost function, like that in (\ref{treecost}) -- cannot be directly applied as a useful accuracy score for guiding classification tree construction. Instead, three other cost functions are often considered, each providing a different measure of the class purity of the different regions -- that is, they attempt to measure whether or not a given region consists of training examples that are mostly of the same class. These three measures are the error rate ($E$), the Gini index ($G$), and the cross-entropy ($CE$): If we write $N_i$ for the number of training examples in region $R_i$, and $p_{i,j}$ for the fraction of these that have class label $j$, then these three cost functions are given by  
-\begin{eqnarray}\label{errorrate}  
-E &=& \sum_{R_i} N_i \times \left ( 1 - \max_{j} p_{i,j}\right) \ \label{gini}  
-G &=& \sum_{R_i, j}N_i \times p_{i,j}\left ( 1 - p_{i,j} \right) \ \label{crossentropy}  
+\begin{eqnarray}\label{errorrate}  \tag{2} 
+E &=& \sum_{R_i} N_i \times \left ( 1 - \max_{j} p_{i,j}\right) \\ \label{gini} \tag{3} 
+G &=& \sum_{R_i, j}N_i \times p_{i,j}\left ( 1 - p_{i,j} \right) \\ \label{crossentropy} \tag{4} 
 CE &=& - \sum_{R_i, j} N_i \times p_{i,j} \log p_{i,j}.  
 \end{eqnarray}  
 Each of the summands here are plotted in Fig. 3 for the special case of binary classification (two labels only). Each is unfavorably maximized at the most mixed state, where $p_1 = 0.5$, and minimized in the pure states, where $p_1 = 0,1$.
@@ -69,7 +69,7 @@ Another approach to alleviating the high-variance, over-fitting issue associated
 #### **Bagging and random forests**
 
 *Bootstrap aggregation*, or \`\`bagging", provides one common method for constructing ensemble tree models. In this approach, one samples with replacement to obtain $k$ separate bootstrapped training sets from the original training data. To obtain a bootstrapped subsample of a data set of size $N$, one draws randomly from the set $N$ times with replacement. Because one samples with replacement, each bootstrapped set can contain multiple copies of some examples. The average number of unique examples in a given bootstrap is simply $N$ times the probability that any individual example makes it into the training set. This is  
-\begin{eqnarray}  
+\begin{eqnarray} \tag{5} 
 N \left [ 1 - \left(\frac{N-1}{N} \right)^N \right ] \approx N (1 - e^{-1}) \approx 0.63N,  
 \end{eqnarray}  
 where the latter forms are accurate in the large $N$ limit. Once the bootstrapped data sets are constructed, an individual decision tree is fit to each, and an average or majority rule vote over the full set is used to provide the final prediction.
@@ -81,7 +81,7 @@ One nice thing about bagging methods, in general, is that one can train on the e
 #### **Boosting**
 
 The final method we'll discuss is *boosting*, which again consists of a set of individual trees that collectively determine the ultimate prediction returned by the model. However, in the boosting scenario, one fits each of the trees to the full data set, rather than to a small sample. Because they are fit to the full data set, these trees are usually restricted to being only two or three levels deep, so as to avoid over-fitting. Further, the individual trees in a boosted forest are constructed sequentially. For instance, in regression, the process typically works as follows: In the first step, a tree is fit to the full, original training set $T = \{t_i = (\textbf{f}_i, y_i)\}$. Next, a second tree is constructed on the same training feature vectors, but with the original labels replaced by residuals. These residuals are obtained by subtracting out a scaled version of the predictions $\hat{y}^1$ returned by the first tree,  
-\begin{eqnarray}  
+\begin{eqnarray} \tag{6} 
 y_i^{(1)} \equiv y_i - \alpha \hat{y}_i^1.  
 \end{eqnarray}  
 Here, $\alpha$ is the scaling factor, or learning rate -- choosing its value small results in a gradual learning process, which often leads to very good predictions. Once the second tree is constructed, a third tree is fit to the new residuals, obtained by subtracting out the scaled hypothesis of the second tree, $y_i^{(2)} \equiv y_i^{(1)} - \alpha \hat{y}_i^2$. The process repeats until $m$ trees are constructed, with their $\alpha$-scaled hypotheses summing to a good estimate to the underlying function.
@@ -116,7 +116,7 @@ If a forest of $N$ trees is to be constructed, each will require $O(k \times n \
 
 In this note, we've quickly reviewed the basics of tree-based models and their constructions. Looking back over what we have learned, we can now consider some of the reasons why tree-based methods are so popular among practitioners. First -- and very importantly -- individual trees are often useful for gaining insight into the geometry of datasets in high dimensions. This is because tree structures can be visualized using simple diagrams, like that in Fig. 1. In contrast, most other machine learning algorithm outputs cannot be easily visualized -- consider, e.g., support-vector machines, which return hyper-plane decision boundaries. A related point is that tree-based approaches are able to automatically fit non-linear decision boundaries. In contrast, linear algorithms can only fit such boundaries if appropriate non-linear feature combinations are constructed. This requires that one first identify these appropriate feature combinations, which can be a challenging task for feature spaces that cannot be directly visualized. Three additional positive qualities of decision trees are given by a) the fact that they are insensitive to feature scale, which reduces the need for related data preprocessing, b) the fact that they can make use of data missing certain feature values, and c) that they are relatively robust against outliers and noisy-labeling issues.
 
-Although boosted and random forests are not as easily visualized as individual decision trees, these ensemble methods are popular because they are often quite competitive. Boosted forests typically have a slightly lower generalization error than their random forest counterparts. For this reason, they are often used when accuracy is highly-valued -- see Fig. 5 for an example learning curve consistent with this rule of thumb: Generalization error rate versus training set size for a hand-written digits learning problem. However, the individual trees in a bagged forest can be constructed in parallel. This benefit -- not shared by boosted forests -- can favor random forests as a go-to, out-of-box approach for treating large-scale machine learning problems.
+Although boosted and random forests are not as easily visualized as individual decision trees, these ensemble methods are popular because they are often quite competitive. Boosted forests typically have a slightly lower generalization error than their random forest counterparts. For this reason, they are often used when accuracy is highly-valued -- see last figure for an example learning curve consistent with this rule of thumb: Generalization error rate versus training set size for a hand-written digits learning problem. However, the individual trees in a bagged forest can be constructed in parallel. This benefit -- not shared by boosted forests -- can favor random forests as a go-to, out-of-box approach for treating large-scale machine learning problems.
 
 Exercises follow that detail some further points of interest relating to decision trees and their construction.
 
@@ -135,7 +135,7 @@ Exercises follow that detail some further points of interest relating to decisio
 #### 1) Jensen's inequality and classification tree cost functions
 
 ​a) Consider a real function $y(x)$ with non-positive curvature. Consider sampling $y$ at values $\{x_1, x_2, \ldots, x_m\}$. By considering graphically the centroid of the points $\{(x_i, y(x_i))\}$, prove Jensen's inequality,  
-\begin{eqnarray}  
+\begin{eqnarray} \tag{7}
 y\left ( \frac{1}{m} \sum_i x_i \right) \geq \frac{1}{m}\sum_i y(x_i).  
 \end{eqnarray}  
 When does equality hold?
@@ -151,7 +151,7 @@ Suppose one has constructed an approximately balanced decision tree, where each 
 #### 3) Classification tree construction runtime complexity
 
 ​a) Consider a region $R$ within a classification tree containing $n_i$ training examples of class $i$, with $\sum_i n_i = N$. Now, suppose a cut is considered in which a single training example of class $1$ is removed from the region. If the region's cross-entropy before the cut is given by $CE_0$, show that its entropy after the cut will be given by  
-\begin{eqnarray}\label{DEntropy}  
+\begin{eqnarray}\label{DEntropy} \tag{8}
 CE_f = CE_0 - N \log\left (\frac{N}{N-1} \right) + \log \left (\frac{n_1}{N-1} \right) - (n_1 -1) \log \left (\frac{n_1 - 1}{n_1} \right).  
 \end{eqnarray}  
 If $CE_0$, $N$, and the $\{n_i\}$ values are each stored in memory for a given region, this equation can be used to evaluate in $O(1)$ time the change in its entropy with any single example removal. Similarly, the change in entropy of a region upon addition of a single training example can also be evaluated in $O(1)$ time. Taking advantage of this is essential for obtaining an efficient tree construction algorithm.
@@ -161,7 +161,7 @@ If $CE_0$, $N$, and the $\{n_i\}$ values are each stored in memory for a given r
 #### 4)Regression tree construction runtime complexity.
 
 Consider a region $R$ within a regression tree containing $N$ training examples, characterized by mean label value $\overline{y}$ and cost value (\ref{treecost}) given by $J$ ($ N$ times the region's label variance). Suppose a cut is considered in which a single training example having label $y$ is removed from the region. Show that after the cut is taken the new mean training label and cost function values within the region are given by  
-\begin{eqnarray}  
+\begin{eqnarray} \tag{9}
 \overline{y}_f &=& \frac{1}{N-1} \left ( N \overline{y} - y \right) \ \label{regression_cost_change}  
 J_f &=& J - \frac{N}{N-1} \left ( \overline{y} - y\right)^2.  
 \end{eqnarray}  
@@ -172,26 +172,26 @@ These results allow for the cost function of a region to be updated in $O(1)$ ti
 Adapted from [3].
 
 ​a) Let $x$ be a random variable with well-defined mean $\mu$ and variance $\sigma^2$. Prove Chebychev's inequality,  
-\begin{eqnarray}\label{Cheby}  
+\begin{eqnarray}\label{Cheby} \tag{10}
 P(x \geq \mu + t) \leq \frac{\sigma^2}{t^2}.  
 \end{eqnarray}
 
 ​b) Consider a binary classification problem aimed at fitting a sampled function $y(\textbf{f})$ that takes values in $\{ 0,1\}$. Suppose a decision tree $h_{\theta}(\textbf{f})$ is constructed on the samples using a greedy, randomized approach, where the randomization is characterized by the parameter $\theta$. Define the classifier's *margin* $m$ at $\textbf{f}$ by  
-\begin{eqnarray}\label{tree_margin_def}  
+\begin{eqnarray}\label{tree_margin_def} \tag{11}
 m(\theta, \textbf{f}) =-1 + 2 \left [ y * h_{\theta}+ (1- y) * (1 - h_{\theta}) \right ]  
 \end{eqnarray}  
 This is equal to $1$ if $h_{\theta}$ and $y$ agree at $\textbf{f}$, and $-1$ otherwise. Now, consider a random forest, consisting of many such trees, each obtained by sampling from the same $\theta$ distribution. Argue using (\ref{Cheby}), (\ref{tree_margin_def}), and the law of large numbers that the generalization error $GE$ of the forest is bounded by  
-\begin{eqnarray}\label{rf_bound}  
+\begin{eqnarray}\label{rf_bound} \tag{12}
 GE \leq \frac{var_{\textbf{f}}\left( \langle m(\theta, \textbf{f}) \rangle_{\theta} \right)}{\langle m(\theta, \textbf{f}) \rangle_{\theta, \textbf{f}}^2 }  
 \end{eqnarray}
 
 ​c) Show that  
-\begin{eqnarray}\label{margin_var}  
+\begin{eqnarray}\label{margin_var} \tag{13} 
 var_{\textbf{f}}\left( \langle m(\theta, \textbf{f}) \rangle_{\theta} \right) = \langle cov_{\textbf{f}}(m(\theta, \textbf{f}), m(\theta^{\prime},\textbf{f})) \rangle_{\theta, \theta^{\prime}}  
 \end{eqnarray}
 
 ​d) Writing,  
-\begin{eqnarray}  
+\begin{eqnarray} \tag{14} 
 \rho \equiv \frac{\langle cov_{\textbf{f}}(m(\theta, \textbf{f}), m(\theta^{\prime},\textbf{f})) \rangle_{\theta, \theta^{\prime}}}  
 {\langle \sqrt{var_{\textbf{f}}(m(\theta, \textbf{f}))} \rangle_{\theta}^2},  
 \end{eqnarray}  
@@ -200,7 +200,7 @@ for the $\theta$, $\theta^{\prime}$-averaged margin-margin correlation coefficie
 var_{\textbf{f}}\left( \langle m(\theta, \textbf{f}) \rangle_{\theta} \right) \leq \rho \langle var_{\textbf{f}}(m(\theta, \textbf{f})) \rangle_{\theta} \leq \rho \left ( 1 - \langle m(\theta, \textbf{f}) \rangle_{\theta, \textbf{f}}^2\right).  
 \end{eqnarray}  
 Combining with (\ref{rf_bound}), this gives  
-\begin{eqnarray}\label{tree_bound_final}  
+\begin{eqnarray}\label{tree_bound_final} \tag{15} 
 GE \leq \rho \times \frac{ 1 - \langle m(\theta, \textbf{f}) \rangle_{\theta, \textbf{f}}^2 }{ \langle m(\theta, \textbf{f}) \rangle_{\theta, \textbf{f}}^2 }.  
 \end{eqnarray}  
 The bound (\ref{tree_bound_final}) implies that a random forest's generalization error is reduced if the individual trees making up the forest have a large average margin, and also if the trees are relatively-uncorrelated with each other.
@@ -210,18 +210,17 @@ Cover image by [roberts87](https://www.flickr.com/photos/roberts87/2798303714), 
 **Appendix: python/sk-learn implementations**
 ---------------------------------------------
 
-Here, we provide the python/sk-learn code used to construct Fig. 5 in the body of this note: Learning curves on sk-learn's "digits" dataset for a single tree, a random forest, and a boosted forest.
+Here, we provide the python/sk-learn code used to construct the final figure in the body of this note: Learning curves on sk-learn's "digits" dataset for a single tree, a random forest, and a boosted forest.
 
-```
-
+```python
 from sklearn.datasets import load_digits  
 from sklearn.tree import DecisionTreeClassifier  
 from sklearn.ensemble import RandomForestClassifier  
 from sklearn.ensemble import GradientBoostingClassifier  
 import numpy as np
 
-#load data: digits.data and digits.target,  
-#array of features and labels, resp.  
+# load data: digits.data and digits.target,  
+# array of features and labels, resp.  
 digits = load_digits(n_class =10)
 
 n_train = []  
@@ -229,8 +228,8 @@ t1_accuracy = []
 t2_accuracy = []  
 t3_accuracy = []
 
-#below, we average over "trials" num of fits for each sample  
-#size in order to estimate the average generalization error.  
+# below, we average over "trials" num of fits for each sample  
+# size in order to estimate the average generalization error.  
 trials = 25
 
 clf = DecisionTreeClassifier()  
@@ -239,38 +238,43 @@ clf3 = RandomForestClassifier()
 
 num_test = 500
 
-#loop over different training set sizes  
+# loop over different training set sizes  
 for num_train in range(2,len(digits.target)-num_test,25):
 
 acc1, acc2, acc3 = 0,0,0
 
 for j in range(trials):  
-perm = [0]  
-while len(set(digits.target[perm[:num_train]]))<2:  
-perm = np.random.permutation(len(digits.data))
+    perm = [0]  
+    while len(set(digits.target[perm[:num_train]]))<2:  
+        perm = np.random.permutation(len(digits.data))
 
-clf = clf.fit(digits.data[perm[:num_train]], \  
-digits.target[perm[:num_train]])  
-acc1 += clf.score(digits.data[perm[-num_test:]], \  
-digits.target[perm[-num_test:]])
-
-clf2 = clf2.fit(digits.data[perm[:num_train]],\  
-digits.target[perm[:num_train]])  
-acc2 += clf2.score(digits.data[perm[-num_test:]],\  
-digits.target[perm[-num_test:]])
-
-clf3 = clf3.fit(digits.data[perm[:num_train]],\  
-digits.target[perm[:num_train]])  
-acc3 += clf3.score(digits.data[perm[-num_test:]],\  
-digits.target[perm[-num_test:]])
-
-n_train.append(num_train)  
-t1_accuracy.append(acc1/trials)  
-t2_accuracy.append(acc2/trials)  
-t3_accuracy.append(acc3/trials)
+    clf = clf.fit(
+        digits.data[perm[:num_train]],
+        digits.target[perm[:num_train]])  
+    acc1 += clf.score(
+        digits.data[perm[-num_test:]],
+        digits.target[perm[-num_test:]])
+    
+    clf2 = clf2.fit(
+        digits.data[perm[:num_train]],
+        digits.target[perm[:num_train]])  
+    acc2 += clf2.score(
+        digits.data[perm[-num_test:]],
+        digits.target[perm[-num_test:]])
+    
+    clf3 = clf3.fit(
+        digits.data[perm[:num_train]],
+        digits.target[perm[:num_train]])  
+    acc3 += clf3.score(
+        digits.data[perm[-num_test:]],
+        digits.target[perm[-num_test:]])
+    
+    n_train.append(num_train)  
+    t1_accuracy.append(acc1/trials)  
+    t2_accuracy.append(acc2/trials)  
+    t3_accuracy.append(acc3/trials)
 
 %pylab inline
-
 plt.plot(n_train,t1_accuracy, color = 'red')  
 plt.plot(n_train,t2_accuracy, color = 'green')  
 plt.plot(n_train,t3_accuracy, color = 'blue')  

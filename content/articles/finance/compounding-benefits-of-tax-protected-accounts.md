@@ -70,12 +70,12 @@ while that for the two tax protected accounts is
 \end{eqnarray}  
 These two factors may look similar, but they represent exponential growth with different exponents. Consequently, for large $T$, the growth from (\ref{9}) can be much larger than that from (\ref{8}). To illustrate this point, we tabulate the two functions assuming $7$ percent growth for $30$ years at a few representative tax rates below. Notice that the growth rates are similar when that tax rates are lower -- which makes sense because taxation does not have much of an effect in this limit. However, the tax protected account has a much larger value in the opposite limit -- 7.61 vs 2.81 for the standard account!
 
-```  
+```python  
 def standard(T, g, t):  
-return (1 + g * (1-t))** T
+    return (1 + g * (1-t))** T
 
 def tax_protected(T, g, t):  
-return (1 + g) ** T
+    return (1 + g) ** T
 
 taxes = [0.1, 0.2, 0.3, 0.4, 0.5]  
 standard_values = [standard(30, 0.07, t) for t in taxes]  

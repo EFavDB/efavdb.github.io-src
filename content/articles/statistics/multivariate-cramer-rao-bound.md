@@ -13,25 +13,26 @@ The Cramer-Rao inequality addresses the question of how accurately one can estim
 ### Introduction and theorem statement
 
 The analysis of data very frequently requires one to attempt to characterize a probability distribution. For instance, given some random, stationary process that generates samples $\{x_i\}$, one might wish to estimate the mean $\mu$ of the probability distribution $P$ characterizing this process. To do this, one could construct an estimator function $\hat{\mu}(\{x_i\})$ -- a function of some samples taken from $P$ -- that is intended to provide an approximation to $\mu$. Given $n$ samples, a natural choice is provided by
-$$
+\begin{eqnarray}
 \hat{\mu}(\{x_i\}) = \frac{1}{n}\sum_{i = 1}^n x_i, \tag{1}
-$$
+\end{eqnarray}
 the mean of the samples. This particular choice of estimator will always be unbiased given a stationary $P$ -- meaning that it will return the correct result, on average. However, each particular sample set realization will return a slightly different mean estimate. This means that $\hat{\mu}$ is itself a random variable having its own distribution and width.
 
 More generally, one might be interested in a distribution characterized by a set of $m$ parameters $\{\theta_i\}$. Consistently good estimates to these values require estimators with distributions that are tightly centered around the true $\{\theta_i\}$ values. The Cramer-Rao inequality tells us that there is a fundamental limit to how tightly centered such estimators can be, given only $n$ samples. We state the result below.
 
-**Theorem:** *The multivariate Cramer-Rao inequality*.
+<b>Theorem:</b> The multivariate Cramer-Rao inequality
 
 Let $P$ be a distribution characterized by a set of $m$ parameters $\{\theta_i\}$, and let $\{\hat{\theta_i}\equiv \hat{\theta_i}(\{x_i\})\}$ be an unbiased set of estimator functions for these parameters. Then, the covariance matrix (see definition below) for the $\hat{\{\theta_i\}}$ satisfies,
 
-$$ cov(\hat{\theta}, \hat{\theta}) \geq \frac{1}{n} \times \frac{1}{ cov(\nabla_{\vec{\theta}} \log P(x),\nabla_{\vec{\theta}} \log P(x) )}. \tag{2} \label{CR}
-$$
+\begin{eqnarray} \tag{2} \label{cramer_rao_bound}
+cov(\hat{\theta}, \hat{\theta}) \geq \frac{1}{n} \times \frac{1}{ cov(\nabla_{\vec{\theta}} \log P(x),\nabla_{\vec{\theta}} \log P(x) )}.
+\end{eqnarray}
 
 Here, the inequality holds in the sense that left side of the above equation, minus the right, is positive semi-definite. We discuss the meaning and significance of this equation in the next section.
 
 ### Interpretation of the result
 
-To understand (\ref{CR}), we must first review a couple of definitions. These follow.
+To understand (\ref{cramer_rao_bound}), we must first review a couple of definitions. These follow.
 
 **Definition 1**. Let $\vec{u}$ and $\vec{v}$ be two jointly-distributed vectors of stationary random variables. The covariance matrix of $\vec{u}$ and $\vec{v}$ is defined by
 $$
@@ -45,7 +46,7 @@ $$
 $$
 for all real vectors $\vec{a}$. It is positive definite if the \`\`$\geq$" above can be replaced by a \`\`$>$".
 
-The interesting consequences of (\ref{CR}) follow from the following observation:
+The interesting consequences of (\ref{cramer_rao_bound}) follow from the following observation:
 
 **Observation**. For any constant vectors $\vec{a}$ and $\vec{b}$, we have
 $$
@@ -53,15 +54,15 @@ cov(\vec{a}^T\cdot\vec{u}, \vec{b}^T \cdot \vec{v}) = \vec{a}^T \cdot cov(\vec{u
 $$
 This follows from the definition (\ref{cov}).
 
-Taking $\vec{a}$ and $\vec{b}$ to both be along $\hat{i}$ in (\ref{fact}), and combining with (\ref{pd}), we see that (\ref{CR}) implies that
+Taking $\vec{a}$ and $\vec{b}$ to both be along $\hat{i}$ in (\ref{fact}), and combining with (\ref{pd}), we see that (\ref{cramer_rao_bound}) implies that
 $$
 \sigma^2(\hat{\theta}_i^2) \geq \frac{1}{n} \times \left (\frac{1}{ cov(\nabla_{\vec{\theta}} \log P(x),\nabla_{\vec{\theta}} \log P(x) )} \right)_{ii},\tag{6}\label{CRsimple}
 $$
 where we use $\sigma^2(x)$ to represent the variance of $x$. The left side of (\ref{CRsimple}) is the variance of the estimator function $\hat{\theta}_i$, whereas the right side is a function of $P$ only. This tells us that there is fundamental -- distribution-dependent -- lower limit on the uncertainty one can achieve when attempting to estimate *any parameter characterizing a distribution*. In particular, (\ref{CRsimple}) states that the best variance one can achieve scales like $O(1/n)$, where $n$ is the number of samples available$^1$ -- very interesting!
 
-Why is there a relationship between the left and right matrices in (\ref{CR})? Basically, the right side relates to the inverse rate at which the probability of a given $x$ changes with $\theta$: If $P(x \vert \theta)$ is highly peaked, the gradient of $P(x \vert \theta)$ will take on large values. In this case, a typical observation $x$ will provide significant information relating to the true $\theta$ value, allowing for unbiased $\hat{\theta}$ estimates that have low variance. In the opposite limit, where typical observations are not very $\theta$-informative, unbiased $\hat{\theta}$ estimates must have large variance$^2$.
+Why is there a relationship between the left and right matrices in (\ref{cramer_rao_bound})? Basically, the right side relates to the inverse rate at which the probability of a given $x$ changes with $\theta$: If $P(x \vert \theta)$ is highly peaked, the gradient of $P(x \vert \theta)$ will take on large values. In this case, a typical observation $x$ will provide significant information relating to the true $\theta$ value, allowing for unbiased $\hat{\theta}$ estimates that have low variance. In the opposite limit, where typical observations are not very $\theta$-informative, unbiased $\hat{\theta}$ estimates must have large variance$^2$.
 
-We now turn to the proof of (\ref{CR}).
+We now turn to the proof of (\ref{cramer_rao_bound}).
 
 ### Theorem proof
 
@@ -97,7 +98,7 @@ where the last line follows from the fact that the $\{x_i\}$ are independent, so
 
 **Lemma 4**. Let $x$ and $y$ be two scalar stationary random variables. Then, their correlation coefficient is defined to be $\rho \equiv \frac{cov(x,y)}{\sigma(x) \sigma(y)}$. This satisfies
 $$
--1 \leq \rho \leq 1 \label{CC} \tag{11}
+-1 \leq \rho \leq 1 \label{c_c} \tag{11}
 $$
 
 *Proof:* Consider the variance of $\frac{x}{\sigma(x)}+\frac{y}{\sigma(y)}$. This is
@@ -107,7 +108,7 @@ var \left( \frac{x}{\sigma(x)}+\frac{y}{\sigma(y)} \right) &= \frac{\sigma^2(x)}
 &= 2 + 2 \frac{ cov(x,y)}{\sigma(x) \sigma(y)} \geq 0. \tag{12}
 \end{align}
 $$
-This gives the left side of (\ref{CC}). Similarly, considering the variance of $\frac{x}{\sigma(x)}-\frac{y}{\sigma(y)}$ gives the right side.
+This gives the left side of (\ref{c_c}). Similarly, considering the variance of $\frac{x}{\sigma(x)}-\frac{y}{\sigma(y)}$ gives the right side.
 
 We're now ready to prove the Cramer-Rao result.
 
@@ -133,8 +134,8 @@ This holds for any \\(\vec{a}\\), implying that $cov(\hat{\theta}, \hat{\theta})
 
 Thank you for reading -- we hope you enjoyed.
 
-[1] More generally, (\ref{fact}) tells us that an observation similar to (\ref{CRsimple}) holds for any linear combination of the $\{\theta_i\}$. Notice also that the proof we provide here could also be applied to any individual $\theta_i$, giving $\sigma^2(\hat{\theta}_i) \geq 1/n \times 1/\langle(\partial_{\theta_i} \log P)^2\rangle$. This is easier to apply than (\ref{CR}), but is less stringent.
+[1] More generally, (\ref{fact}) tells us that an observation similar to (\ref{CRsimple}) holds for any linear combination of the $\{\theta_i\}$. Notice also that the proof we provide here could also be applied to any individual $\theta_i$, giving $\sigma^2(\hat{\theta}_i) \geq 1/n \times 1/\langle(\partial_{\theta_i} \log P)^2\rangle$. This is easier to apply than (\ref{cramer_rao_bound}), but is less stringent.
 
-[2] It might be challenging to intuit the exact function that appears on the right side of $(\ref{CR})$. However, the appearance of $\log P$'s does make some intuitive sense, as it allows the derivatives involved to measure rates of change relative to typical values, $\nabla_{\theta} P / P$.
+[2] It might be challenging to intuit the exact function that appears on the right side of $(\ref{cramer_rao_bound})$. However, the appearance of $\log P$'s does make some intuitive sense, as it allows the derivatives involved to measure rates of change relative to typical values, $\nabla_{\theta} P / P$.
 
 [3] The discussion here covers the \`\`standard proof" of the Cramer-Rao result. Its brilliance is that it allows one to work with scalars. In contrast, when attempting to find my own proof, I began with the fact that all covariance matrices are positive definite. Applying this result to the covariance matrix of a linear combination of $\hat{\theta}$ and $\vec{T}$, one can quickly get to results similar in form to the Cramer-Rao bound, but not quite identical. After significant work, I was eventually able to show that $\sqrt{cov(\hat{\theta},\hat{\theta})} - 1/\sqrt{cov(\vec{T},\vec{T}) } \geq 0$. However, I have yet to massage my way to the final result using this approach -- the difficulty being that the matrices involved don't commute. By working with scalars from the start, the proof here cleanly avoids all such issues.
