@@ -23,4 +23,4 @@ DELETE_OUTPUT_DIRECTORY = False
 # Following items are often useful when publishing
 
 DISQUS_SITENAME = 'efavdb2'
-#GOOGLE_ANALYTICS = ""
+GOOGLE_ANALYTICS = "UA-57405119-1"
