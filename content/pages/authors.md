@@ -5,6 +5,15 @@ Layout: page
 Slug: authors
 Status: published
 
+
+Those interested in hiring us for consulting projects should feel free
+to contact us on social media -- either via private tweet or directly
+on LinkedIn. We specialize in various aspects of data science and math
+modeling and are also available for in-office tutorials.
+
+
+* * * * * 
+
 <img src="{static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg" alt="Jonathan about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
 Jonathan
 Landy ([LinkedIn](https://www.linkedin.com/profile/view?id=259212684))

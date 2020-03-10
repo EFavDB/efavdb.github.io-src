@@ -36,8 +36,10 @@ AUTHOR_FEED_RSS = None
 # Page Settings
 #PAGE_URL = '{path}'
 #PAGE_SAVE_AS = '{path}'
-TAGS_URL = 'tags.html'
-ARCHIVES_URL = 'archives.html'
+TAGS_URL = 'tags'
+ARCHIVES_URL = 'archives'
+CATEGORIES_URL = 'categories'
+SEARCH_URL = 'search'
 PAGE_PATHS = ['pages']
 STATIC_PATHS = ['images', 'wp-content']
 PAGE_EXCLUDES = ['wp-content']
