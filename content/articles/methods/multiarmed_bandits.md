@@ -6,7 +6,7 @@ Tags: reinforcement learning, machine learning
 Slug: multiarmed-bandits
 Status: published
 
-[Reinforcement Learning: An Introduction](http://incompleteideas.net/book/RLbook2018.pdf) by Sutton and Barto[1] is a classic book on RL universally recommended to beginners in their RL studies.  The first chapter is an extended text-heavy introduction. The second chapter deals with multiarmed bandits, i.e. slot machines with multiple arms, and is the subject of today's post.
+[Reinforcement Learning: An Introduction](http://incompleteideas.net/book/RLbook2018.pdf) by Sutton and Barto[1] is a book that is universally recommended to beginners in their RL studies.  The first chapter is an extended text-heavy introduction. The second chapter deals with multiarmed bandits, i.e. slot machines with multiple arms, and is the subject of today's post.
 
 Before getting into the *what* and *how* of bandits, I'd like to address the **why**, since the "why" can guard against getting lost in the details / not seeing the forest for the trees.
 
