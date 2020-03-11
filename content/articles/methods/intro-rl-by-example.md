@@ -1,18 +1,21 @@
 Title: Introduction to reinforcement learning by example
-Date: 2020-03-13
+Date: 2020-03-11
 Author: Cathy Yeh
 Category: Machine learning
 Tags: reinforcement learning, machine learning, OpenAI
-Slug: intro-reinforcement-learning-example
+Slug: intro-rl-toy-example
 Status: published
 
-We’ll take a top-down approach to introducing reinforcement learning (RL) by starting from a toy example: a student going through college.  This post is about how to frame a question from the RL point-of-view.  We'll walk through the following building blocks:
+We take a top-down approach to introducing reinforcement learning (RL) by starting with a toy example: a student going through college.  In order to frame the problem from the RL point-of-view, we'll walk through the following steps:
 
-* **Setting up a model of the problem**: as a Markov Decision Process, the framework that underpins the RL approach to sequential decision-making problems
+* **Setting up a model of the problem** as a Markov Decision Process, the framework that underpins the RL approach to sequential decision-making problems
 * **Deciding on an objective**: maximize rewards
 * **Writing down an equation whose solution is our objective**: Bellman equations
 
-This example is taken directly from David Silver’s [lecture notes](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html) on RL.  If you want to skip to straight to code, we've provided a [jupyter notebook](https://github.com/frangipane/reinforcement-learning/blob/master/02-dynamic-programming/student_MDP.ipynb) sampling from the model and an example of how to implement the student's [environment](https://github.com/frangipane/reinforcement-learning/blob/master/02-dynamic-programming/discrete_limit_env.py) using the OpenAI gym package.
+David Silver walks through this example in his [lecture notes](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html) on RL, but as far as we can tell, does not provide code, so we're sharing our implementation, comprising:
+
+* the student's college [environment](https://github.com/frangipane/reinforcement-learning/blob/master/02-dynamic-programming/discrete_limit_env.py) using the OpenAI gym package.
+* a [jupyter notebook](https://github.com/frangipane/reinforcement-learning/blob/master/02-dynamic-programming/student_MDP.ipynb) sampling from the model
 
 
 ## Student in toy college
@@ -58,7 +61,7 @@ Suppose we have an indifferent student who always chooses actions randomly.  We 
 
 **Rewards following a random policy**:
 
-Under this random policy, what total reward would the student expect when starting from any of the states?  We can estimate the expected rewards by summing up the rewards per trajectory and plotting the distributions of total rewards (the "returns") per starting state:
+Under this random policy, what total reward would the student expect when starting from any of the states?  We can estimate the expected rewards by summing up the rewards per trajectory and plotting the distributions of total rewards per starting state:
 
 ![histogram of sampled returns]({static}/images/intro_rl_histogram_sampled_returns.png)
 
@@ -69,7 +72,7 @@ We’ve just seen how we can estimate rewards starting from each state given a r
 
 ### Returns
 
-We simply summed the rewards from the sample trajectories above, but the quantity we often want to maximize in practice is the **discounted return**:
+We simply summed the rewards from the sample trajectories above, but the quantity we often want to maximize in practice is the **discounted return $G_t$**, which is a sum of the weighted rewards:
 
 \begin{eqnarray}\label{return} \tag{1}
 G_t := R_{t+1} + \gamma R_{t+2} + … = \sum_{k=0}^\infty \gamma^k R_{t+k+1}
@@ -114,7 +117,7 @@ This equation expresses the value of a state as an average over the discounted v
 *Note on terminology*:
 Policy *evaluation* uses the Bellman expectation equation to solve for the value function given a policy $\pi$ and environment dynamics $p(s’, r | s, a)$.  This is different from policy iteration and value iteration, which are concerned with finding an optimal policy.
 
-We can solve the Bellman equation for the value function as an alternative to the sampling we did earlier for the student toy example.  Since the problem has a small number of states actions, and we have full knowledge of the environment, an exact solution is feasible by directly solving the system of linear equations or iteratively using dynamic programming.  Here is the solution to (\ref{state-value-bellman}) for $v$ under a random policy in the student example (compare to the sample means in the histogram of returns):
+We can solve the Bellman equation for the value function as an alternative to the sampling we did earlier for the student toy example.  Since the problem has a small number of states and actions, and we have full knowledge of the environment, an exact solution is feasible by directly solving the system of linear equations or iteratively using dynamic programming.  Here is the solution to (\ref{state-value-bellman}) for $v$ under a random policy in the student example (compare to the sample means in the histogram of returns):
 
 ![student MDP value function random policy]({static}/images/student_mdp_values_random_policy.png)
 
@@ -126,59 +129,69 @@ $$
 
 #### Action value function $q$
 
-Another value function is the action-value function $q_{\pi}(s, a)$, which is the expected return from a state $s$ if we follow a policy $\pi$ after taking an action $a$:
+Another value function is the action value function $q_{\pi}(s, a)$, which is the expected return from a state $s$ if we follow a policy $\pi$ after taking an action $a$:
 
 \begin{eqnarray}\label{action-value} \tag{4}
 q_{\pi}(s, a) := \mathbb{E}_{\pi} [ G_t | S_t = s, A = a ]
 \end{eqnarray}
 
-**Why $q$ in addition to $v$?**
 
-Looking ahead, we almost never have access to the environment dynamics in real world problems, but solving for $q$ instead of $v$ lets us get around this problem; we can figure out the best action to take in a state solely using $q$ (we further expand on this in our [discussion](#optimalq) below on the Bellman optimality equation for $q_*$.
-
-To be concrete, our [post]({static}/multiarmed-bandits) on multiarmed bandits (an example of a simple single-state MDP) provides examples of algorithms that don't have access to the true environment dynamics.  The strategy amounts to estimating the action-value function of the slot machine and using those estimates to inform which slot machine arms to pull in order to maximize rewards.
-
-We can also write the $v$ and $q$ in terms of each other.  For example, the state value function can be viewed as an average over the action value functions for that state, weighted by the probability of taking each action from that state:
+We can also write $v$ and $q$ in terms of each other.  For example, the state value function can be viewed as an average over the action value functions for that state, weighted by the probability of taking each action, $\pi$, from that state:
 
 \begin{eqnarray}\label{state-value-one-step-backup} \tag{5}
 v_{\pi}(s) = \sum_{a} \pi(a|s) q_{\pi}(s, a)
 \end{eqnarray}
 
-Rewriting $v$ in terms of $q$ in (\ref{state-value-one-step-backup}) is useful later for thinking about the "goodness" of an action in a state, namely how much better is an action in that state than the average?
+Rewriting $v$ in terms of $q$ in (\ref{state-value-one-step-backup}) is useful later for thinking about the "advantage", $A(s,a)$, of taking an action in a state, namely how much better is an action in that state than the average?
 
 \begin{align}
 A(s,a) \equiv q(s,a) - v(s)
 \end{align}
 
 
+* * * * *
+
+**Why $q$ in addition to $v$?**
+
+Looking ahead, we almost never have access to the environment dynamics in real world problems, but solving for $q$ instead of $v$ lets us get around this problem; we can figure out the best action to take in a state solely using $q$ (we further expand on this in our [discussion](#optimalq) below on the Bellman optimality equation for $q_*$.
+
+A concrete example of using $q$ is provided in our [post]({static}/multiarmed-bandits) on multiarmed bandits (an example of a simple single-state MDP), which discusses agents/algorithms that don't have access to the true environment dynamics.  The strategy amounts to estimating the action value function of the slot machine and using those estimates to inform which slot machine arms to pull in order to maximize rewards.
+
+* * * * *
+
+
 ## Optimal value and policy
 
 The crux of the RL problem is finding a policy that maximizes the expected return.  A policy $\pi$ is defined to be better than another policy $\pi’$ if $v_{\pi}(s) > v_{\pi’}(s)$ for all states.  We are guaranteed[*](#unique) an optimal state value function $v_*$ which corresponds to one or more optimal policies $\pi*$.
 
-Recall that the value function for an arbitrary policy can be written in terms of an average over the action values for that state (\ref{state-value-one-step-backup}).  In contrast, the optimal value function $v_*$ must be consistent with following a policy that selects the action that maximizes the action value functions from a state, i.e. taking a $\max$ (\ref{state-value-bellman-optimality}) instead of an average (\ref{state-value-one-step-backup}) over $q$s, leading to the **Bellman optimality equation** for $v_*$:
+Recall that the value function for an arbitrary policy can be written in terms of an average over the action values for that state (\ref{state-value-one-step-backup}).  In contrast, the optimal value function $v_*$ must be consistent with following a policy that selects the action that maximizes the action value functions from a state, i.e. taking a $\max$ (\ref{state-value-bellman-optimality}) instead of an average (\ref{state-value-one-step-backup}) over $q$, leading to the **Bellman optimality equation** for $v_*$:
 
 \begin{eqnarray}\label{state-value-bellman-optimality} \tag{6}
 v_*(s) &=& \max_a q_{\pi*}(s, a) \\
-    &=& \max_a \mathbb{E} [R_{t+1} + \gamma v_*(S_{t+1}) | S_t = s, A_t = a] \\
+    &=& \max_a \mathbb{E}_{\pi*} [R_{t+1} + \gamma v_*(S_{t+1}) | S_t = s, A_t = a] \\
     &=& \max_a \sum_{s’, r} p(s’, r | s, a) [r + \gamma v_*(s’) ]
 \end{eqnarray}
 
 The optimal policy immediately follows: take the action in a state that maximizes the right hand side of (\ref{state-value-bellman-optimality}).  The [principle of optimality](https://en.wikipedia.org/wiki/Bellman_equation#Bellman's_Principle_of_Optimality), which applies to the Bellman optimality equation, means that this greedy policy actually corresponds to the optimal policy!  Note: Unlike the Bellman expectation equations, the Bellman optimality equations are a nonlinear system of equations due to taking the max.
 
-The Bellman optimality equation for the action-value function is $q_*(s,a)$<a name="optimalq"></a>:
+The Bellman optimality equation for the action value function $q_*(s,a)$<a name="optimalq"></a> is:
 
 \begin{eqnarray}\label{action-value-bellman-optimality} \tag{7}
-q_*(s, a) &=& \mathbb{E} [R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}', a') | S_t = s, A_t = a] \\
+q_*(s, a) &=& \mathbb{E}_{\pi*} [R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}', a') | S_t = s, A_t = a] \\
           &=& \sum_{s', r} p(s', r | s, a) [r + \gamma \max_{a'} q_*(s', a') ]
 \end{eqnarray}
 
-Looking ahead: In practice, without a knowledge of the environment dynamics, RL algorithms based on solving value functions can approximate the expectation in (\ref{action-value-bellman-optimality}) by sampling, i.e. interacting with the environment, and iteratively selecting the action that corresponds to maximizing $q$ in whatever states the agent lands in along its trajectory, which is possible since the maximum occurs **inside** the summation in (\ref{action-value-bellman-optimality}).   In contrast, this sampling approach doesn't work for (\ref{state-value-bellman-optimality}) because of the maximum **outside** the summation in...that's why action value functions are so useful!
+* * * * *
+
+Looking ahead: In practice, without a knowledge of the environment dynamics, RL algorithms based on solving value functions can approximate the expectation in (\ref{action-value-bellman-optimality}) by sampling, i.e. interacting with the environment, and iteratively selecting the action that corresponds to maximizing $q$ in each state that the agent lands in along its trajectory, which is possible since the maximum occurs **inside** the summation in (\ref{action-value-bellman-optimality}).   In contrast, this sampling approach doesn't work for (\ref{state-value-bellman-optimality}) because of the maximum **outside** the summation in...that's why action value functions are so useful when we lack a model of the environment!
+
+* * * * *
 
 Here is the optimal state value function and policy for the student example, which we solve for in a later post:
 
 ![student MDP optimal value function]({static}/images/student_mdp_optimal_values.png)
 
-Compare the values per state under the optimal policy vs the random policy.  The value in every state under the optimal policy exceeds the value under the random policy.
+Comparing the values per state under the optimal policy vs the random policy, the value in every state under the optimal policy exceeds the value under the random policy.
 
 ## Summary
 
@@ -188,6 +201,7 @@ MDPs provide a framework for approaching the problem by defining the value of ea
 
 Much of reinforcement learning centers around trying to solve these equations under different conditions, e.g. unknown environment dynamics and large -- possibly continuous -- states and/or action spaces that require approximations to the value functions.
 
+We'll discuss how we arrived at the solutions for this toy problem in a future post!
 
 ### Example code
 
