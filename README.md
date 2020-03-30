@@ -19,6 +19,7 @@ git submodule update --init --recursive
 
 Below is optional now that publishing to github happens automatically with PR merge.  
 Feel free to skip.
+
 ```shell
 cd output
 git remote -v
