@@ -1,5 +1,5 @@
 Title: Q-learning and DQN
-Date: 2020-04-10
+Date: 2020-04-06
 Author: Cathy Yeh
 Category: Machine learning
 Tags: machine learning, reinforcement learning, OpenAI
@@ -10,7 +10,7 @@ Q-learning is a reinforcement learning (RL) algorithm that is the basis for deep
 
 We begin with some historical context, then provide an overview of value function methods / Q-learning, and conclude with a discussion of DQN.
 
-If you want to skip straight to code, the implementation of DQN with pytorch that we used to train the agent playing Atari Breakout below is available [here](https://github.com/frangipane/reinforcement-learning/tree/master/DQN).
+If you want to skip straight to code, the implementation of DQN that we used to train the agent playing Atari Breakout below is available [here](https://github.com/frangipane/reinforcement-learning/tree/master/DQN).
 
 <p align="center">
 <img src="images/atari_breakout.gif/" alt="Atari Breakout" style="width:250px;">
@@ -30,8 +30,12 @@ Until 2013, most applications of RL relied on hand engineered inputs for value f
 
 The basic RL algorithms that were developed decades ago do not work well in practice without modifications.  For example, REINFORCE relies on Monte Carlo estimates of the performance gradient; such estimates of the performance gradient are high variance, resulting in unstable or impractically slow learning (poor sample efficiency).  The original Q-learning algorithm also suffers from instability due to correlated sequential training data and parameter updates affecting both the estimator and target, creating a “moving target” and hence divergences.
 
-We can think of these original RL algorithms as the Wright Brothers plane. 
-![Wright brothers plane]({static}/images/wright_brothers_plane.png)
+We can think of these original RL algorithms as the Wright Brothers plane.
+<p align="center">
+<img src="images/wright_brothers_plane.png" alt="Wright brothers plane" style="width:500px;">
+</p>
+
+
 
 
 The foundational shape is there and recognizable in newer models.  However, the enhancements of newer algorithms aren't just bells and whistles -- they have enabled the move from toy problems into more functional territory.
@@ -159,9 +163,9 @@ class ReplayBuffer:
 
 Finally, we used OpenAI’s baselines [Atari wrappers](https://github.com/openai/baselines/blob/master/baselines/common/atari_wrappers.py) to handle the rather involved data preprocessing steps.
 
-You can see logs and plots like this plot of the mean raw returns per step in the environment
+You can see logs and plots like this plot of the mean raw returns per step in the environment for the Atari DQN training run in our [wandb dashboard](https://app.wandb.ai/frangipane/dqn/runs/30fhfv6y?workspace=user-frangipane).
+
 ![training curve]({static}/images/atari_training_returns.png)
-for the Atari DQN training run in our [wandb dashboard](https://app.wandb.ai/frangipane/dqn/runs/30fhfv6y?workspace=user-frangipane).
 
 ## Conclusion
 
@@ -192,5 +196,5 @@ Furthermore, the DQN tricks have been incorporated in many other RL algorithms, 
 
 **Books / tutorials**
 
-- [6] OpenAI - Spinning Up: [The Optimal Q-Function and the Optimal Action](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#the-optimal-q-function-and-the-optimal-action
+- [6] OpenAI - Spinning Up: [The Optimal Q-Function and the Optimal Action](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#the-optimal-q-function-and-the-optimal-action)
 - [7] Sutton and Barto - [Reinforcement Learning: An Introduction (2nd Edition)](http://incompleteideas.net/book/RLbook2018.pdf), section 6.5 “Q-learning: Off-policy TD Control”, section 16.5 “Human-level Video Game Play”
