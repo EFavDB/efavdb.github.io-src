@@ -13,7 +13,7 @@ We begin with some historical context, then provide an overview of value functio
 If you want to skip straight to code, the implementation of DQN that we used to train the agent playing Atari Breakout below is available [here](https://github.com/frangipane/reinforcement-learning/tree/master/DQN).
 
 <p align="center">
-<img src="images/atari_breakout.gif/" alt="Atari Breakout" style="width:250px;">
+<img src="images/atari_breakout.gif" alt="Atari Breakout" style="width:250px;">
 </p>
 
 If you watch the video long enough, you'll see the agent has learned a strategy that favors breaking bricks at the edges so the ball "breaks out" to the upper side, resulting in a cascade of points.
