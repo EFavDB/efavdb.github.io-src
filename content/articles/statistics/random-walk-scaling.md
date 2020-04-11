@@ -1,4 +1,4 @@
-Title: 2-D Random Walks are special
+Title: 2-D Random walks are special
 Date: 2020-04-10
 Author: Dustin McIntosh
 Category: Statistics
