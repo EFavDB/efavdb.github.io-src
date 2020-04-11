@@ -66,7 +66,7 @@ I’ve plotted all the theoretical results that I could find for these parameter
 
 * $R_0$ gives $\langle R \rangle$ its weak dependence on $M$, varying according to an elegant ratio of Gamma functions as described [here](https://math.stackexchange.com/questions/103142/expected-value-of-random-walk).  (blue dash-dot line bottom plot)
 
-* It has been shown that $\beta = 0.5$ for $M=1$ and $\beta = 1$ for all $M>3$.  (orange dash and line in the top plot)  I found these theoretical results in this [wonderful paper](https://www.osti.gov/servlets/purl/4637387), which you should really glance at, if not read, just to see an interesting piece of history - it’s by George H. Vineyard in 1963 (no so long ago for such a fundamental math problem!) at Brookhaven National Lab for the US Atomic Energy Commission. Written on a typewriter, here is a sample equation, complete with hand-written scribbles to indicate the vectors and a clearly corrected typo on the first cosine:
+* It has been shown that $\beta = 0.5$ for $M=1$ and $\beta = 1$ for all $M \geq 3$.  (orange dash and line in the top plot)  I found these theoretical results in this [wonderful paper](https://www.osti.gov/servlets/purl/4637387), which you should really glance at, if not read, just to see an interesting piece of history - it’s by George H. Vineyard in 1963 (no so long ago for such a fundamental math problem!) at Brookhaven National Lab for the US Atomic Energy Commission. Written on a typewriter, here is a sample equation, complete with hand-written scribbles to indicate the vectors and a clearly corrected typo on the first cosine:
 
 <p align="center">
 	 <img src="images/Vineyard_pic.png">
