@@ -1,5 +1,5 @@
 Title: 2-D Random walks are special
-Date: 2020-04-13
+Date: 2020-04-10
 Author: Dustin McIntosh
 Category: Statistics
 Tags: statistics, python
