@@ -33,7 +33,7 @@ Let’s make some high-level sense of these results:
 
 * The width of the $N_{unique}$ distribution, $\sigma_{N_{unique}}$ depends in an interesting way on $M$, increasing from 1-D to 2-D and thereafter decreasing. This seems because the distribution is centered most distant from the extremes of 0 or $N$.
 
-Let’s take a look at the means of our two metrics as a function of $M$ as a function of $N$ for various $M$ (apologies for using a gif here, but it helps with 1. keeping this post concise and 2. comparing the plots as $M changes incrementally.  If you prefer static images, I’ve included them at [github](https://github.com/dustinmcintosh/random-walks)):
+Let’s take a look at the means of our two metrics as a function of $N$ for various $M$ (apologies for using a gif here, but it helps with 1. keeping this post concise and 2. comparing the plots as $M$ changes incrementally.  If you prefer static images, I’ve included them at [github](https://github.com/dustinmcintosh/random-walks)):
 
 <p align="center">
 	 <img src="images/R_and_Nu_vs_n.gif">
