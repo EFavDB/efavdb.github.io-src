@@ -84,11 +84,11 @@ DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'searc
 
 # Theme specific setting
 LANDING_PAGE_TITLE = 'EFAVDB'
-PROJECTS_TITLE = 'Projects'
+PROJECTS_TITLE = 'Links'
 PROJECTS = [{'name': 'linselect', 'url': '/pages/linselect.html',
              'description': 'Fast, flexible, performant feature selection package for python'},
-            {'name': 'nba predictions', 'url': '/pages/nba-dash.html',
-             'description': 'NBA Dashboard'},]
+            #{'name': 'nba predictions', 'url': '/pages/nba-dash.html','description': 'NBA Dashboard'},
+]
 
 
 DISPLAY_CATEGORIES_ON_MENU = False
