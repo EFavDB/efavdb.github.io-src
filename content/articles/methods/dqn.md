@@ -191,9 +191,9 @@ Furthermore, the DQN tricks have been incorporated in many other RL algorithms, 
 
 **Video lectures**
 
-- [2] David Silver - RL lecture 6 Value Function Approximation ([video](https://www.youtube.com/watch?v=UoPei5o4fps), [slides](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/FA.pdf))
-- [3] Sergey Levine’s lecture (CS285) on value function methods (video, slides)
-- [4] Sergey Levine’s lecture (CS285) on deep RL with Q-functions (video, slides)
+- [2] David Silver - RL lecture 6 Value Function Approximation ([video](https://www.youtube.com/watch?v=UoPei5o4fps), [slides](https://www.davidsilver.uk/wp-content/uploads/2020/03/FA.pdf))
+- [3] Sergey Levine’s lecture (CS285) on value function methods ([video](https://www.youtube.com/watch?v=doR5bMe-Wic&list=PLkFD6_40KJIwhWJpGazJ9VSj9CFMkb79A&index=8&t=129s), [slides](http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-7.pdf))
+- [4] Sergey Levine’s lecture (CS285) on deep RL with Q-functions ([video](https://www.youtube.com/watch?v=7Lwf-BoIu3M&list=PLkFD6_40KJIwhWJpGazJ9VSj9CFMkb79A&index=9&t=0s), [slides](http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-8.pdf))
 - [5] Vlad Mnih - Berkeley Deep RL Bootcamp 2017 - Core Lecture 3 DQN + Variants ([video](https://www.youtube.com/watch?v=fevMOp5TDQs), [slides](https://drive.google.com/open?id=0BxXI_RttTZAhVUhpbDhiSUFFNjg))
 
 **Books / tutorials**
