@@ -6,6 +6,8 @@ Tags: machine learning, reinforcement learning, OpenAI
 Slug: dqn
 Status: published
 
+[TOC]
+
 Q-learning is a reinforcement learning (RL) algorithm that is the basis for deep Q networks (DQN), the algorithm by Google DeepMind that achieved human-level performance for a range of Atari games and kicked off the deep RL revolution starting in 2013-2015.
 
 We begin with some historical context, then provide an overview of value function methods / Q-learning, and conclude with a discussion of DQN.

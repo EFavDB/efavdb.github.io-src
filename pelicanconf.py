@@ -79,14 +79,28 @@ PLUGINS = ['sitemap',
            'neighbors',
            'tipue_search',
            'share_post',
+           'extract_toc',
 ]
 DIRECT_TEMPLATES = ['index', 'tags', 'categories', 'authors', 'archives', 'search']
+
+# adaptation of the extract_toc plugin, requires beautifulsoup
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+    },
+    'output_format': 'html5',
+    'extensions' : ['toc'] # this is the part added to the default
+}
 
 # Theme specific setting
 LANDING_PAGE_TITLE = 'EFAVDB'
 PROJECTS_TITLE = 'Links'
 PROJECTS = [{'name': 'linselect', 'url': '/pages/linselect.html',
              'description': 'Fast, flexible, performant feature selection package for python'},
+            {'name': 'Reinforcement learning', 'url': '/pages/rl-resources.html',
+             'description': 'resources for getting started'}
             #{'name': 'nba predictions', 'url': '/pages/nba-dash.html','description': 'NBA Dashboard'},
 ]
 
