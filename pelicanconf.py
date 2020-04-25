@@ -10,7 +10,7 @@ CURRENT_DIR_PATH = Path(__file__).resolve().parent
 AUTHOR = 'efavdb'
 SITENAME = 'EFAVDB'
 SITESUBTITLE = "Everybody's Favorite Data Blog"
-SITEURL = ''
+SITEURL = '.'
 GITHUB_URL = 'https://github.com/efavdb'
 THEME = f'{CURRENT_DIR_PATH}/elegant-theme'
 PATH = 'content'
@@ -120,7 +120,7 @@ RESPONSIVE_IMAGES = True
 DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
 RECENT_ARTICLES_COUNT = 5
 SHOW_CREDITS = True
-SHARE_POST_INTRO = "Like this post?  Share on:"
+SHARE_POST_INTRO = "Share this post on:"
 RELATED_POSTS_LABEL = "Keep reading"
 
 AUTHORS = {
