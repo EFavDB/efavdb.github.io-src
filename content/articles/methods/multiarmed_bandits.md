@@ -1,5 +1,5 @@
 Title: Multiarmed bandits in the context of reinforcement learning
-Date: 2020-02-25
+Date: 2020-02-25 12:00
 Author: Cathy Yeh
 Category: Machine learning
 Tags: reinforcement learning, machine learning

@@ -1,5 +1,5 @@
 Title: Dynamic programming in reinforcement learning
-Date: 2020-03-28
+Date: 2020-03-28 12:00
 Author: Cathy Yeh
 Category: Machine learning
 Tags: reinforcement learning, machine learning
