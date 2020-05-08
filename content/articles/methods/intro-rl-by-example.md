@@ -1,5 +1,5 @@
 Title: Introduction to reinforcement learning by example
-Date: 2020-03-11
+Date: 2020-03-11 12:00
 Author: Cathy Yeh
 Category: Machine learning
 Tags: reinforcement learning, machine learning, OpenAI
