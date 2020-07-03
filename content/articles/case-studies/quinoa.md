@@ -17,24 +17,21 @@ above.
 
 My first reaction was to believe that some error had been made.  However, I
 then realized that the explanation was packing:  When one packs spheres or
-awkward solid geometric shapes into a container, they cannot fill the space
-completely.  Little pockets of air sit between the spheres.  A quick google
-search for the packing fraction of spheres gives a value of $0.75$ for a
+other awkward solid geometric shapes into a container, they cannot fill the
+space completely.  Little pockets of air sit between the spheres.  A quick
+google search for the packing fraction of spheres gives a value of $0.75$ for a
 crystalline structure and about $0.64$ for random packings -- apparently a
 universal law.
 
 We can get a similar number out from my quinoa instructions: Suppose that
 before the quinoa is cooked, the water fills its volume completely.  However,
-after cooking, the water is absorbed into the quinoa.  For simplicity, assume
-the quinoa is spherical before and after cooking.  In this case, the quinoa
-solids themselves should have the same packing fraction before and after.
-However, the two cups of water went from being fully space filling to being
-sucked into the quinoa -- forced to share its packing fraction. This implies
-that
+after cooking, the water is absorbed into the quinoa and forced to share its
+packing fraction.  The quinoa stays at the same packing fraction before and
+after cooking, so the water must be responsible for the volume growth.  This
+implies it went from 2 cups to 3, or
 \begin{eqnarray} \tag{1} \label{1}
 2 = \rho \times 3,
 \end{eqnarray}
-where $\rho$ is the packing fraction of the quinoa "spheres".  We have $3$ on
-the right as the solids in the quinoa continue to make up for the same volume
-before and after.  We conclude that the packing fraction is $\rho = 2/3$, very
-close to the googled value of $\rho = 0.64$.
+where $\rho$ is the packing fraction of the quinoa "spheres". We conclude that
+the packing fraction is $\rho = 2/3$, very close to the googled value of $\rho
+= 0.64$.
