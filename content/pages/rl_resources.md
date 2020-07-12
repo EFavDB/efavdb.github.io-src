@@ -7,11 +7,11 @@ Status: hidden
 
 [TOC]
 
-*Last updated: 2020-04-25*
+*Last updated: 2020-07-12*
 
 We’ve collected some resources for getting started in reinforcement learning (RL).  Comments or suggestions are welcome!
 
-Unlike natural language and vision, where the building blocks for modeling *are* neural networks, and advances in the field have gone hand-in-hand with advances in neural network architecture, a significant part of modeling in RL takes place *outside* of neural networks, with nets being just one component.  We therefore recommend a bottoms up approach to learning RL, starting with classic RL theory before proceeding to deep RL.
+A significant part of modeling in RL takes place *outside* of neural networks, with nets being just one component.  We therefore recommend starting with classic RL theory before proceeding to deep RL.
 
 Roughly in order of recommended progression:
 
@@ -19,8 +19,9 @@ Roughly in order of recommended progression:
 
 Before embarking on a full course of study, get some high-level orientation from these lively blog posts:
 
-- [Deep reinforcement learning doesn’t work yet](https://www.alexirpan.com/2018/02/14/rl-hard.html), by Alex Irpan - good look at current problems in deep RL, many entertaining examples (doesn’t go into details of algorithms)
-- [Pong from pixels](http://karpathy.github.io/2016/05/31/rl/), by Andrej Karpathy - goes into details of implementing policy gradient algorithm on the pong Atari game to illustrate RL in action, accompanied by sweet, simple code
+- [Deep reinforcement learning doesn’t work yet](https://www.alexirpan.com/2018/02/14/rl-hard.html), blog by Alex Irpan - good look at current problems in deep RL, many entertaining examples (doesn’t go into details of algorithms)
+- [Pong from pixels](http://karpathy.github.io/2016/05/31/rl/), blog by Andrej Karpathy - goes into details of implementing policy gradient algorithm on the pong Atari game to illustrate RL in action, accompanied by sweet, simple code
+- [OpenAI Meta-Learning and Self-Play](https://www.youtube.com/watch?v=9EN_HoEk3KY), video lecture by Ilya Sutskever -- introduces core ideas in RL simply and with great insight, leading to research directions (still at a high level)
 
 ## Foundations
 
