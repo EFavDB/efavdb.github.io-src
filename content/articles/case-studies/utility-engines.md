@@ -1,18 +1,18 @@
 Title: Utility engines
-Date: 2019-06-21 09:24
+Date: 2020-09-13 09:24
 Author: Jonathan Landy
 Category: Case studies
 Slug: utility-engines
 Status: published
 
 A person's happiness does not depend only on their current lot in life, but
-also on its rate of change.  This is because the prior history of the person
-informs what their baseline is for what they can expect.  Here, we build a
-model that highlights this "path-dependence" quality.  Interestingly, we find
-that it can be exploited:  One can increase net happiness via a process of
-gradual increased deprivation, followed by sudden jolts in increased
-consumption rate, as shown in the cartoon below -- this beats the approach of
-a steady consumption rate.
+also on the rate of change of their lot.  This is because a person's prior
+history informs their expectations.  Here, we build a model that highlights
+this emotional "path-dependence" quality of utility.  Interestingly, we find
+that it can be gamed: One can increase net happiness via a process of gradual
+increased deprivation, followed by sudden jolts in increased consumption, as
+shown in the cartoon below -- this is the best approach.  In particular, it
+beats the steady consumption rate strategy.
 
 <p align="center">
          <img src="images/engine.png">
