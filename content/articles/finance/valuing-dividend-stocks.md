@@ -153,4 +153,4 @@ print pd.pivot_table(df, values='price', index=['beta'], columns=['g'])
 
 # Footnotes
 
-[1]  For a simple derivation of CAPM's main results, see Derman, "A boys guide to pricing and hedging".  As a caveat, we note that one of the primary assumptions of CAPM is that market prices are set by rational market participants.
+[1]  For a simple derivation of CAPM's main results, see [Derman](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=364760).  As a caveat, we note that one of the primary assumptions of CAPM is that market prices are set by rational market participants.
