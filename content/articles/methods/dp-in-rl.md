@@ -1,5 +1,5 @@
 Title: Dynamic programming in reinforcement learning
-Date: 2020-03-28
+Date: 2020-03-28 12:00
 Author: Cathy Yeh
 Category: Machine learning
 Tags: reinforcement learning, machine learning
@@ -105,7 +105,7 @@ You can see the application of both policy evaluation and value iteration to the
 ## <a name="References">References</a>
 
 [1] David Silver's RL Course Lecture 3 - Planning by Dynamic Programming ([video](https://www.youtube.com/watch?v=Nd1-UUMVfz4),
-  [slides](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/DP.pdf))
+  [slides](https://www.davidsilver.uk/wp-content/uploads/2020/03/DP.pdf))
 
 [2] Sutton and Barto -
   [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/RLbook2018.pdf) - Chapter 4: Dynamic Programming

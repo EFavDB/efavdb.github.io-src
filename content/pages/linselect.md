@@ -12,14 +12,14 @@ Welcome! This page contains an FAQ and links to a running list of tutorials for 
 Tutorials
 ---------
 
--   [linselect demo: a tech sector stock analysis](http:/efavdb.com/linselect-demo/)  
+-   [linselect demo: a tech sector stock analysis](http://efavdb.com/linselect-demo)
     In this post, we demonstrate `linselect`'s basic API by exploring the relationship between the daily percentage lifts of 50 tech stocks over one trading year. We will be interested in identifying minimal stock subsets that can be used to predict the lifts of the others.
 
 FAQ
 ---
 
--   **Where can I download the package?**  
-    *Answer*: Instructions can be found on our GitHub, [here](https:/github.com/efavdb/linselect). The `README.md` file contains some helpful background, and the `docs` folder contains doc-strings and some basic API examples.
+-   **Where can I download the package?**
+    *Answer*: Instructions can be found on our GitHub, [here](https://github.com/efavdb/linselect). The `README.md` file contains some helpful background, and the `docs` folder contains doc-strings and some basic API examples.
 -   **What is a target, a feature, a predictor set?**  
     *Answer*: These are terms I use to refer to variables in a data set. For example, if we're trying to fit a variable $y$ using some components of a vector of variables $\textbf{x}$, I'd refer to $y$ as the target and the components of $\textbf{x}$ as the features. If a feature is actually used in the model, I say it is in the "predictor set".
 -   **Why do we sometimes call a feature a column?**  

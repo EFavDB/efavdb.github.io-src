@@ -49,12 +49,12 @@ Z^{[l]} = W^{[l]} A^{[l-1]} + b^{[l]}
 
 The outputs or activations, $A^{[l-1]}$, of the previous layer serve as inputs for the linear functions, $z^{[l]}$. If $n_l$ denotes the number of neurons in layer $l$, and $m$ denotes the number of training examples in one (mini)batch pass through the neural network, then the dimensions of these matrices are:
 
-  Variable       Dimensions
-  -------------- --------------------------
-  $A^{[l]}$   ($n_l$, $m$)
-  $Z^{[l]}$   ($n_l$, $m$)
-  $W^{[l]}$   ($n_l$, $n_{l-1}$)
-  $b^{[l]}$   ($n_l$, 1)
+  | Variable    |   Dimensions |
+  |-------------| -------------|
+  | $A^{[l]}$   | ($n_l$, $m$) |
+  | $Z^{[l]}$   | ($n_l$, $m$) |
+  | $W^{[l]}$   | ($n_l$, $n_{l-1}$) |
+  | $b^{[l]}$   | ($n_l$, 1) |
 
 For example, this neural network consists of only a single hidden layer with 3 neurons in layer 1.
 

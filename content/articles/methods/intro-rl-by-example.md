@@ -1,5 +1,5 @@
 Title: Introduction to reinforcement learning by example
-Date: 2020-03-11
+Date: 2020-03-11 12:00
 Author: Cathy Yeh
 Category: Machine learning
 Tags: reinforcement learning, machine learning, OpenAI
@@ -214,7 +214,7 @@ The [code](https://github.com/frangipane/reinforcement-learning/blob/master/02-d
 ## References
 
 [1] David Silver's RL Course Lecture 2 - ([video](https://www.youtube.com/watch?v=lfHX2hHRMVQ),
-  [slides](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/MDP.pdf))
+  [slides](https://www.davidsilver.uk/wp-content/uploads/2020/03/MDP.pdf))
 
 [2] Sutton and Barto -
   [Reinforcement Learning: An Introduction](http://incompleteideas.net/book/RLbook2018.pdf) - Chapter 3: Finite Markov Decision Processes
