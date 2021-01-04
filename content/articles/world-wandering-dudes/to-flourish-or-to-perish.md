@@ -34,7 +34,7 @@ A couple of interesting notes:
 
 * At $N_c$, the creature is most likely to get exactly 1 food and barely survive, it dies or reproduces with equal probability $\approx 0.315 < 1/3$.
 
-* $N_{unique, c} > 1/\rho_{food}$ - the creature must be, on average, gathering more than 1 food in order for it to flourish rather than perish.
+* $N_{unique, c} > 1/\rho_{food}$ - the creature must be, on average, gathering more than 1 food in order for it to not die off.
 
 We can reproduce $N_c$ from the simulation framework as well.  We ran numerous simulations, holding $\rho_{food} = 0.03$ constant and varying $N$ for a few creatures (code [here](https://github.com/dustinmcintosh/world_wandering_dudes/blob/master/scripts/lifetime_study.py)). For each $N$, we plot the fraction of simulations that still had creatures after 200 days:
 
@@ -57,9 +57,9 @@ where $n_{i}(x=j)$ is the number of creatures getting $j$ food in the previous d
 \langle n_{i}(x \geq 2) \rangle &=& \langle n_{i} \rangle p_{2+}. \tag{3} \label{birthdeath}
 \end{eqnarray}
 
-Again, equilibrium is only achieved at $p_0 = p_{2+}$ as above.  However, if the creatures are thriving, they will multiply to the point that they are no longer in isolation and start to “steal” each other's food.  This will then curb the population’s growth.
+Again, equilibrium is only achieved at $p_0 = p_{2+}$ as discussed above.
 
-To explore this, for simulations with creatures that survived their first 200 days above, we look at the average number of creatures on the field from day 100 to 200 (to isolate the equilibrium condition).  We plot $\langle n \rangle / \rho_{food} M$ (average creatures as a fraction of the daily food sprout rate):
+However, if the creatures are thriving, they will multiply to the point that they are no longer in isolation and start to “steal” each other's food.  This will then curb the population’s growth. To explore this, for simulations with creatures that survived their first 200 days, we look at the average number of creatures on the field from day 100 to 200 (to isolate the equilibrium condition).  We plot $\langle n \rangle / \rho_{food} M$ (average creatures as a fraction of the daily food sprout rate):
 
 <p align="center">
 	 <img src="images/equil_n.png">
@@ -84,10 +84,14 @@ Again, equilibrium will be reached when the two quantities in equations (\ref{bi
 \frac{\langle n_{i} \rangle}{\rho_{food} M} = \frac{1}{A \rho_{food}}\frac{p_{2+}-p_0}{p_1 + p_2}.
 \end{eqnarray}
 
-The line in the figure above is for $A = 3/4$, which was a fit by eye. This model has some limitations:
+The line in the figure above is for $A = 3/4$, which was a fit by eye. Not shown here, but we have confirmed that this prediction (with $A = 3/4$) works reasonbly well for other values of $\rho_{food}$ as well.
+
+This discussed model has some limitations:
 
 * It considers only creatures with exactly 1(2) food to be at risk of dying (failing to reproduce) as a result of interactions, while actually creatures that get 3+ food without interactions have a chance to have enough stolen to not reproduce or even to not even survive.
 
 * It fails to consider 3+ -body interactions (a creature with a trajectory overlapping with 2 or more other creatures).
+
+* It neglects the distribution of $N_{unique}$, essentially mapping $N_{unique} \rightarrow \langle N_{unique} \rangle$.
 
 The model is thus not correct, but simple and captures the core of the problem. It reminds me vaguely of the Flory approximation in polymer physics (see discussion [here](https://ethz.ch/content/dam/ethz/special-interest/mavt/process-engineering/macro-dam/documents/NetworkGels_Lecture6.pdf)).
