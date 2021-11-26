@@ -17,13 +17,12 @@ modeling and are also available for in-office tutorials.
 <img src="{static}/wp-content/uploads/2014/12/JonathanLinkedIn.jpg" alt="Jonathan about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
 Jonathan
 Landy ([LinkedIn](https://www.linkedin.com/profile/view?id=259212684))
-grew up in the Midwest and then went to school at Caltech
-and UCLA. Following this, he did two postdocs, one at UCSB and one at
-UC Berkeley.  His academic research focused primarily on applications
-of statistical mechanics, but his professional passion has always been
-in the mastering, development, and practical application of slick math
-methods/tools. He worked as a data-scientist at Square for four years
-and is now working on a quantitative investing startup.
+grew up in the Midwest and then went to school at Caltech and UCLA. Following
+this, he did two postdocs, one at UCSB and one at UC Berkeley.  His academic
+research focused primarily on applications of statistical mechanics, but his
+professional passion has always been in the mastering, development, and
+practical application of slick math methods/tools.  He currently works as a
+data-scientist at Stitch Fix.
 
 * * * * *
 <img src="{static}/wp-content/uploads/2014/12/headshot.jpg" alt="Damien about photo" width="200" style="float:left;padding: 0px 40px 40px 0px" />
