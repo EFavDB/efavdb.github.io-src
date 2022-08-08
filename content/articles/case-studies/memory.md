@@ -1,7 +1,7 @@
 Title: Spaced repetition can allow for infinite recall
 Date: 2022-08-07
 Author: Jonathan Landy
-Category: Cooking math
+Category: Case studies
 Slug: memory recall
 Status: published
 
