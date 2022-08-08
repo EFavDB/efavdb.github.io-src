@@ -18,12 +18,11 @@ memorization of a great many facts [1].  The ideas behind this are two-fold:
 be retained longer before a refresher is needed to maintain it in recall.
 
 - Because of this, one can maintain a large, growing body of facts in recall
-  through limited, daily review:  Each day, one need only review for ten
-minutes or so, covering a small number of facts. The facts included should be
-sampled from the full library in a way that prefers newer entries, but that
-also sprinkles in older cards often enough so that none are ever forgotten.
-Apps have been written to intelligently take care of the sampling process for
-us.
+  through daily review:  Each day, one need only review for ten minutes or so,
+covering a small number of facts. The facts included should be sampled from the
+full library in a way that prefers newer entries, but that also sprinkles in
+older facts often enough so that none are ever forgotten.  Apps have been
+written to intelligently take care of the sampling process for us.
 
 Taking this framework as correct motivates questioning exactly how far it can
 be pushed:  <em>Would an infinitely-long-lived, but forgetful person be able to
@@ -67,8 +66,7 @@ as
 
 \begin{eqnarray}
 N_{total}(t) &\sim & \int_1^{t} N(t) dt \\
-&\sim & \int_0^{\infty}
-\frac{1}{t^{1 / (\gamma + 1)}} \\
+&\sim & \int_0^{t} \frac{1}{t^{1 / (\gamma + 1)}} \\
 &\sim & t^{ \gamma / (\gamma + 1)}. \tag{5} \label{5}
 \end{eqnarray}
 Because we assume that $\gamma > 0$, this grows without bound over time,
