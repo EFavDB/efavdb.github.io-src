@@ -7,8 +7,10 @@ Status: published
 
 We consider how the GDP or utility output of a city depends on the number of people living within it. From this, we derive some interesting consequences that can inform both government and individual attitudes towards newcomers.
 
-  
-  
+Edit 9/2022: The model here can't be complete because it doesn't take into account
+city capacity.  The true utility functions should be shaped like $S$-curves.
+Nevertheless, the arguments here can provide some insight into "growth"-phase
+dynamics and preferences.
 
 
 ### The utility function and benefit per person
