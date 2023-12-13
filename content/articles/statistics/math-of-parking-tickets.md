@@ -1,5 +1,5 @@
 Title: Mathematics of parking tickets
-Date: 2023-12-13 06:00
+Date: 2023-12-13 09:00
 Author: Jonathan Landy
 Category: Statistics
 Slug: math-of-parking-tickets
