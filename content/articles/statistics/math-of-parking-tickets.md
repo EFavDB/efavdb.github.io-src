@@ -42,7 +42,7 @@ The expected cost per minute then is
 
 Notice that this is a decreasing function of $m$ -- the longer we leave the
 spot alone, the cheaper it gets per minute to risk a ticket.  This occurs
-because we are guaraneed a ticket at long times, so the cost per ticket at long
+because we are guaraneed a ticket at long times, so the cost per minute at long
 times must approach $C / m$, a decreasing function of $m$ (this assumes we
 can't get more than one ticket per day -- perhaps wrong?).
 
