@@ -1,5 +1,5 @@
 Title: Mathematics of parking tickets
-Date: 2023-05-21 06:00
+Date: 2023-12-13 06:00
 Author: Jonathan Landy
 Category: Statistics
 Slug: math-of-parking-tickets
@@ -10,9 +10,9 @@ Status: published
 </p>
 
 
-I confess I sometimes am in a hurry and don't pay the parking meter when
-rushing into a store to quickly grab some needed item.  In times like these,
-the risk of a ticket can feel worth it -- but is it?
+I confess I sometimes don't pay the parking meter when rushed and just need to
+pop into a store to quickly grab an item.  In times like these, the risk of a
+ticket can feel ...  worth it -- but is it?
 
 To decide, we posit that parking enforcement officers random walk about and
 effectively check a given spot with rate $\lambda$ (E.g., if they stop by each
@@ -50,8 +50,9 @@ Data:  Suppose $C = 100$ and $\lambda = 1 / 2$.  Then the expected cost per
 minute to not pay the meter is roughly $\frac{100}{2 * 60} = 0.83$.  Very
 sobering: In general, it costs much less to simply pay the meter. Alas, I am a
 weak man. I worry in future I'll continue to think it's worth a mere $83$ cents
-a minute of risk while I rush in to grab that needed part from my local Ace.
-And if it takes a little longer, meh, the price per minute goes down over time.
+a minute of risk while I rush in to grab that needed part from my local Ace
+Hardware.  And if it takes a little longer, ... meh, the price per minute goes
+down over time.
 
 
 ```python
