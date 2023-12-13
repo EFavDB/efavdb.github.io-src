@@ -10,9 +10,9 @@ Status: published
 </p>
 
 
-I confess I sometimes don't pay the parking meter when rushed and just need to
-pop into a store to quickly grab an item.  In times like these, the risk of a
-ticket can feel ...  worth it -- but is it?
+I confess I sometimes don't pay the parking meter when I just need to pop into
+a store to quickly grab an item.  In times like these, the risk of a ticket can
+feel ...  worth it -- but is it?
 
 To decide, we posit that parking enforcement officers random walk about and
 effectively check a given spot with rate $\lambda$ (E.g., if they stop by each
